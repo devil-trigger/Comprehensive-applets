@@ -9,10 +9,10 @@
         <view class="filmImg">
           <image class="radius" mode="aspectFill" src="{{item.images.medium}}"></image>
         </view>
-        <view class="text-center">
+        <view class="filmTitle text-center">
           <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
           <view>
-            <van-rate allow-half value="{{item.rating.average/2}}" /> <text
+            <van-rate readonly allow-half value="{{item.rating.average/2}}" /> <text
               class="text-bold text-xl">{{item.rating.average}}</text>
           </view>
         </view>
@@ -20,7 +20,6 @@
     </view>
   </van-tab>
 
-  <!--  -->
   <van-tab title="口碑榜">
     <view class="FilmContent margin flex justify-around align-center">
       <view class="film-item basis-sm margin-bottom" wx:for="{{Weekly}}" wx:key="index">
@@ -30,7 +29,7 @@
         <view class="text-center">
           <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
           <view>
-            <van-rate allow-half value="{{item.subject.rating.average/2}}" /> <text
+            <van-rate readonly allow-half value="{{item.subject.rating.average/2}}" /> <text
               class="text-bold text-xl">{{item.subject.rating.average}}</text>
           </view>
         </view>
@@ -46,7 +45,7 @@
         <view class="text-center">
           <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
           <view>
-            <van-rate allow-half value="{{item.subject.rating.average/2}}" /> <text
+            <van-rate readonly allow-half value="{{item.subject.rating.average/2}}" /> <text
               class="text-bold text-xl">{{item.subject.rating.average}}</text>
           </view>
         </view>

@@ -9,8 +9,11 @@
     /* height: 300rpx; */
 }
 .film-item .filmImg{
-    /* width: 100%; */
+    /* width: 40vw; */
 }
 .film-item .filmImg image{
     width: 100%;
+}
+.filmTitle{
+    width: 40vw;
 }
