@@ -1,23 +1,44 @@
 
 Page({
     data: {
-        filmData:{}
+        searchBtn:`width:100%`,
+        filmData:{},
+        active: 0,//tab
+
     },
 // 生命周期函数--监听页面加载
     onLoad: function (options) {
-        // this.getfilmData()
+        this.getData('weekly').then(res=>{console.log(res)})
     },
-    getfilmData(){
-        wx.request({
-            url: 'https://movie.querydata.org/api',
-            data: {
-                id:34913671
-            },
-            header: { 'content-type': 'application/json'},
-            success (res) {
-              console.log(res.data)
-            }
-          })
+    getData(parameter){//数据
+        return new Promise((resolve,reject)=>{
+            let datajson={
+                url: `http://localhost:2080/v2/movie/${parameter}`,
+                data: {
+                    apikey:'0b2bdeda43b5688921839c8ecb20399b'
+                },
+                header: {'content-type': 'json'},
+                success (res) {
+                    resolve(res)
+                },
+                fail(err){
+                    reject(err)
+                }
+              }
+            wx.request(datajson)
+        })
+        
+    },
+    onChange(event) {//标签页切换
+        // wx.showToast({
+        //   title: `切换到标签 ${event.detail.name}`,
+        //   icon: 'none',
+        // });
+    },
+    toSearchPage(){//进入搜索
+        wx.navigateTo({
+          url: '/pages/Subpage/SearchFilm/SearchFilm',
+        })
     },
 // 生命周期函数--监听页面初次渲染完成
     onReady: function () {

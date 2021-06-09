@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        value:'',//搜索的内容
     },
 
     /**
@@ -14,7 +14,23 @@ Page({
     onLoad: function (options) {
 
     },
-
+    onCancel(){
+       wx.showToast({
+         title: '取消',
+       })
+    },
+    getfilmData(){//数据
+      wx.request({
+          url: 'https://movie.querydata.org/api',
+          data: {
+              id:34913671
+          },
+          header: { 'content-type': 'application/json'},
+          success (res) {
+            console.log(res.data)
+          }
+        })
+  },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

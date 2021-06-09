@@ -1,1 +1,9 @@
-<view class="search"><van-button type="primary"><van-icon name="search" /></van-button></view>
+<view class="search" bindtap="toSearchPage">
+    <van-button round plain icon="search" custom-style='{{searchBtn}}' type="primary">搜索 </van-button>
+</view>
+
+<van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
+  <van-tab title="新片榜">内容 1</van-tab>
+  <van-tab title="口碑榜">内容 2</van-tab>
+  <van-tab title="北美票房榜">内容 3</van-tab>
+</van-tabs>

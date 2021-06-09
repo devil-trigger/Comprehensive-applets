@@ -1,4 +1,1 @@
-/* pages/index/index.wxss */
-.search{
-    
-}
+@import '/dist/color-ui/main.wxss';

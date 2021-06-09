@@ -1,2 +1,6 @@
-<!--pages/Subpage/SearchFilm/SearchFilm.wxml-->
-<text>pages/Subpage/SearchFilm/SearchFilm.wxml</text>
+<view>
+    <van-search value="{{ value }}" shape="round" background="#4fc08d" placeholder="输入搜索的电影名称" />
+</view>
+
+
+<view></view>
