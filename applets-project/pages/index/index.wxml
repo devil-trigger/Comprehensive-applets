@@ -1,9 +1,56 @@
-<view class="search" bindtap="toSearchPage">
-    <van-button round plain icon="search" custom-style='{{searchBtn}}' type="primary">搜索 </van-button>
+<view class="margin-sm" bindtap="toSearchPage">
+  <van-button round plain size="small " icon="search" custom-style='{{searchBtn}}' type="primary">搜索 </van-button>
 </view>
 
 <van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
-  <van-tab title="新片榜">内容 1</van-tab>
-  <van-tab title="口碑榜">内容 2</van-tab>
-  <van-tab title="北美票房榜">内容 3</van-tab>
+  <van-tab title="新片榜">
+    <view class="FilmContent margin flex justify-around align-center">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{NewFilm}}" wx:key="index">
+        <view class="filmImg">
+          <image class="radius" mode="aspectFill" src="{{item.images.medium}}"></image>
+        </view>
+        <view class="text-center">
+          <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
+          <view>
+            <van-rate allow-half value="{{item.rating.average/2}}" /> <text
+              class="text-bold text-xl">{{item.rating.average}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-tab>
+
+  <!--  -->
+  <van-tab title="口碑榜">
+    <view class="FilmContent margin flex justify-around align-center">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{Weekly}}" wx:key="index">
+        <view class="filmImg">
+          <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
+        </view>
+        <view class="text-center">
+          <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
+          <view>
+            <van-rate allow-half value="{{item.subject.rating.average/2}}" /> <text
+              class="text-bold text-xl">{{item.subject.rating.average}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-tab>
+  <van-tab title="北美票房榜">
+    <view class="FilmContent margin flex justify-around align-center">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{UsFilm}}" wx:key="index">
+        <view class="filmImg">
+          <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
+        </view>
+        <view class="text-center">
+          <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
+          <view>
+            <van-rate allow-half value="{{item.subject.rating.average/2}}" /> <text
+              class="text-bold text-xl">{{item.subject.rating.average}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-tab>
 </van-tabs>

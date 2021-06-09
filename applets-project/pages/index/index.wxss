@@ -1,1 +1,16 @@
 @import '/dist/color-ui/main.wxss';
+.FilmContent{
+    flex-wrap: wrap;
+    /* flex换行 */
+}
+.film-item{
+    /* width:40%; */
+    /* background-color: #f3fef3; */
+    /* height: 300rpx; */
+}
+.film-item .filmImg{
+    /* width: 100%; */
+}
+.film-item .filmImg image{
+    width: 100%;
+}
