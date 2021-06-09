@@ -2,8 +2,8 @@
 Page({
     data: {
         searchBtn:`width:100%`,
-        filmData:{},
         active: 0,//tab
+        WeekList:{},
 
     },
 // 生命周期函数--监听页面加载
