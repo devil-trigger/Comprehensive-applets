@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/index/index"
+    "pages/index/index",
+    "pages/Subpage/SearchFilm/SearchFilm",
+    "pages/my/my"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -8,6 +10,21 @@
     "navigationBarTitleText": "七柚D潮玩汇",
     "navigationBarTextStyle":"black"
   },
-  "style": "v2",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath":"/image/tabbar/douban.png",
+        "selectedIconPath": "image/tabbar/douban-s.png",
+        "text": "豆瓣"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath":"/image/tabbar/my.png",
+        "selectedIconPath": "image/tabbar/my-s.png",
+        "text": "我"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json"
 }
