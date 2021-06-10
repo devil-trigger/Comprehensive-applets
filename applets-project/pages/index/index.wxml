@@ -1,10 +1,10 @@
 <view class="margin-sm" bindtap="toSearchPage">
-  <van-button round plain size="small " icon="search" custom-style='{{searchBtn}}' type="primary">搜索 </van-button>
+  <van-button round plain size="small " icon="search" custom-style='width:100%' type="primary">搜索 </van-button>
 </view>
 
 <van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
   <van-tab title="新片榜">
-    <view class="FilmContent margin flex justify-around align-center">
+    <view class="flex-wrap margin flex justify-around align-center" bindtap="toFilmDetailsPage">
       <view class="film-item basis-sm margin-bottom" wx:for="{{NewFilm}}" wx:key="index">
         <view class="filmImg">
           <image class="radius" mode="aspectFill" src="{{item.images.medium}}"></image>
@@ -21,7 +21,7 @@
   </van-tab>
 
   <van-tab title="口碑榜">
-    <view class="FilmContent margin flex justify-around align-center">
+    <view class="flex-wrap margin flex justify-around align-center">
       <view class="film-item basis-sm margin-bottom" wx:for="{{Weekly}}" wx:key="index">
         <view class="filmImg">
           <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
@@ -37,7 +37,7 @@
     </view>
   </van-tab>
   <van-tab title="北美票房榜">
-    <view class="FilmContent margin flex justify-around align-center">
+    <view class="flex-wrap margin flex justify-around align-center">
       <view class="film-item basis-sm margin-bottom" wx:for="{{UsFilm}}" wx:key="index">
         <view class="filmImg">
           <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
@@ -53,3 +53,12 @@
     </view>
   </van-tab>
 </van-tabs>
+
+
+<!-- 请求失败组件 -->
+<!-- <view>
+  <van-empty description="{{noDataText}}" image="network">
+  <text>重试</text>
+</van-empty>
+
+</view> -->

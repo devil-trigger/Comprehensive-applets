@@ -1,31 +1,59 @@
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    dataList:[]
+    NoDataSwitch: false, //无数据组件显示情况
+    dataList: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getdataList()
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+    })
+    setTimeout(()=>{
+      this.getdataList();
+      wx.hideLoading();
+    },1200)
+    
   },
-  getdataList(){
+  getdataList() {
     wx.request({
       url: 'http://api.tianapi.com/topnews/index',
-      data:{
-        key:'869941cd56fe09e14b255d12467651bd',
-        num:10
+      data: {
+        key: '869941cd56fe09e14b255d12467651bd',
+        num: 10
       },
-      success:res=>{
+      success: res => {
         console.log(res.data.newslist)
-        this.setData({
-          dataList:res.data.newslist
-        })
+        if (res.data.newslist.length != 0) {
+          // let dataJson = res.data.newslist
+          // res.data.newslist.forEach((item, index) => {
+          //   console.log(item.ctime.substring(0, 10))
+          // })
+          this.setData({
+            dataList: res.data.newslist
+          })
+        } else {
+          this.setData({
+            NoDataSwitch: true
+          })
+        }
+      },
+      fail: err => {
+        if (err) {
+          console.log(err)
+          this.setData({
+            NoDataSwitch: true
+          })
+        }
       }
+    })
+  },
+  toToutiaoDetails(e) {
+    // console.log(e.currentTarget.dataset.url)
+    wx.navigateTo({
+      url: `../Subpage/ToutiaoDetails/ToutiaoDetails?url=${e.currentTarget.dataset.url}`,
     })
   },
   /**
@@ -60,7 +88,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console('ss')
+    // wx.showNavigationBarLoading(); 
+    // wx.showLoading({
+    //   title: '刷新中...',
+    // })
   },
 
   /**

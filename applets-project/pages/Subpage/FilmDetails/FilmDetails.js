@@ -1,31 +1,18 @@
-// pages/my/my.js
+// pages/Subpage/FilmDetails/FilmDetails.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        urlformat:'https://picsum.photos',
-        url:''
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            url:this.data.urlformat+'/200/500'
-        })
-    },
-    squareType(){
-        if(this.data.url=='https://picsum.photos/200'){
-            this.setData({
-                url:''
-            })
-        }
-        this.setData({
-            url:this.data.urlformat+'/500'
-        })
+
     },
 
     /**

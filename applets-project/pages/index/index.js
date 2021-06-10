@@ -1,8 +1,8 @@
 
 Page({
     data: {
-        searchBtn:`width:100%`,
         active: 0,//tab
+        noDataText:'数据请求失败',
         NewFilm:[],//新片
         Weekly:[],//口碑
         UsFilm:[],//北美票房
@@ -35,7 +35,10 @@ Page({
                 data: { apikey:'0b2bdeda43b5688921839c8ecb20399b' },
                 header: {'content-type': 'json'},
                 success (res) { resolve(res) },
-                fail(err){ reject(err)}
+                fail(err){ 
+                    reject(err);
+                    
+                }
               }
             wx.request(datajson)
         })
@@ -46,11 +49,17 @@ Page({
         //   title: `切换到标签 ${event.detail.name}`,
         //   icon: 'none',
         // });
+
     },
     toSearchPage(){//进入搜索
         wx.navigateTo({
           url: '/pages/Subpage/SearchFilm/SearchFilm',
         })
+    },
+    toFilmDetailsPage(){//进入详情
+        // wx.navigateTo({
+        //   url: '/pages/Subpage/FilmDetails/FilmDetails',
+        // })
     },
 // 生命周期函数--监听页面初次渲染完成
     onReady: function () {

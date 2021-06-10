@@ -1,7 +1,6 @@
 @import '/dist/color-ui/main.wxss';
 .FilmContent{
-    flex-wrap: wrap;
-    /* flex换行 */
+
 }
 .film-item{
     /* width:40%; */

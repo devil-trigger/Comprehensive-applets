@@ -1,3 +1,39 @@
 <view wx:for="{{dataList}}" wx:key="index">
-  {{index+1}}{{item.title}}
+  <view class="margin flex align-center" wx:if="{{index%2==0}}" bindtap="toToutiaoDetails" data-url="{{item.url}}">
+    <view class="basis-lg">
+      <view class="text-bold text-lg margin-bottom van-multi-ellipsis--l3">
+        {{item.title}}
+      </view>
+      <view class="flex justify-between margin-xs">
+        <view><text class="cuIcon-news text-blue"></text>{{item.source}}</view>
+        <view>{{item.ctime}}</view>
+      </view>
+    </view>
+    <view class="basis-sm margin-xs toutiaoImgItem">
+      <van-image width="95%" height="200rpx" src="{{item.picUrl}}" />
+    </view>
+  </view>
+  <!-- ———————————————————————————————— -->
+  <view class="margin flex align-center" wx:if="{{index%2!=0}}" bindtap="toToutiaoDetails" data-url="{{item.url}}">
+    <view class="basis-sm margin-xs toutiaoImgItem">
+        <van-image width="95%" height="200rpx" src="{{item.picUrl}}"/>
+    </view>
+    <view class="basis-lg">
+      <view class="text-bold text-lg margin-bottom van-multi-ellipsis--l3">
+        {{item.title}}
+      </view>
+      <view class="flex justify-between margin-xs">
+        <view><text class="cuIcon-news text-blue"></text>{{item.source}}</view>
+        <view>{{item.ctime}}</view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 请求失败 -->
+<view wx:if="{{NoDataSwitch}}">
+  <van-empty description="数据请求失败" image="network">
+    <text bindtap="getdataList">重试</text>
+  </van-empty>
 </view>

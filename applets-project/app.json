@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/toutiao/toutiao",
     "pages/index/index",
+    "pages/toutiao/toutiao",
     "pages/my/my",
     "pages/Subpage/SearchFilm/SearchFilm",
+    "pages/Subpage/FilmDetails/FilmDetails",
     "pages/Subpage/ToutiaoDetails/ToutiaoDetails"
   ],
   "window":{
@@ -22,8 +23,8 @@
       },
       {
         "pagePath": "pages/toutiao/toutiao",
-        "iconPath":"/image/tabbar/douban.png",
-        "selectedIconPath": "image/tabbar/douban-s.png",
+        "iconPath":"/image/tabbar/toutiao.png",
+        "selectedIconPath": "image/tabbar/toutiao-s.png",
         "text": "头条"
       },
       {
@@ -33,6 +34,9 @@
         "text": "我"
       }
     ]
+  },
+  "usingComponents": {
+    "van-empty": "/dist/empty/index"
   },
   "sitemapLocation": "sitemap.json"
 }
