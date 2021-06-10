@@ -1,0 +1,3 @@
+<view wx:for="{{dataList}}" wx:key="index">
+  {{index+1}}{{item.title}}
+</view>
