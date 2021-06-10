@@ -10,7 +10,7 @@ Page({
 // 生命周期函数--监听页面加载
     onLoad: function (options) {
         this.getData('new_movies').then(res=>{//新片
-            // console.log(res.data.subjects[0])
+            console.log(res.data.subjects[1])
             this.setData({
                 NewFilm:res.data.subjects
             })
@@ -56,10 +56,12 @@ Page({
           url: '/pages/Subpage/SearchFilm/SearchFilm',
         })
     },
-    toFilmDetailsPage(){//进入详情
-        // wx.navigateTo({
-        //   url: '/pages/Subpage/FilmDetails/FilmDetails',
-        // })
+    toFilmDetailsPage(e){//进入详情
+        let id=e.currentTarget.dataset.filmid
+        wx.navigateTo({
+          url: `/pages/Subpage/FilmDetails/FilmDetails?id=${id}`,
+        })
+        // console.log(e.currentTarget.dataset.filmid)
     },
 // 生命周期函数--监听页面初次渲染完成
     onReady: function () {

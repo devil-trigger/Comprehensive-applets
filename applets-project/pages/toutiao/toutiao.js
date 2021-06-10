@@ -1,7 +1,27 @@
 Page({
   data: {
     NoDataSwitch: false, //无数据组件显示情况
-    dataList: []
+    dataList: [],
+    swiperList: [
+      {
+      url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index.webp'
+    },
+      {
+      url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index2.webp'
+    },
+      {
+      url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index3.webp'
+    },
+      {
+      url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index4.webp'
+    },
+      {
+      url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index5.webp'
+    },
+      {
+      url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index6.webp'
+    },
+],
   },
   /**
    * 生命周期函数--监听页面加载
@@ -11,11 +31,11 @@ Page({
       title: '数据加载中...',
       mask: true,
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getdataList();
       wx.hideLoading();
-    },1200)
-    
+    }, 1200)
+
   },
   getdataList() {
     wx.request({
@@ -99,7 +119,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('触底了')
   },
 
   /**

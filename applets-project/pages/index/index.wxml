@@ -4,8 +4,8 @@
 
 <van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
   <van-tab title="新片榜">
-    <view class="flex-wrap margin flex justify-around align-center" bindtap="toFilmDetailsPage">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{NewFilm}}" wx:key="index">
+    <view class="flex-wrap margin flex justify-around align-center">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{NewFilm}}" wx:key="index" bindtap="toFilmDetailsPage" data-filmId="{{item.id}}">
         <view class="filmImg">
           <image class="radius" mode="aspectFill" src="{{item.images.medium}}"></image>
         </view>

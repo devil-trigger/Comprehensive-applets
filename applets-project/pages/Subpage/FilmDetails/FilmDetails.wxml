@@ -1,2 +1,2 @@
-<!--pages/Subpage/FilmDetails/FilmDetails.wxml-->
-<text>pages/Subpage/FilmDetails/FilmDetails.wxml</text>
+id是：{{filmID}}
+<web-view src="{{'https://movie.douban.com/subject/'+filmID}}"></web-view>
