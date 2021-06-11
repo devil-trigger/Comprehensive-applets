@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/toutiao/toutiao",
     "pages/index/index",
     "pages/Subpage/SearchFilm/SearchFilm",
-    "pages/toutiao/toutiao",
     "pages/my/my",
     "pages/Subpage/FilmDetails/FilmDetails",
     "pages/Subpage/ToutiaoDetails/ToutiaoDetails"

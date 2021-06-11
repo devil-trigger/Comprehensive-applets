@@ -4,24 +4,7 @@ Page({
     NoDataSwitch: false, //无数据组件开关
     dataList: [],//头条新闻数据
     requestNum:10,
-    swiperList: [{
-        url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index.webp'
-      },
-      {
-        url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index2.webp'
-      },
-      {
-        url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index3.webp'
-      },
-      {
-        url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index4.webp'
-      },
-      {
-        url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index5.webp'
-      },
-      {
-        url: 'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index6.webp'
-      },
+    swiperList: ['https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index2.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index3.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index4.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index5.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index6.webp'
     ],//轮播图图片
     listSwitch:false,//数据新增开关
   },
@@ -92,10 +75,17 @@ Page({
     }
     return timeText
   },
-  toToutiaoDetails(e) {
-    // console.log(e.currentTarget.dataset.url)
+  toToutiaoDetails(e) {//打开头条新闻详情
     wx.navigateTo({
       url: `../Subpage/ToutiaoDetails/ToutiaoDetails?url=${e.currentTarget.dataset.url}`,
+    })
+  },
+  toImage(e){//轮播图 图片查看器
+    // console.log(e.currentTarget.dataset.index)
+    let arr=this.data.swiperList
+    wx.previewImage({
+      urls: arr,
+      current:arr[e.currentTarget.dataset.index]
     })
   },
   reachBottomFun(){//触底加载函数

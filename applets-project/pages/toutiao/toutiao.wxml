@@ -1,8 +1,8 @@
 <view>
   <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true"
 		 autoplay="true" interval="5000" duration="777" >
-			<swiper-item wx:for="{{swiperList}}" wx:key="index">
-				<image class="radius" src="{{item.url}}" mode="aspectFill"></image>
+			<swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="toImage" data-index="{{index}}"> 
+				<image class="radius" src="{{item}}" mode="aspectFill" ></image>
 			</swiper-item>
 		</swiper>
 </view>
