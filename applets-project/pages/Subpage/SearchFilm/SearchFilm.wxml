@@ -4,12 +4,22 @@
 
 <!-- 搜索热词模块 -->
 <view class="margin">
-    <view class="padding-sm flex flex-wrap align-center bg-gray radius">
-        <view wx:for="{{HotWords}}" wx:key='index' class="margin-xs text-{{item.size}}" style="color:{{item.color}};" bindtap="setTagWord" data-text="{{item.text}}">{{item.text}}</view>
-        <view>
-            <image src=""></image>
-        </view>
+    <view class="padding-sm flex flex-wrap align-center bg-gray radius shadow">
+        <view wx:for="{{HotWords}}" wx:key='index' class="margin-xs text-{{item.size}}" style="color:{{item.color}};"
+            bindtap="setTagWord" data-text="{{item.text}}">{{item.text}}</view>
     </view>
 </view>
 
 <!-- 热门电影 -->
+<view class="margin text-center">
+    <view class="flex ">
+        <view>
+            <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/bilibili1.gif">
+            </image>
+        </view>
+        <view>
+            <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/bilibili2.gif">
+            </image>
+        </view>
+    </view>
+</view>
