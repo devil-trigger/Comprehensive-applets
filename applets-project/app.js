@@ -1,6 +1,8 @@
-// app.js
+let utils=require('./utils/util.js').default
 App({
   onLaunch() {
+    this.globalData.clickTime=utils.formatTime(new Date())
+    // console.log(this.globalData.clickTime);
     // 展示本地存储能力
     // const logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
@@ -14,6 +16,7 @@ App({
     // })
   },
   globalData: {
-    userInfo: null
+    // userInfo: null
+    clickTime:0
   }
 })

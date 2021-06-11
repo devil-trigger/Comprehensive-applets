@@ -1,4 +1,3 @@
-@import '/dist/color-ui/main.wxss';
 .toutiaoImgItem image{
     width: 100%;
     height: 100%;

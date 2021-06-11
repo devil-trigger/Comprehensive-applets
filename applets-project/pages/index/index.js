@@ -10,7 +10,7 @@ Page({
 // 生命周期函数--监听页面加载
     onLoad: function (options) {
         this.getData('new_movies').then(res=>{//新片
-            console.log(res.data.subjects[1])
+            // console.log(res.data.subjects[1])
             this.setData({
                 NewFilm:res.data.subjects
             })
@@ -21,7 +21,7 @@ Page({
                 Weekly:res.data.subjects
             })
         })
-        this.getData('us_box').then(res=>{//口碑
+        this.getData('us_box').then(res=>{//北美票房
             // console.log(res.data.subjects[0])
             this.setData({
                 UsFilm:res.data.subjects
@@ -37,7 +37,6 @@ Page({
                 success (res) { resolve(res) },
                 fail(err){ 
                     reject(err);
-                    
                 }
               }
             wx.request(datajson)

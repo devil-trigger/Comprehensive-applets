@@ -1,6 +1,6 @@
 <view>
   <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true"
-		 autoplay="true" interval="5000" duration="500">
+		 autoplay="true" interval="5000" duration="777" >
 			<swiper-item wx:for="{{swiperList}}" wx:key="index">
 				<image class="radius" src="{{item.url}}" mode="aspectFill"></image>
 			</swiper-item>
@@ -38,9 +38,9 @@
       </view>
     </view>
   </view>
-  <!-- <view class="text-center margin">
+  <view class="text-center margin" wx:if="{{listSwitch}}">
     <van-loading color="#1989fa" size="24px">加载中...</van-loading>
-  </view> -->
+  </view>
 </view>
 <!-- 请求失败 -->
 <view wx:if="{{NoDataSwitch}}">

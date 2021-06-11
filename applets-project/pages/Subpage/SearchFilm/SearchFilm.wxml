@@ -2,5 +2,14 @@
     <van-search value="{{ value }}" shape="round" background="#4fc08d" placeholder="输入搜索的电影名称" />
 </view>
 
+<!-- 搜索热词模块 -->
+<view class="margin">
+    <view class="padding-sm flex flex-wrap align-center bg-gray radius">
+        <view wx:for="{{HotWords}}" wx:key='index' class="margin-xs text-{{item.size}}" style="color:{{item.color}};" bindtap="setTagWord" data-text="{{item.text}}">{{item.text}}</view>
+        <view>
+            <image src=""></image>
+        </view>
+    </view>
+</view>
 
-<view></view>
+<!-- 热门电影 -->
