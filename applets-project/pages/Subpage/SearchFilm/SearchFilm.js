@@ -2,31 +2,11 @@ Page({
     data: {
         value:'',//搜索的内容
         HotWords:[
-          {
-            text:'喜剧',
-            size:'',
-            color:''
-          },
-          {
-            text:'豆瓣高分',
-            size:'',
-            color:''
-          },
-          {
-            text:'日本',
-            size:'',
-            color:''
-          },
-          {
-            text:'冷门佳片',
-            size:'',
-            color:''
-          },
-          {
-            text:'悬疑',
-            size:'',
-            color:''
-          },
+          {text:'喜剧'},
+          {text:'豆瓣高分'},
+          {text:'日本'},
+          {text:'冷门佳片'},
+          {text:'悬疑'},
         ],//搜索热词
     },
 
@@ -81,8 +61,11 @@ Page({
         wx.showToast({
           title:e.currentTarget.dataset.text ,icon:'none'
         })
+        this.setData({
+          value:e.currentTarget.dataset.text
+        })
     },
-    getFilmData(){//数据
+    getFilmData(){//影片请求数据
       wx.request({
           url: 'https://movie.querydata.org/api',
           data: {
