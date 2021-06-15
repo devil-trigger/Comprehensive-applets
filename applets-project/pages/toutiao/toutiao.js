@@ -1,4 +1,5 @@
-let clickTime = getApp().globalData.clickTime
+let clickTime = getApp().globalData.clickTime;
+import utils from '../..//utils/util.js'
 Page({
   data: {
     NoDataSwitch: false, //无数据组件开关
@@ -9,17 +10,23 @@ Page({
     listSwitch:false,//数据新增开关
   },
 //生命周期函数--监听页面加载
-  onLoad: function (options) {
-    wx.showLoading({
-      title: '数据加载中...',
-      mask: true,
-    })
-    setTimeout(() => {
-      this.getdataList();
-      wx.hideLoading();
-    }, 1200)
+  onLoad: function () { },
+  timeFun(timeAgo) { //时间处理函数，返回（x分钟、x小时、x天前）
+    // console.log(timeAgo);
+    let timeText = ''
+    if (timeAgo < 1) {
+      timeText = timeText = Math.trunc(timeAgo * 60) + '分钟前'
+      // console.log(timeText=timeAgo*30+'分钟前')
+    } else if (timeAgo < 1 < 24) {
+      timeText = Math.trunc(timeAgo) + '小时前'
+      // console.log(Math.trunc(timeAgo)+'小时前')
+    } else {
+      timeText = timeAgo / 24 + '天前'
+      // console.log(timeAgo/24)
+    }
+    return timeText
   },
-  getdataList() {
+  getdataList() {//请求新闻数据
     wx.request({
       url: 'http://api.tianapi.com/topnews/index',
       data: {
@@ -27,16 +34,15 @@ Page({
         num: this.data.requestNum
       },
       success: res => {
-        // console.log(res.data.newslist.length)
+        // console.log(res.data.newslist)
         if (res.data.newslist.length != 0) {
           let dataJson = res.data.newslist
-          let d2 = new Date(clickTime.replace(/\-/g, "/"));
+          let d2 = new Date(clickTime);//小程序打开时间
           let that = this;
           dataJson.forEach((item, index) => {
-            let d1 = new Date(item.ctime.replace(/\-/g, "/"));
-            //每份新闻的时间
-            let agoTime = parseInt(d2 - d1) / 1000 / 60 / 60
-            //新闻时间距打开小程序的时间
+            let d1 = new Date(item.ctime.replace(/\-/g, "/"));//新闻时间
+            let agoTime = parseInt(d2 - d1) / 1000 / 60 / 60;
+            //新闻时间距打开小程序的时间↑
             // console.log(agoTime.toFixed(2));
             let time = that.timeFun(Number(agoTime.toFixed(2)))
             dataJson[index].ctime = time
@@ -60,20 +66,47 @@ Page({
       }
     })
   },
-  timeFun(timeAgo) { //时间处理函数
-    // console.log(timeAgo);
-    let timeText = ''
-    if (timeAgo < 1) {
-      timeText = timeText = Math.trunc(timeAgo * 60) + '分钟前'
-      // console.log(timeText=timeAgo*30+'分钟前')
-    } else if (timeAgo < 1 < 24) {
-      timeText = Math.trunc(timeAgo) + '小时前'
-      // console.log(Math.trunc(timeAgo)+'小时前')
-    } else {
-      timeText = timeAgo / 24 + '天前'
-      // console.log(timeAgo/24)
+  SetStorageTime(){//设置缓存时间以及其他事项
+    let RequestTime=utils.formatTime(new Date());//当前时间
+    let NewBrowse=new Date();//当前时间（转换）
+    let UseDBrowse=utils.ChangeTime(wx.getStorageSync('TouTiaoTime'));//上次请求时间(转换)
+    let diff=(NewBrowse.getTime()-UseDBrowse.getTime())%(24*3600*1000)%(3600*1000);
+    let min=Math.floor(diff/(60*1000));//分钟
+    // console.log(min>7)
+    if(min>=7&&wx.getStorageSync('TouTiaoTime')){//大于7分钟就请求
+      console.log('有缓存且已超过7min，即刻更新！');
+      wx.setStorage({//缓存浏览时间
+        key:"TouTiaoTime",
+        data:RequestTime
+      })
+      wx.showLoading({
+        title: '数据加载中...',
+        mask: true,
+      })
+      setTimeout(() => {
+        this.getdataList();
+        wx.hideLoading();
+      }, 1200)
+    }else{
+        if(wx.getStorageSync('TouTiaoTime')==''||this.data.dataList.length==0){
+          console.log('无缓存或刷新了，需请求');
+          wx.setStorage({//缓存浏览时间
+            key:"TouTiaoTime",
+            data:RequestTime
+          })
+          wx.showLoading({
+            title: '数据加载中...',
+            mask: true,
+          })
+          setTimeout(() => {
+            this.getdataList();
+            wx.hideLoading();
+          }, 1200)
+        }else {
+          console.log('有缓存且不超过7分钟，不更新')
+          return
+        }
     }
-    return timeText
   },
   toToutiaoDetails(e) {//打开头条新闻详情
     wx.navigateTo({
@@ -108,7 +141,9 @@ Page({
 //生命周期函数--监听页面初次渲染完成
   onReady: function () { },
 //生命周期函数--监听页面显示
-  onShow: function () {},
+  onShow: function () {
+    this.SetStorageTime()
+  },
 //生命周期函数--监听页面隐藏
   onHide: function () { },
 //生命周期函数--监听页面卸载

@@ -1,28 +1,32 @@
-<view>
+<!-- 轮播图 -->
+<view class="">
   <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true"
-		 autoplay="true" interval="5000" duration="777" >
+		 autoplay="true" interval="5000" duration="970" >
 			<swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="toImage" data-index="{{index}}"> 
 				<image class="radius" src="{{item}}" mode="aspectFill" ></image>
 			</swiper-item>
 		</swiper>
 </view>
+
+<!-- 新闻模块 -->
 <view>
   <view wx:for="{{dataList}}" wx:key="index">
+   <!-- ——————右图左文—————— -->
     <view class="margin flex align-center" wx:if="{{index%2==0}}" bindtap="toToutiaoDetails" data-url="{{item.url}}">
       <view class="basis-lg">
         <view class="text-bold text-lg margin-bottom van-multi-ellipsis--l3">
           {{item.title}}
         </view>
         <view class="flex justify-between margin-xs">
-          <view><text class="cuIcon-news text-blue"></text>{{item.source}}</view>
-          <view>{{item.ctime}}</view>
+          <view class="basis-lg text-cut"><text class="cuIcon-news text-blue"></text>{{item.source}}</view>
+          <view class="basis-sm text-cut">{{item.ctime}}</view>
         </view>
       </view>
       <view class="basis-sm margin-xs toutiaoImgItem">
         <van-image width="95%" height="200rpx" src="{{item.picUrl}}" />
       </view>
     </view>
-    <!-- ———————————————————————————————— -->
+    <!-- ——————左图右文—————— -->
     <view class="margin flex align-center" wx:if="{{index%2!=0}}" bindtap="toToutiaoDetails" data-url="{{item.url}}">
       <view class="basis-sm margin-xs toutiaoImgItem">
         <van-image width="95%" height="200rpx" src="{{item.picUrl}}" />
@@ -32,8 +36,8 @@
           {{item.title}}
         </view>
         <view class="flex justify-between margin-xs">
-          <view><text class="cuIcon-news text-blue"></text>{{item.source}}</view>
-          <view>{{item.ctime}}</view>
+          <view class="basis-lg text-cut"><text class="cuIcon-news text-blue"></text>{{item.source}}</view>
+          <view class="basis-sm text-cut">{{item.ctime}}</view>
         </view>
       </view>
     </view>
