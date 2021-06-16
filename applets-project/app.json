@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/weather/weather",
     "pages/toutiao/toutiao",
     "pages/index/index",
     "pages/Subpage/SearchFilm/SearchFilm",
