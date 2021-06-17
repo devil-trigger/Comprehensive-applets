@@ -4,13 +4,19 @@ Page({
   data: {
     NoDataSwitch: false, //无数据组件开关
     dataList: [],//头条新闻数据
-    requestNum:10,
-    swiperList: ['https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index2.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index3.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index4.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index5.webp','https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index6.webp'
+    requestNum:10,//请求数量
+    swiperList: [
+      'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index.webp',
+      'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index2.webp',
+      'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index3.webp',
+      'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index4.webp',
+      'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index5.webp',
+      'https://cdn.jsdelivr.net/gh/devil-trigger/sdn@master/index-img/index6.webp'
     ],//轮播图图片
     listSwitch:false,//数据新增开关
   },
 //生命周期函数--监听页面加载
-  onLoad: function () { },
+  onLoad: function () {},
   timeFun(timeAgo) { //时间处理函数，返回（x分钟、x小时、x天前）
     // console.log(timeAgo);
     let timeText = ''
@@ -35,7 +41,7 @@ Page({
       },
       success: res => {
         // console.log(res.data.newslist)
-        if (res.data.newslist.length != 0) {
+        if (res.data.newslist) {
           let dataJson = res.data.newslist
           let d2 = new Date(clickTime);//小程序打开时间
           let that = this;
@@ -57,11 +63,17 @@ Page({
         }
       },
       fail: err => {
+        console.log(err)
         if (err) {
-          console.log(err)
-          this.setData({
-            NoDataSwitch: true
-          })
+          if(this.data.dataList.length==0){
+            this.setData({//若无请求内容（从未请求到内容）
+              NoDataSwitch: true
+            })
+          }else{
+            wx.showToast({
+              title: '加载失败',icon:'error'
+            })
+          }
         }
       }
     })

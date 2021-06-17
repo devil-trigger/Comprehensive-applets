@@ -1,5 +1,5 @@
 <!-- 轮播图 -->
-<view class="">
+<view wx:if="{{!NoDataSwitch}}">
   <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true"
 		 autoplay="true" interval="5000" duration="970" >
 			<swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="toImage" data-index="{{index}}"> 
@@ -49,6 +49,6 @@
 <!-- 请求失败 -->
 <view wx:if="{{NoDataSwitch}}">
   <van-empty description="数据请求失败" image="network">
-    <text bindtap="getdataList">重试</text>
+    <text bindtap="SetStorageTime">重试</text>
   </van-empty>
 </view>

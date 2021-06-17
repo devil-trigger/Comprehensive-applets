@@ -1,16 +1,27 @@
-
 <view class="navigation-Item" style="height:{{navigationSty.navBarHeight}}px;">
-    <view class="capsule-box"
-    style="height:{{navigationSty.menuHeight}}px; min-height:{{navigationSty.menuHeight}}px; line-height:{{navigationSty.menuHeight}}px; bottom:{{navigationSty.menuBotton}}px;left:{{navigationSty.menuRight}}px;">
+    <view class="capsule-box flex justify-center"
+        style="height:{{navigationSty.menuHeight}}px; min-height:{{navigationSty.menuHeight}}px; line-height:{{navigationSty.menuHeight}}px; bottom:{{navigationSty.menuBotton}}px;left:{{navigationSty.menuRight}}px;">
         <!-- <view class="nav-handle">
 
         </view> -->
-        <view class="nav-title text-center">
-          天气
+        <view class="nav-title basis-sm text-center">
+            <!-- <van-button block round plain size='small' type="info" icon="search">搜索</van-button> -->
+            七柚天气
         </view>
     </view>
 </view>
 
 <view class="" style="margin-top:{{navigationSty.navBarHeight}}px;">
-    sdasdasdasdsa
+    <view>
+        <view class="text-center" >
+            大苏打撒旦<text class="cuIcon-locationfill"></text>
+        </view>
+        <view>多云</view>
+        <view>26°</view>
+        <view>
+
+        </view>
+    </view>
+
+
 </view>

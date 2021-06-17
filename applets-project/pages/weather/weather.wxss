@@ -1,5 +1,11 @@
-
-
+/* 背景 */
+page{
+    overflow: hidden;
+    position: fixed;
+    background-image: url('http://img.ppthui.com/upload/2020/03/202003231584963330648892.jpg');
+    margin: 0;
+    background-size: 100% 100%;
+}
 /* 标题栏 */
 .navigation-Item {
     position:fixed ;
@@ -19,3 +25,7 @@
     box-sizing: border-box;
     width: 100%;
 }
+.navigation-Item .nav-title{
+
+}
+

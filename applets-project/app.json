@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/weather/weather",
-    "pages/toutiao/toutiao",
     "pages/index/index",
+    "pages/toutiao/toutiao",
     "pages/Subpage/SearchFilm/SearchFilm",
     "pages/my/my",
     "pages/Subpage/FilmDetails/FilmDetails",
@@ -39,5 +39,10 @@
   "usingComponents": {
     "van-empty": "/dist/empty/index"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于天气数据展示"
+    }
+  }
 }
