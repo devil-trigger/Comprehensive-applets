@@ -2,7 +2,7 @@
 page{
     overflow: hidden;
     position: fixed;
-    background-image: url('http://img.ppthui.com/upload/2020/03/202003231584963330648892.jpg');
+    background-image: url('https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/weather-bg/1.jpg');
     margin: 0;
     background-size: 100% 100%;
 }

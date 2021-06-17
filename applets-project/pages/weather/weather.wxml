@@ -13,13 +13,15 @@
 
 <view class="" style="margin-top:{{navigationSty.navBarHeight}}px;">
     <view>
-        <view class="text-center" >
-            大苏打撒旦<text class="cuIcon-locationfill"></text>
+        <view class="text-center">
+            <view>
+                <text class="cuIcon-locationfill"></text>南山
+            </view>
+            <view>多云</view>
+            <view>26°</view>
         </view>
-        <view>多云</view>
-        <view>26°</view>
         <view>
-
+            
         </view>
     </view>
 
