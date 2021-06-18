@@ -6,6 +6,21 @@ page{
     margin: 0;
     background-size: 100% 100%;
 }
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_4g312bw0pyo.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/webfont_4g312bw0pyo.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/webfont_4g312bw0pyo.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_4g312bw0pyo.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/webfont_4g312bw0pyo.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/webfont_4g312bw0pyo.svg#思源黑体-极细') format('svg'); /* iOS 4.1- */
+}
+#weathItem{
+	/* font-family:Wawati SC; */
+	font-family:'webfont';
+	/* font-weight:lighter; */
+}
 /* 标题栏 */
 .navigation-Item {
     position:fixed ;
@@ -29,3 +44,7 @@ page{
 
 }
 
+/* 温度 */
+.temp{
+    font-size:170rpx;
+}
