@@ -18,7 +18,7 @@
 				<text class="cuIcon-locationfill"></text>南山
 			</view>
 			<view class="temp margin-top text-center">26°</view>
-			<!-- <view>多云</view> -->
+			<view>多云</view>
 		</view>
 		<view>
 

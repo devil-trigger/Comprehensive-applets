@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/netEasemusic/netEasemusic",
     "pages/weather/weather",
     "pages/index/index",
     "pages/toutiao/toutiao",
