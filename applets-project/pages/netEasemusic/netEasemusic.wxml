@@ -1,0 +1,183 @@
+<van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦"  bind:focus="toSearch"/>
+
+
+<view class="content">
+    <!-- 轮播图 -->
+    <view class="margin-bottom">
+        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="7000"
+            duration="1200">
+            <swiper-item wx:for="{{swiperList}}" wx:key="index">
+                <view class="swiperItem flex align-center">
+                    <image src="{{item.imageUrl}}" mode="aspectFill" style="height:{{bannerImgHeight}};"></image>
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <!-- 播单（分类） -->
+    <view>
+        <view class="flex justify-around sort_content text-center">
+            <view class="sort_item">
+                <view class="sort_imgItem flex align-center justify-center">
+                    <image src="/image/music-page/gedan.svg"></image>
+                </view>
+                <view>歌单</view>
+            </view>
+            <view class="sort_item">
+                <view class="sort_imgItem flex align-center justify-center">
+                    <image src="/image/music-page/gengxin.svg"></image>
+                </view>
+                <view>每日推荐</view>
+            </view>
+            <view class="sort_item">
+                <view class="sort_imgItem flex align-center justify-center">
+                    <image src="/image/music-page/paihang.svg"></image>
+                </view>
+                <view>排行榜</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 分界线 -->
+    <van-divider hairline />
+
+    <!-- 推荐歌单 -->
+    <view class="padding-sm">
+        <view class="flex justify-between margin-bottom-xs">
+            <view class="text-bold text-lg">推荐歌单</view>
+            <view class="remd_other tag">更多<text class="cuIcon-right"></text></view>
+        </view>
+        <view>
+            <scroll-view scroll-x='true'>
+                <view class="flex">
+                    <view class="remd_item margin-xs" wx:for="{{remdList}}" wx:key='index' bindtap="toRemd" data-id="{{item.id}}">
+                        <view class="remd_playNum text-xs">
+                            <text class="cuIcon-playfill"></text> 531万
+                        </view>
+                        <view class="remd_imgItem">
+                            <image src="{{item.picUrl}}"
+                                mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="remd_title text-xs margin-top-xs">{{item.name}}</view>
+                    </view>
+                    <!-- <view class="remd_item margin-xs">
+                        <view class="remd_playNum text-xs">
+                            <text class="cuIcon-playfill"></text> 531万
+                        </view>
+                        <view class="remd_imgItem">
+                            <image src="http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg"
+                                mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="remd_title text-xs margin-top-xs">陈奕迅：用我的歌来治愈你的伤口</view>
+                    </view> -->
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+
+
+<!-- 随机歌曲 -->
+<view class="margin-top content">
+    <view class="padding-sm">
+        <view class="flex justify-between margin-bottom-xs">
+            <view class="text-bold text-lg">
+                <text class="cuIcon-refresh"></text> 你在找的华语歌
+            </view>
+            <view class="tag">
+                播放<text class="cuIcon-playfill"></text>
+            </view>
+        </view>
+        <view>
+            <swiper next-margin="25px" style="height:350rpx;">
+                <swiper-item wx:for="{{remdSongList}}" wx:key="index">
+                    <view wx:for="{{item}}" wx:key="index" class="flex music-item margin-bottom-xs">
+                        <view class="music-Imgitem basis-xs flex justify-center padding-bottom-xs">
+                            <image src="{{item.imgUrl}}" mode="aspectFill"></image>
+                            <!-- <text class="cuIcon-playfill"></text> -->
+                        </view>
+                        <view class="music-info basis-lg flex align-center solid-bottom">
+                            <view>
+                                <view class="flex align-center">
+                                    <view class="text-bold text-lg">{{item.songtitle}}</view>
+                                    <view class="text-gray text-xs"> - {{item.singer}}</view>
+                                </view>
+                                <view class="text-yellow text-xs">
+                                    超65%人播放
+                                </view>
+                            </view>
+                        </view>
+                        <view class="music-play basis-xs flex justify-center align-center">
+                            <view class="text-gray">
+                                <text class="cuIcon-playfill"></text>
+                            </view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+</view>
+
+
+<!-- 雷达歌单 -->
+<view class="margin-top content">
+    <view class="padding">
+        <view class="flex justify-between margin-bottom-xs">
+            <view class="text-bold text-lg">雷达歌单</view>
+            <view class="remd_other tag">更多<text class="cuIcon-right"></text></view>
+        </view>
+        <view>
+            <scroll-view scroll-x='true'>
+                <view class="flex">
+                    <view class="remd_item margin-xs">
+                        <view class="remd_playNum text-xs">
+                            <text class="cuIcon-playfill"></text> 531万
+                        </view>
+                        <view class="remd_imgItem">
+                            <image src="http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg"
+                                mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="remd_title text-xs margin-top-xs">陈奕迅：用我的歌来治愈你的伤口</view>
+                    </view>
+                    <view class="remd_item margin-xs">
+                        <view class="remd_playNum text-xs">
+                            <text class="cuIcon-playfill"></text> 531万
+                        </view>
+                        <view class="remd_imgItem">
+                            <image src="http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg"
+                                mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="remd_title text-xs margin-top-xs">陈奕迅：用我的歌来治愈你的伤口</view>
+                    </view>
+                    <view class="remd_item margin-xs">
+                        <view class="remd_playNum text-xs">
+                            <text class="cuIcon-playfill"></text> 531万
+                        </view>
+                        <view class="remd_imgItem">
+                            <image src="http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg"
+                                mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="remd_title text-xs margin-top-xs">陈奕迅：用我的歌来治愈你的伤口</view>
+                    </view>
+                    <view class="remd_item margin-xs">
+                        <view class="remd_playNum text-xs">
+                            <text class="cuIcon-playfill"></text> 531万
+                        </view>
+                        <view class="remd_imgItem">
+                            <image src="http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg"
+                                mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="remd_title text-xs margin-top-xs">陈奕迅：用我的歌来治愈你的伤口</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>

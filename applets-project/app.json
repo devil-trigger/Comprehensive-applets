@@ -4,8 +4,10 @@
     "pages/weather/weather",
     "pages/index/index",
     "pages/toutiao/toutiao",
-    "pages/Subpage/SearchFilm/SearchFilm",
     "pages/my/my",
+    "pages/Subpage/SearchFilm/SearchFilm",
+    "pages/Subpage/NetEaseMusic/SearchMusic/SearchMusic",
+    "pages/Subpage/NetEaseMusic/playlistsDetails/playlistsDetails",
     "pages/Subpage/FilmDetails/FilmDetails",
     "pages/Subpage/ToutiaoDetails/ToutiaoDetails"
   ],

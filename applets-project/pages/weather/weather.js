@@ -1,3 +1,4 @@
+import api from '../../utils/util';
 Page({
     data: {
         navigationSty: { //标题栏样式（适配）
@@ -26,22 +27,13 @@ Page({
         }
     },
     onLoad: function (options) {
-        this.setNavigationSty();
+        api.setNavSty(json=>{//设置导航栏高度
+            this.setData({
+                navigationSty:json
+            })
+        })
         // this.getWeatherData();
         // this.getCityInfo();
-    },
-    setNavigationSty() { //设置标题栏高度
-        let systemInfo = wx.getSystemInfoSync();
-        let menuInfo = wx.getMenuButtonBoundingClientRect();
-        let datajson = {};
-        datajson.navBarHeight = (menuInfo.top - systemInfo.statusBarHeight) * 2 + menuInfo.height + systemInfo.statusBarHeight; //导航栏高度
-        datajson.menuBotton = menuInfo.top - systemInfo.statusBarHeight; //胶囊距底部间距（保持底部间距一致）
-        datajson.menuRight = systemInfo.screenWidth - menuInfo.right; // 胶囊距右方间距（方保持左、右间距一致）
-        datajson.menuHeight = menuInfo.height; // 胶囊高度（自定义内容可与胶囊高度保证一致）
-        this.setData({
-            navigationSty: datajson
-        })
-        //    console.log(datajson)
     },
     getLocation() { //获取经纬度
         return new Promise((resolve, reject) => {

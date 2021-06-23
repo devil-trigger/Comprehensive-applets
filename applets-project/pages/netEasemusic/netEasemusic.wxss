@@ -1,1 +1,119 @@
-/* pages/netEasemusic/netEasemusic.wxss */
+@import "/dist/color-ui/main.wxss";
+
+page {
+    background-color: #F8F8F8;
+}
+.content{
+    border-radius: 20rpx;
+    background-color: #fff;
+    margin-top: 30rpx;
+}
+/* 轮播图 */
+.screen-swiper {
+    min-height: 250rpx;
+}
+
+.swiperItem {
+    height: 100%;
+    margin:15rpx 25rpx;
+}
+
+.swiperItem image {
+    border-radius: 25rpx;
+    /* height:138px; */
+}
+
+
+/* 分类 */
+.sort_content {
+    width: 100%;
+}
+
+.sort_item {}
+
+.sort_item .sort_imgItem {
+    width: 100rpx;
+    height: 100rpx;
+    /* border: 5rpx solid #d43c33; */
+    background: #FFF1F1;
+    border-radius: 50%;
+}
+
+.sort_item .sort_imgItem image {
+    width: 60%;
+    height: 60%;
+}
+
+/* 歌单 推荐 */
+.remd_other {
+    padding: 7rpx 17rpx 7rpx 17rpx;
+    border: 1rpx solid #f2f2f2;
+    border-radius: 30rpx;
+    font-size: 25rpx;
+}
+
+.tag {
+    padding: 7rpx 17rpx 7rpx 17rpx;
+    border: 1rpx solid #f2f2f2;
+    border-radius: 30rpx;
+    font-size: 25rpx;
+}
+
+.remd_item {
+    position: relative;
+}
+
+.remd_item .remd_playNum {
+    position: absolute;
+    right: 10rpx;
+    top: 10rpx;
+    color: #fff;
+    z-index: 99;
+    padding: 7rpx 20rpx 7rpx 20rpx;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20rpx;
+}
+
+.remd_item .remd_imgItem {
+    width: 210rpx;
+    height: 210rpx;
+}
+
+.remd_item .remd_imgItem image {
+    width: 100%;
+    height: 100%;
+    border-radius: 30rpx;
+}
+
+.remd_title {
+    width: 200rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* 歌曲随机推荐 */
+.music-item {
+    
+}
+.music-item .music-Imgitem{
+    /* width: 100rpx;
+    height: 100rpx; */
+}
+.music-item .music-Imgitem image{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+}
+.music-item .music-info{
+}
+.music-item .music-info .music-singer{
+    
+}
+.music-item .music-play view{
+    padding: 3rpx 5rpx;
+    border: 5rpx solid #f3f3f3;
+    border-radius: 10rpx;
+}
