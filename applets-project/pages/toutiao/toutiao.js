@@ -54,7 +54,8 @@ Page({
             dataJson[index].ctime = time
           })
           this.setData({
-            dataList: dataJson
+            dataList: dataJson,
+            NoDataSwitch:false
           })
         } else {
           this.setData({

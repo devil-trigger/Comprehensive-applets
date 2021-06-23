@@ -1,9 +1,9 @@
 {
   "pages":[
     "pages/netEasemusic/netEasemusic",
-    "pages/weather/weather",
-    "pages/index/index",
     "pages/toutiao/toutiao",
+    "pages/index/index",
+    "pages/weather/weather",
     "pages/my/my",
     "pages/Subpage/SearchFilm/SearchFilm",
     "pages/Subpage/NetEaseMusic/SearchMusic/SearchMusic",
