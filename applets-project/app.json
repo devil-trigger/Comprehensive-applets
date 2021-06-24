@@ -1,14 +1,14 @@
 {
   "pages":[
+    "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
     "pages/netEasemusic/netEasemusic",
-    "pages/toutiao/toutiao",
     "pages/index/index",
+    "pages/toutiao/toutiao",
     "pages/weather/weather",
     "pages/my/my",
-    "pages/Subpage/SearchFilm/SearchFilm",
-    "pages/Subpage/NetEaseMusic/SearchMusic/SearchMusic",
-    "pages/Subpage/NetEaseMusic/playlistsDetails/playlistsDetails",
-    "pages/Subpage/FilmDetails/FilmDetails",
+    "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm",
+    "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
+    "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
     "pages/Subpage/ToutiaoDetails/ToutiaoDetails"
   ],
   "window":{

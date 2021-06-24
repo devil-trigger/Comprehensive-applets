@@ -52,13 +52,13 @@ Page({
     },
     toSearchPage(){//进入搜索
         wx.navigateTo({
-          url: '/pages/Subpage/SearchFilm/SearchFilm',
+          url: '/pages/Subpage/FilmSubPage/SearchFilm/SearchFilm',
         })
     },
     toFilmDetailsPage(e){//进入详情
         let id=e.currentTarget.dataset.filmid
         wx.navigateTo({
-          url: `/pages/Subpage/FilmDetails/FilmDetails?id=${id}`,
+          url: `/pages/Subpage/FilmSubPage/FilmDetails/FilmDetails?id=${id}`,
         })
         // console.log(e.currentTarget.dataset.filmid)
     },

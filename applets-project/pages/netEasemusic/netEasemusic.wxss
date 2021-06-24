@@ -19,7 +19,7 @@ page {
 }
 
 .swiperItem image {
-    border-radius: 25rpx;
+    border-radius: 45rpx;
     /* height:138px; */
 }
 

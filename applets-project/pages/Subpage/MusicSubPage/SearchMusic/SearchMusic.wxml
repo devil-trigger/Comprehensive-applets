@@ -1,0 +1,94 @@
+<stickys>
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" background="#d43c33" bind:change="onChange" />
+</stickys>
+<!-- 搜索历史 -->
+<view>
+    <view class="padding  flex justify-between">
+        <view class="flex align-center">
+            <view class="margin-right text-sm">历史</view>
+            <view class="flex">
+                <view wx:for="{{searchHistory}}" wx:key="index" class="cu-tag round" bindtap="historyTagSearch"
+                    data-tag="{{item}}">{{item}}</view>
+            </view>
+        </view>
+        <van-dialog id="van-dialog" />
+        <view class="padding-xs" bindtap="deleteHistory">
+            <text class="cuIcon-delete text-lg"></text>
+        </view>
+    </view>
+</view>
+
+
+<!-- 热搜榜 -->
+
+<view>
+    <view class="padding-sm flex justify-between align-center">
+        <view class="basis-df flex text-bold justify-between">
+            <view bindtap="swichNav" class="{{currentTab==0? '':'text-gray'}}" data-num='0'>热搜榜</view>
+            <view bindtap="swichNav" class="{{currentTab==1? '':'text-gray'}}" data-num='1'>视频榜</view>
+            <view bindtap="swichNav" class="{{currentTab==2 ? '' : 'text-gray'}}" data-num='2'>播客榜</view>
+        </view>
+        <view class=" playTagItem">
+            <text class="cuIcon-playfill"></text>播放
+        </view>
+    </view>
+    <view>
+        <swiper current="{{currentTab}}" class="swiper-box" duration="300" next-margin="30rpx" bindchange="slideChange">
+            <swiper-item>
+                <view>
+                    <view class="bg-white shadow radius margin-xs padding-sm">
+                        <view class="flex flex-wrap">
+                            <view class="basis-df" wx:for="{{hotList}}" wx:key="index">
+                                <view class="basis-df padding-xs" wx:if="{{index<10}}"><text
+                                        class="{{index+1<4?'text-red':''}}">{{index+1}}</text>. {{item.searchWord}} 
+                                        <text class="cuIcon-{{hotIconlist}} text-red"></text>
+                                </view>
+                            </view>
+                        </view>
+                        <view>
+                            <view class="padding-bottom-xs padding-top-sm text-center text-sm text-gray">
+                            展开更多热搜 <text class="cuIcon-unfold"></text>
+                        </view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item>
+                <view>
+                    <view class="bg-white shadow radius margin-xs padding-sm">
+                        <view class="flex flex-wrap">
+                            <view class="basis-df" wx:for="{{hotList}}" wx:key="index">
+                                <view class="basis-df padding-xs" wx:if="{{index<10}}"><text
+                                        class="{{index+1<4?'text-red':''}}">{{index+1}}</text>. {{item.searchWord}}
+                                </view>
+                            </view>
+                        </view>
+                        <view>
+                            <view class="padding-bottom-xs padding-top-sm text-center text-sm text-gray">
+                            展开更多热搜 <text class="cuIcon-unfold"></text>
+                        </view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item>
+                <view>
+                    <view class="bg-white shadow radius margin-xs padding-sm">
+                        <view class="flex flex-wrap">
+                            <view class="basis-df" wx:for="{{hotList}}" wx:key="index">
+                                <view class="basis-df padding-xs" wx:if="{{index<10}}"><text
+                                        class="{{index+1<4?'text-red':''}}">{{index+1}}</text>. {{item.searchWord}}
+                                </view>
+                            </view>
+                        </view>
+                        <view>
+                            <view class="padding-bottom-xs padding-top-sm text-center text-sm text-gray">
+                            展开更多热搜 <text class="cuIcon-unfold"></text>
+                        </view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>

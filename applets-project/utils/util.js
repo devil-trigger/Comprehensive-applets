@@ -33,12 +33,12 @@ let setNavSty=(callback)=>{ //设置标题栏高度
   callback(datajson,systemInfo)
 }
 
-let netEaseAPI=(URL)=>{//网易云api
+let netEaseAPI=(URL,dataJson)=>{//网易云api
   // console.log('http://localhost:3000/'+URL);
   return new Promise((resolve, reject)=>{
     wx.request({
       url: 'http://localhost:3000/'+URL,//本地
-      data: {},
+      data: dataJson,
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -50,11 +50,10 @@ let netEaseAPI=(URL)=>{//网易云api
       },
       fail:err=>{
         console.log(err);
-        if(err){reject}
+        if(err){reject(err)}
       }
     })
   })
-  
 }
 module.exports={
   formatTime,

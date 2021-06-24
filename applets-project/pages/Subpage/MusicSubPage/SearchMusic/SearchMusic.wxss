@@ -1,0 +1,22 @@
+@import '/dist/color-ui/main.wxss';
+.playTagItem{
+    padding: 2rpx 15rpx;
+    border: 3rpx solid #E6E6E6;
+    border-radius:20rpx;
+}
+
+
+/* 热搜swiper */
+.swiper-box{
+    height:450rpx;
+}
+
+.HotItem{
+}
+.HotItem .HotImgItem{
+
+}
+.HotItem .HotImgItem image{
+
+}
+/* 81*42  36*42 */
