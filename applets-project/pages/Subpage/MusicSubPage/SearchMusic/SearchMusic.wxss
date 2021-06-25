@@ -1,10 +1,31 @@
 @import '/dist/color-ui/main.wxss';
+
+/* 搜索建议栏 */
+.section-search{
+    width:100%;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 108rpx;
+    height: calc( 100vh - 108rpx ) ;
+    background:#fff;
+}
+.section-search .section-loading{
+}
+/* 搜索历史 */
+.historyTag{
+    /* flex:3; */
+}
+.historyItem{
+    width:80%;
+    /* flex: 8; */
+}
+/* 热搜播放按钮 */
 .playTagItem{
     padding: 2rpx 15rpx;
     border: 3rpx solid #E6E6E6;
     border-radius:20rpx;
 }
-
 
 /* 热搜swiper */
 .swiper-box{
@@ -12,11 +33,18 @@
 }
 
 .HotItem{
+    width: 50%;
+}
+.HotItem .hot-name{
+    /* width:30%; */
 }
 .HotItem .HotImgItem{
-
+    width: 64.8rpx;
+    height:33.6rpx;
+    /* 81*42 */
 }
 .HotItem .HotImgItem image{
-
+    height: 100%;
+    width: 100%;
 }
 /* 81*42  36*42 */
