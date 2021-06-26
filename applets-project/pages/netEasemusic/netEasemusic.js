@@ -2,7 +2,6 @@ import {
     netEaseAPI,
     setNavSty
 } from '../../utils/util';
-
 Page({
     data: {
         navigationSty: { //标题栏样式（适配）
@@ -53,6 +52,7 @@ Page({
 
     },
     getdata() {
+        // this.getSongDetails();//歌曲详情
         this.getSwiperlist(); //轮播图
         this.getRemdList(); //歌单
         this.getRemdSongList(); //歌曲
@@ -128,6 +128,13 @@ Page({
             })
         })
     },
+    getSongDetails(){
+        netEaseAPI('song/url',{
+                id:'1822297556'
+        }).then(res=>{
+            console.log(res.data)
+        })
+    },
     toSearch() { //进入搜索界面
         wx.navigateTo({
             url: '/pages/Subpage/MusicSubPage/SearchMusic/SearchMusic',
@@ -140,7 +147,10 @@ Page({
         // console.log(e.currentTarget.dataset.id)
     },
     //生命周期函数--监听页面初次渲染完成
-    onReady: function () {},
+    onReady: function () {
+
+        
+    },
     //生命周期函数--监听页面显示
     onShow: function () {},
     //生命周期函数--监听页面隐藏

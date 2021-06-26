@@ -19,6 +19,26 @@
 .historyItem{
     width:80%;
     /* flex: 8; */
+    position: relative;
+}
+.colorChange{
+    width: 30rpx;height: 48rpx;
+    position: absolute;top: 0;
+    z-index: 99;
+}
+.historyItem .left-tag{
+    width: 30rpx;height: 48rpx;
+    position: absolute;
+    left: 0;top: 0;
+    background-image: linear-gradient(to right, #fff , transparent);
+    z-index: 99;
+}
+.historyItem .right-tag{
+    width: 30rpx;height: 48rpx;
+    position: absolute;
+    right: 0;top: 0;
+    background-image: linear-gradient(to right,transparent,#fff);
+    z-index: 99;
 }
 /* 热搜播放按钮 */
 .playTagItem{

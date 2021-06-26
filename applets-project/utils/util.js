@@ -37,7 +37,7 @@ let netEaseAPI=(URL,dataJson)=>{//网易云api
   // console.log('http://localhost:3000/'+URL);
   return new Promise((resolve, reject)=>{
     wx.request({
-      url: 'http://192.168.1.84:3000/'+URL,//本地
+      url: 'http://192.168.1.103:3000/'+URL,//本地
       data: dataJson,
       header: {
         'content-type': 'application/json' // 默认值

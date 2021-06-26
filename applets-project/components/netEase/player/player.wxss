@@ -1,0 +1,172 @@
+
+/* 播放器核心 */
+.playerItem {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 70;
+}
+
+.playerItem .playerContent {
+  /* background-image: linear-gradient(transparent,#fff, #fff); */
+  background-color: #fff;
+  padding: 0 15rpx 5rpx 15rpx;
+}
+
+.playerItem image {
+  height: 120rpx;
+  width: 120rpx;
+}
+
+.playerItem .playerTag {}
+
+.playerItem .playerTag .playTag {
+  width: 70rpx;
+  height: 70rpx;
+  line-height: 65rpx;
+  border: 5rpx solid #d3d3d3;
+}
+
+.playerItem .playerTag .sortTag {
+  font-size: 65rpx;
+}
+
+/* 播放器弹出层 */
+.song-bg{
+  /* 外层背景 */
+  opacity: 1;
+  transform: scale(1.5);
+  transform-origin: center center;
+  filter: blur(60rpx);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  /* z-index: 1; */
+  background-color: #161824;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-image: url(http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg);
+}
+.song-bg:before {
+  /* content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;margin: auto;
+  background-color: rgba(0,0,0,.5); */
+}
+.popupItem{
+  z-index:70;
+  position: relative;
+}
+.recordItem {
+  /* height:700rpx;
+  width:700rpx; */
+}
+/* 唱片、专辑图片 */
+.recordItem .recordImg {
+  height: 700rpx;
+  width: 700rpx;
+  position: relative;
+  /* width: 100%; */
+}
+
+.recordItem .recordImg view {
+  position: absolute;
+  left: 0;right: 0;top: 0;bottom: 0;
+  margin: auto;
+  animation: 5s linear 0s normal none infinite rotate;
+-webkit-animation:5s linear 0s normal none infinite rotate;
+
+}
+
+.recordItem .record {
+  height: 100%;
+  width: 100%;
+  /* position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; */
+  z-index: 3;
+}
+
+.recordItem .album {
+  overflow: hidden;
+  background: url('https://s3.music.126.net/mobile-new/img/disc_default.png?ba7c53e25dbac9fe14f024846ddb57d2=') no-repeat;
+  /* background: url('/image/music-page/disc_default.png') no-repeat; */
+  background-size: contain;
+  height:77%;
+  width:77%;
+  /* position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto; */
+  z-index: 1;
+}
+.recordItem image {
+  height: 100%;
+  width: 100%;
+}
+@keyframes rotate{
+  from{-webkit-transform:rotate(0deg)}
+  to{-webkit-transform:rotate(360deg)}
+}
+.popupPlayer{
+ /* margin-top: ; */
+ width: 100%;
+  position: fixed;
+  /* bottom: 0;left: 0; */
+}
+.custom-button{
+  /* 进度条按钮 */
+  background: #fff;
+  width: 24rpx;
+  height: 24rpx;
+}
+.play-progress{
+  /* 进度条长度 */
+  flex-basis: 75%;
+}
+.popupPlayer view{
+  /* width: 100%;
+  height: 100%; */
+}
+/* 弹出层底部播放按钮组 */
+.popup-playerItem{
+
+}
+.popup-playerItem image{
+  width: 100%;
+  height: 100%;
+}
+.popup-playItem{
+  width:100rpx ;
+  height:100rpx ;
+  margin: 20rpx 50rpx;
+  /* border: 10rpx solid #fff; */
+}
+.popupTag{
+  width: 70rpx;
+  height: 70rpx;
+}
+.popupTag image{
+  /* width: 100%;
+  height: 100%; */
+}
+/* 播放列表弹出层 */
+.playerListItem{
+  
+}
+.playerListItem image{
+  width: 40rpx;
+  height: 40rpx;
+}

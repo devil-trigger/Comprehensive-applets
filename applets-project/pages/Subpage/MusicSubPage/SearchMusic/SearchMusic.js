@@ -9,6 +9,7 @@ Page({
         adviseLoading: false, //loading显示（搜索建议）
         scarchAdvise: [], //搜索建议data
         searchHistory: '', //搜索历史
+        historyTagdisplay:false,//搜索历史-渐变
         currentTab: 0, //热搜榜tab切换
         hotList: [], //热搜榜data
         value: '', //输入框内容
@@ -31,7 +32,7 @@ Page({
         if(SearchArr.includes(searchtext)!=true){//缓存不为空
             SearchArr.push(searchtext);
         }//缓存赋值
-         console.log(SearchArr);
+        //  console.log(SearchArr);
         this.setData({searchHistory:SearchArr})
         wx.setStorage({//加入缓存
             key: "music_SearchHistory",
@@ -41,7 +42,7 @@ Page({
         this.ToSearch('', {
             keywords: searchtext
         }, res => {
-            console.log(res)
+            // console.log(res)
         })
     },
     onSearchFun() { //点击搜索
@@ -126,6 +127,20 @@ Page({
                 hotList: res.data.data
             })
         })
+    },
+    onShowTag(e){//设置搜索历史-渐变(显示)
+        switch (e.detail.scrollLeft>=17) {
+            case true:
+                this.setData({
+                    historyTagdisplay:true
+                })
+                break;
+            default:
+                this.setData({
+                    historyTagdisplay:false
+                })
+                break;
+        }
     },
     historyTagSearch(e) { //点击搜索历史tag
         let keyword = e.currentTarget.dataset.tag

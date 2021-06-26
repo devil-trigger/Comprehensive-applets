@@ -4,6 +4,9 @@
   "navigationBarBackgroundColor":"#d43c33",
   "usingComponents": {
     "van-search": "/dist/search/index",
-    "van-divider": "/dist/divider/index"
+    "van-divider": "/dist/divider/index",
+    "van-popup": "/dist/popup/index",
+    "van-slider": "/dist/slider/index",
+    "player":"/components/netEase/player/player"
   }
 }

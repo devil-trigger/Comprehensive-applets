@@ -26,12 +26,16 @@
     <view class="padding flex justify-between align-center">
         <!-- 搜索历史tag -->
         <view class="historyTag">历史</view>
-        <scroll-view scroll-x="true" enable-flex="true" class=" historyItem">
-            <view class="flex">
-                <view wx:for="{{searchHistory}}" wx:key="index" class="cu-tag round"
-                    bindtap="historyTagSearch" data-tag="{{item}}">{{item}}</view>
-            </view>
-        </scroll-view>
+        <view class="flex historyItem">
+            <view class="left-tag colorChange" wx:if="{{historyTagdisplay}}"></view>
+            <scroll-view scroll-x="true" enable-flex="true" bindscroll='onShowTag' >
+                <view class="flex">
+                    <view wx:for="{{searchHistory}}" wx:key="index" class="cu-tag round {{index==searchHistory.length-1?'padding-right':''}}" bindtap="historyTagSearch"
+                        data-tag="{{item}}">{{item}}</view>
+                </view>
+            </scroll-view>
+            <view class="right-tag colorChange" wx:if="{{historyTagdisplay}}"></view>
+        </view>
         <!-- 删除按钮 -->
         <view class="historyTag" bindtap="deleteHistory">
             <text class="cuIcon-delete text-lg"></text>

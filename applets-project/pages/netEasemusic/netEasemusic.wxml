@@ -1,5 +1,6 @@
-<van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦"  bind:focus="toSearch"/>
-
+<view bindtap="toSearch">
+    <van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦" readonly/>
+</view>
 
 <view class="content">
     <!-- 轮播图 -->
@@ -50,13 +51,13 @@
         <view>
             <scroll-view scroll-x='true'>
                 <view class="flex">
-                    <view class="remd_item margin-xs" wx:for="{{remdList}}" wx:key='index' bindtap="toRemd" data-id="{{item.id}}">
+                    <view class="remd_item margin-xs" wx:for="{{remdList}}" wx:key='index' bindtap="toRemd"
+                        data-id="{{item.id}}">
                         <view class="remd_playNum text-xs">
                             <text class="cuIcon-playfill"></text> {{item.playVolume}}万
                         </view>
                         <view class="remd_imgItem">
-                            <image src="{{item.picUrl}}"
-                                mode="aspectFill">
+                            <image src="{{item.picUrl}}" mode="aspectFill">
                             </image>
                         </view>
                         <view class="remd_title text-xs margin-top-xs">{{item.name}}</view>
@@ -137,11 +138,10 @@
                             <text class="cuIcon-playfill"></text> 531万
                         </view>
                         <view class="remd_imgItem">
-                            <image src="{{item.blurPicUrl}}"
-                                mode="aspectFill">
+                            <image src="{{item.blurPicUrl}}" mode="aspectFill">
                             </image>
                         </view>
-                        <view class="text-cut text-sm content">{{item.name}}</view>
+                        <view class="text-cut text-sm content remd_title">{{item.name}}</view>
                         <view class="text-gray text-xs">{{item.artist.name}}</view>
                     </view>
                 </view>
@@ -191,3 +191,6 @@
         </view>
     </view>
 </view>
+<!-- 播放器——核心 -->
+<player song="/image/demo.mp3" ></player>
+
