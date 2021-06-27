@@ -43,6 +43,7 @@
     "van-empty": "/dist/empty/index"
   },
   "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio"],
   "permission": {
     "scope.userLocation": {
       "desc": "用于天气数据展示"
