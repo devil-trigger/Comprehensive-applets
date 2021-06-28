@@ -10,7 +10,7 @@
 
 .playerItem .playerContent {
   /* background-image: linear-gradient(transparent,#fff, #fff); */
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 0 15rpx 5rpx 15rpx;
 }
 
@@ -154,10 +154,15 @@
 
 } */
 /* 播放列表弹出层 */
-/* .playerListItem{
+/* .playerList-content{
   
 } */
-.playerListItem image{
+.playerList-content image{
   width: 40rpx;
   height: 40rpx;
+}
+
+.playerList-Item{
+  /* 播放列表 歌曲切换过渡 */
+  transition: all 0.47s;
 }

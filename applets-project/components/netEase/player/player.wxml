@@ -1,28 +1,35 @@
 <!-- 播放器-核心 -->
-<view class="playerItem">
+<view class="playerItem bg-white">
     <!-- 底部栏 -->
-    <view class="playerContent flex justify-between align-center" catchtap="showPopup">
-        <view class="flex align-center">
+    <swiper class="swiper-playslide" duration="300" bindchange="Playerslide" style="height:130rpx">
+        <swiper-item wx:for="{{song}}" wx:key="index">
             <view>
-                <image class="round" src="{{song[playIndex].cover}}"
-                    mode="aspectFill">
-                </image>
+                <view class="playerContent flex justify-between align-center" catchtap="showPopup">
+                    <view class="flex align-center">
+                        <view>
+                            <image class="round" src="{{item.cover}}" mode="aspectFill">
+                            </image>
+                        </view>
+                        <view class="padding-lg flex">
+                            <view class="text-bold">{{item.name}}</view>
+                            <view> - {{item.singer}}</view>
+                        </view>
+                    </view>
+                    <view class="flex playerTag">
+                        <view class="text-df playTag text-center round margin-right" catchtap="playSwitchFun">
+                            <text class="cuIcon-{{playerState?'stop':'playfill'}}"></text>
+                        </view>
+                        <view class="sortTag margin-right" catchtap="onplayerList">
+                            <text class="cuIcon-sort"></text>
+                        </view>
+                    </view>
+                </view>
             </view>
-            <view class="padding-lg flex">
-                <view class="text-bold">{{song[playIndex].name}}</view>
-                <view> - {{song[playIndex].singer}}</view>
-            </view>
-        </view>
-        <view class="flex playerTag">
-            <view class="text-df playTag text-center round margin-right" catchtap="playSwitchFun">
-                <text class="cuIcon-{{playerState?'stop':'playfill'}}"></text>
-            </view>
-            <view class="sortTag margin-right" catchtap="onplayerList">
-                <text class="cuIcon-sort"></text>
-            </view>
-        </view>
-    </view>
+        </swiper-item>
+    </swiper>
 </view>
+
+
 <!-- 播放器 弹出层 -->
 <van-popup show="{{ popupDisplay }}" bind:close="popupClose" position="bottom"
     custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
@@ -55,10 +62,8 @@
             <view class="flex align-center justify-between margin-sm text-sm text-white">
                 <view>{{slideInfo.progressText}}</view>
                 <view class="play-progress">
-                    <van-slider value="{{slideInfo.progress}}" bar-height='7rpx' active-color="#fff" inactive-color="#676767"
-                        use-button-slot bind:change="changeSlider"
-                        bind:drag="dragSlider"
-                        >
+                    <van-slider value="{{slideInfo.progress}}" bar-height='7rpx' active-color="#fff"
+                        inactive-color="#676767" use-button-slot bind:change="changeSlider" bind:drag="dragSlider">
                         <view class="custom-button round" slot="button">
                         </view>
                     </van-slider>
@@ -83,14 +88,15 @@
 </van-popup>
 
 <!-- 播放列表弹出层 -->
-<van-popup show="{{ playerList }}" catchtouchmove='prohibit' position="bottom" round custom-style="height:70%;" closeable bind:close="popupClose" close-icon='arrow-down'>
-    <view class="margin">
+<van-popup show="{{ playerList }}" catchtouchmove='prohibit' position="bottom" round custom-style="height:70%;"
+    closeable bind:close="popupClose" close-icon='arrow-down'>
+    <view class="margin-top margin-left margin-right">
         <view class="margin-bottom">
             当前播放<text class="text-xs text-gray">（12）</text>
         </view>
         <view>
-            <view class="playerListItem flex justify-between">
-                <view class="text-sm flex align-center">
+            <view class="playerList-content flex justify-between">
+                <view class="text-sm flex align-center padding-xs" bindtap="modeSwitch">
                     <view>
                         <image src="/image/music-page/playIcon/xunhuan.svg" mode="aspectFit"></image>
                     </view>
@@ -103,8 +109,11 @@
                 </view>
             </view>
         </view>
-        <view class="margin-top">
-            <view class="flex justify-between align-center margin-bottom" wx:for="{{song}}" wx:key="index">
+    </view>
+    <view class="margin-top-sm">
+        <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}">
+            <view
+                class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playIndex?'bg-gray':''}}">
                 <view>
                     {{item.name}}
                     <text class="text-xs text-gray"> - {{item.singer}}</text>
@@ -115,4 +124,5 @@
             </view>
         </view>
     </view>
+
 </van-popup>

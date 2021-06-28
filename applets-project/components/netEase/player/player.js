@@ -17,6 +17,15 @@ Component({
   },
 
   methods: {
+    Playerslide(e){//底部播放器左右滑动监听
+      // console.log(e.detail.current);
+      if(e.detail.current!=this.data.playIndex){
+        this.setData({
+          playIndex:e.detail.current
+        })
+        this.playSong()
+      }
+    },
     prohibit() { //阻止播放器弹出层下层滚动
       return true
     },
@@ -31,6 +40,9 @@ Component({
         popupDisplay: true
       })
     },
+    modeSwitch(){//播放模式切换
+      console.log('切换')
+    },
     playSwitchFun() { //播放、暂停 按钮切换
       let state = this.data.playerState;
       if (state) {
@@ -44,12 +56,20 @@ Component({
     },
     lastSong(){//上一首
       console.log('上一首');
+      if(this.data.playIndex==0){
+        wx.showToast({
+          title: '达到最小值',
+        });
+        return
+      };
       let zeroText='00:00'
       this.setData({
         'slideInfo.durationText':zeroText,
         'slideInfo.progressText':zeroText,
-        'slideInfo.progress':0
-      })
+        'slideInfo.progress':0,
+        playIndex:this.data.playIndex-1
+      });
+      this.playSong()
     },
     nextSong(){//下一首
       console.log('下一首');
@@ -169,6 +189,13 @@ Component({
     },
     deleteListSong(e){//删除列表歌曲(播放列表-弹出层)  
       console.log('删除第'+e.currentTarget.dataset.index+'号歌曲')
+    },
+    listSongSwitch(e){//列表切换歌曲(播放列表-弹出层)  
+      console.log('切换'+e.currentTarget.dataset.index);
+      this.setData({
+        playIndex:e.currentTarget.dataset.index
+      })
+      this.playSong()
     }
   },
 
