@@ -43,14 +43,14 @@ Page({
                 album:'',
                 singer:'陈奕迅',
                 cover:'http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg',
-                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/applets-project/image/demo.mp3'
+                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo1.mp3'
             },
             {
-                name:'淘汰',
+                name:'黑色毛衣',
                 album:'',
-                singer:'陈奕迅',
+                singer:'周杰伦',
                 cover:'http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg',
-                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/applets-project/image/demo.mp3'
+                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo2.mp3'
             },
         ]
     },

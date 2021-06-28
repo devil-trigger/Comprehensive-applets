@@ -53,11 +53,19 @@ Component({
     },
     nextSong(){//下一首
       console.log('下一首');
+      if(this.data.playIndex==this.properties.song.length-1){
+        wx.showToast({
+          title: '达到最大值',
+        });
+        return
+      }
       let text='00:00'
       this.setData({
         'slideInfo.durationText':text,
-        'slideInfo.progressText':text
-      })
+        'slideInfo.progressText':text,
+        playIndex:this.data.playIndex+1
+      });
+      this.playSong()
     },
     onplayerList() { //打开播放列表
       console.log('打开播放列表')
@@ -65,25 +73,25 @@ Component({
         playerList: true
       })
     },
-    playSong(songUrl) { //切换 | 播放 ——实际运用函数
-      // console.log(songUrl);
+    playSong() { //切换 | 播放 ——实际运用函数;
       let song = '';
-      if (songUrl) {
-        song = songUrl
+      if (this.properties.song.length!=0) {
+        song = this.properties.song
       } else {
-        song ={
+        song = {
           name:'淘汰',
           album:'',
           singer:'陈奕迅',
           cover:'http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg',
-          src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/applets-project/image/demo.mp3'
+          src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo1.mp3'
         }
       }
-      manage.title = song.name; //歌曲标题
-      manage.epname  = song.album;//专辑名称
-      manage.singer = song.singer;//歌手名
-      manage.coverImgUrl = song.cover;//封面图 URL
-      manage.src = song.src;
+      let PlayNum=this.data.playIndex;
+      manage.title = song[PlayNum].name; //歌曲标题
+      manage.epname  = song[PlayNum].album;//专辑名称
+      manage.singer = song[PlayNum].singer;//歌手名
+      manage.coverImgUrl = song[PlayNum].cover;//封面图 URL
+      manage.src = song[PlayNum].src;
       manage.currentTime = 0;
       let that = this;
       manage.onPlay(()=> { //监听播放
@@ -159,12 +167,14 @@ Component({
       }
       return times;
     },
-
+    deleteListSong(e){//删除列表歌曲(播放列表-弹出层)  
+      console.log('删除第'+e.currentTarget.dataset.index+'号歌曲')
+    }
   },
 
   lifetimes: {
     attached() {
-      this.playSong(this.properties.song[this.data.playIndex]);
+      this.playSong();
 
 
     }, //在组件实例进入页面节点树时执行

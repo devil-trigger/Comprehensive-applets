@@ -104,21 +104,12 @@
             </view>
         </view>
         <view class="margin-top">
-            <view class="flex justify-between align-center margin-bottom">
+            <view class="flex justify-between align-center margin-bottom" wx:for="{{song}}" wx:key="index">
                 <view>
-                    黑色毛衣
-                    <text class="text-xs text-gray"> - 周杰伦</text>
+                    {{item.name}}
+                    <text class="text-xs text-gray"> - {{item.singer}}</text>
                 </view>
-                <view class="padding-xs">
-                    <text class="cuIcon-close text-lg"></text>
-                </view>
-            </view>
-            <view class="flex justify-between align-center margin-bottom">
-                <view>
-                    黑色毛衣
-                    <text class="text-xs text-gray"> - 周杰伦</text>
-                </view>
-                <view class="padding-xs">
+                <view class="padding-xs" bindtap="deleteListSong" data-index="{{index}}">
                     <text class="cuIcon-close text-lg"></text>
                 </view>
             </view>
