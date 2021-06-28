@@ -19,7 +19,7 @@
   width: 120rpx;
 }
 
-.playerItem .playerTag {}
+/* .playerItem .playerTag {} */
 
 .playerItem .playerTag .playTag {
   width: 70rpx;
@@ -52,23 +52,16 @@
   background-size: auto 100%;
   background-image: url(http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg);
 }
-.song-bg:before {
-  /* content: " ";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;margin: auto;
-  background-color: rgba(0,0,0,.5); */
-}
+/* .song-bg:before {
+
+} */
 .popupItem{
   z-index:70;
   position: relative;
 }
-.recordItem {
-  /* height:700rpx;
-  width:700rpx; */
-}
+/* .recordItem {
+
+} */
 /* 唱片、专辑图片 */
 .recordItem .recordImg {
   height: 700rpx;
@@ -136,14 +129,13 @@
   /* 进度条长度 */
   flex-basis: 75%;
 }
-.popupPlayer view{
-  /* width: 100%;
-  height: 100%; */
-}
-/* 弹出层底部播放按钮组 */
-.popup-playerItem{
+/* .popupPlayer view{
 
-}
+} */
+/* 弹出层底部播放按钮组 */
+/* .popup-playerItem{
+
+} */
 .popup-playerItem image{
   width: 100%;
   height: 100%;
@@ -158,14 +150,13 @@
   width: 70rpx;
   height: 70rpx;
 }
-.popupTag image{
-  /* width: 100%;
-  height: 100%; */
-}
+/* .popupTag image{
+
+} */
 /* 播放列表弹出层 */
-.playerListItem{
+/* .playerListItem{
   
-}
+} */
 .playerListItem image{
   width: 40rpx;
   height: 40rpx;

@@ -192,5 +192,5 @@
     </view>
 </view>
 <!-- 播放器——核心 -->
-<player song="/image/demo.mp3" ></player>
+<player song="{{SongData}}" ></player>
 

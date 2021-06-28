@@ -10,10 +10,10 @@ Page({
             menuBotton: 0,
             menuHeight: 0
         },
-        bannerImgHeight: 0,
+        bannerImgHeight: 0,//轮播图图片高度
         swiperList: [], //轮播图data
         remdList: [], //推荐歌单data
-        newAlbums:[],
+        newAlbums:[],//新专辑data
         remdSongList: [
             [{
                     picUrl: 'https://pic4.zhimg.com/50/v2-a436f4c1749c1127b6d4c73a74bdb2cd_720w.jpg?source=54b3c3a5',
@@ -37,6 +37,22 @@ Page({
                 singer: 'Taylor Swift'
             }]
         ], //随机歌曲data
+        SongData:[//播放歌曲data
+            {
+                name:'淘汰',
+                album:'',
+                singer:'陈奕迅',
+                cover:'http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg',
+                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/applets-project/image/demo.mp3'
+            },
+            {
+                name:'淘汰',
+                album:'',
+                singer:'陈奕迅',
+                cover:'http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg',
+                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/applets-project/image/demo.mp3'
+            },
+        ]
     },
     onLoad: function (options) {
         this.getdata();
