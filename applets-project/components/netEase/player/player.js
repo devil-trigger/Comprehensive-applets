@@ -5,14 +5,16 @@ Component({
   },
   data: {
     playIndex:0,//播放歌曲对应标识
+    playMode:['单曲循环','列表循环','随机播放'],//播放模式
+    playModeIndex:0,//播放模式标识
     popupDisplay: false, //播放器弹出层
     playerState: false, //播放状态
     playerList: false, //播放列表弹出层
     slideInfo: { //播放长度信息
       duration: 0, //全长
       durationText: '00:00', //全长-文字
-      progress: 0, //当前进度位置 ————(进度条百分比)
-      progressText: '00:00', //当前进度位置-文字
+      progress: 0, //当前播放进度 ————(进度条百分比)
+      progressText: '00:00', //当前播放进度-文字
     },
   },
 
@@ -41,7 +43,17 @@ Component({
       })
     },
     modeSwitch(){//播放模式切换
-      console.log('切换')
+      // console.log('切换');
+      if(this.data.playModeIndex==2){
+        this.setData({
+          playModeIndex:0
+        })
+      }else{
+        this.setData({
+          playModeIndex:this.data.playModeIndex+1
+        })
+      }
+      
     },
     playSwitchFun() { //播放、暂停 按钮切换
       let state = this.data.playerState;

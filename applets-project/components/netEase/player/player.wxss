@@ -95,8 +95,8 @@
   background: url('https://s3.music.126.net/mobile-new/img/disc_default.png?ba7c53e25dbac9fe14f024846ddb57d2=') no-repeat;
   /* background: url('/image/music-page/disc_default.png') no-repeat; */
   background-size: contain;
-  height:77%;
-  width:77%;
+  height:85%;
+  width:85%;
   /* position: absolute;
   left: 0;
   right: 0;
@@ -105,6 +105,20 @@
   margin: auto; */
   z-index: 1;
 }
+.recordItem .needle{
+  position: absolute;
+  right:120rpx;
+  top: 30rpx;
+  z-index: 55;
+  width: 146rpx;
+  height: 236rpx;
+  transition: all 2s;
+  transform: rotate(20deg);
+  transform-origin: left top;
+}
+
+/* .recordItem .needle image{} */
+
 .recordItem image {
   height: 100%;
   width: 100%;

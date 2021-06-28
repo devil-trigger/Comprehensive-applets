@@ -35,6 +35,7 @@
     custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
     <view class="song-bg"></view>
     <view class="popupItem">
+        <!-- 顶部 标题|歌手|分享 -->
         <view class="text-white padding flex justify-between">
             <view class="padding-xs text-lg" bindtap="popupClose">
                 <text class="cuIcon-unfold"></text>
@@ -47,6 +48,7 @@
                 <view>分享</view>
             </view>
         </view>
+        <!-- 唱片 （旋转） -->
         <view class="margin-top recordItem flex justify-center">
             <view class="recordImg">
                 <view class="record">
@@ -57,7 +59,11 @@
                     </image>
                 </view>
             </view>
+            <view class="needle">
+                <image src="/image/music-page/needle-ab.png" mode="aspectFit"></image>
+            </view>
         </view>
+        <!-- 按钮组 -->
         <view class="popupPlayer margin-top">
             <view class="flex align-center justify-between margin-sm text-sm text-white">
                 <view>{{slideInfo.progressText}}</view>
@@ -96,12 +102,12 @@
         </view>
         <view>
             <view class="playerList-content flex justify-between">
-                <view class="text-sm flex align-center padding-xs" bindtap="modeSwitch">
+                <view class="text-sm flex align-center padding-xs" wx:for="{{playMode}}" wx:key='index' wx:if="{{index==playModeIndex}}" bindtap="modeSwitch">
                     <view>
-                        <image src="/image/music-page/playIcon/xunhuan.svg" mode="aspectFit"></image>
+                        <image src="/image/music-page/playIcon/player-{{index+1}}.svg" mode="aspectFit"></image>
                     </view>
                     <view class="margin-left-xs">
-                        单曲循环
+                        {{item}}
                     </view>
                 </view>
                 <view class="padding-xs">
