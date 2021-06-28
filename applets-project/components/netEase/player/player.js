@@ -7,7 +7,7 @@ Component({
     playIndex:0,//播放歌曲对应标识
     playMode:['单曲循环','列表循环','随机播放'],//播放模式
     playModeIndex:0,//播放模式标识
-    popupDisplay: false, //播放器弹出层
+    popupDisplay: true, //播放器弹出层
     playerState: false, //播放状态
     playerList: false, //播放列表弹出层
     slideInfo: { //播放长度信息
@@ -208,7 +208,7 @@ Component({
         playIndex:e.currentTarget.dataset.index
       })
       this.playSong()
-    }
+    },
   },
 
   lifetimes: {

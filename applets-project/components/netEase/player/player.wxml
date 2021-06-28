@@ -59,7 +59,7 @@
                     </image>
                 </view>
             </view>
-            <view class="needle">
+            <view class="needle {{playerState?'needlePlay':'needlePause'}}">
                 <image src="/image/music-page/needle-ab.png" mode="aspectFit"></image>
             </view>
         </view>

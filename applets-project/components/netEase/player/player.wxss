@@ -107,14 +107,21 @@
 }
 .recordItem .needle{
   position: absolute;
-  right:120rpx;
-  top: 30rpx;
+  margin-left: -73rpx;
+  left:55%;
+  top:140rpx;
   z-index: 55;
   width: 146rpx;
   height: 236rpx;
-  transition: all 2s;
-  transform: rotate(20deg);
-  transform-origin: left top;
+  transition: all .7s;
+  transform: rotate(-50deg);
+  transform-origin: 1% 1%;
+}
+.recordItem .needlePlay{
+  transform: rotate(-20deg);
+}
+.recordItem .needlePause{
+  transform: rotate(-50deg);
 }
 
 /* .recordItem .needle image{} */
