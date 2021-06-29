@@ -140,7 +140,6 @@ Page({
                         //  console.log(this.data.remdSongList);
                     }
                 }
-
             })
         })
     },
@@ -152,21 +151,16 @@ Page({
         })
     },
     toSearch() { //进入搜索界面
-        wx.navigateTo({
-            url: '/pages/Subpage/MusicSubPage/SearchMusic/SearchMusic',
-        })
+        wx.navigateTo({url:'/pages/Subpage/MusicSubPage/SearchMusic/SearchMusic'})
     },
     toRemd(e) { //点击进入歌单
         wx.navigateTo({
-            url: `/pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails?id=${e.currentTarget.dataset.id}`,
+            url: `/pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails?id=${e.currentTarget.dataset.id}`
         })
         // console.log(e.currentTarget.dataset.id)
     },
     //生命周期函数--监听页面初次渲染完成
-    onReady: function () {
-
-        
-    },
+    onReady: function () { },
     //生命周期函数--监听页面显示
     onShow: function () {},
     //生命周期函数--监听页面隐藏
