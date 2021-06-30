@@ -65,7 +65,7 @@
                                         <image src="/image/music-page/record.png" mode="aspectFit"></image>
                                     </view>
                                     <view class="album round {{playerState?'':'playerPaused'}}">
-                                        <image src="{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
+                                        <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/orderData/songList/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
                                         </image>
                                     </view>
                                 </view>

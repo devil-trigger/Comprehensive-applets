@@ -42,22 +42,22 @@ Page({
                 name:'淘汰',
                 album:'',
                 singer:'陈奕迅',
-                cover:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo1.jpg',
-                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo1.mp3'
+                cover:'demo1.jpg',
+                src:'demo1.mp3'
             },
             {
                 name:'黑色毛衣',
                 album:'',
                 singer:'周杰伦',
-                cover:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo2.jpg',
-                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo2.mp3'
+                cover:'demo2.jpg',
+                src:'demo2.mp3'
             },
             {
                 name:'爱上未来的你',
                 album:'时光机',
                 singer:'刘瑞琦',
-                cover:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo3.jpg',
-                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo3.m4a'
+                cover:'demo3.jpg',
+                src:'demo3.m4a'
             },
         ],
         randomList:[],//随机列表
