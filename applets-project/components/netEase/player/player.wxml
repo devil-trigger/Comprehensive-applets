@@ -126,7 +126,7 @@
         <view>
             <view class="playerList-content flex justify-between">
                 <view class="text-sm flex align-center padding-xs" wx:for="{{playMode}}" wx:key='index'
-                    wx:if="{{index==playModeIndex}}" bindtap="modeSwitch">
+                    wx:if="{{index==playModeIndex}}" bindtap="modeSwitch" data-index="{{index}}">
                     <view>
                         <image src="/image/music-page/playIcon/player-{{index+1}}.svg" mode="aspectFit"></image>
                     </view>
