@@ -3,12 +3,12 @@
     <!-- 底部栏 -->
     <swiper class="swiper-playslide" duration="300" bindchange="Playerslide" style="height:130rpx"
         current="{{playIndex}}">
-        <swiper-item wx:for="{{song}}" wx:key="index">
+        <swiper-item wx:for="{{randomSwitch?randomList:song}}" wx:key="index">
             <view>
                 <view class="playerContent flex justify-between align-center" catchtap="showPopup">
                     <view class="flex align-center">
                         <view>
-                            <image class="round" src="{{item.cover}}" mode="aspectFill">
+                            <image class="round" src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/{{item.cover}}" mode="aspectFill">
                             </image>
                         </view>
                         <view class="padding-lg flex">
@@ -60,12 +60,12 @@
                         <view class="record-content flex justify-center align-center padding margin-top">
                             <view class="recordImg">
                                 <!-- 唱片|专辑 -->
-                                <view class="recordItem">
-                                    <view class="record {{playerState?'':'playerPaused'}}">
+                                <view class="recordItem {{playerState?'':'playerPaused'}}">
+                                    <view class="record">
                                         <image src="/image/music-page/record.png" mode="aspectFit"></image>
                                     </view>
                                     <view class="album round {{playerState?'':'playerPaused'}}">
-                                        <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/orderData/songList/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
+                                        <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
                                         </image>
                                     </view>
                                 </view>
@@ -143,7 +143,7 @@
     <view class="margin-top-sm">
         <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}">
             <view
-                class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playIndex?'bg-gray':''}}">
+                class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playListIndex?'bg-gray':''}}">
                 <view>
                     {{item.name}}
                     <text class="text-xs text-gray"> - {{item.singer}}</text>
