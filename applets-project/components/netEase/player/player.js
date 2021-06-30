@@ -50,17 +50,17 @@ Component({
       })
     },
     modeSwitch() { //播放模式切换
-      // console.log('切换');
-      if (this.data.playModeIndex == 2) {
-        this.setData({
-          playModeIndex: 0
-        })
-      } else {
-        this.setData({
-          playModeIndex: this.data.playModeIndex + 1
-        })
+      switch (this.data.playModeIndex == 2) {
+        case true:
+          this.setData({playModeIndex: 0});
+          break;
+        default:
+          this.setData({playModeIndex: this.data.playModeIndex + 1})
+          break;
       }
-
+      wx.showToast({
+        title: this.data.playMode[this.data.playModeIndex],icon:'none'
+      })
     },
     playSwitchFun() { //播放、暂停 按钮切换
       let state = this.data.playerState;

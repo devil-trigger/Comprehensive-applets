@@ -52,6 +52,13 @@ Page({
                 cover:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo2.jpg',
                 src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo2.mp3'
             },
+            {
+                name:'爱上未来的你',
+                album:'时光机',
+                singer:'刘瑞琦',
+                cover:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo3.jpg',
+                src:'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/demo3.m4a'
+            },
         ]
     },
     onLoad: function (options) {
