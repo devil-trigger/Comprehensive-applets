@@ -9,7 +9,7 @@ Component({
     }, //随机播放列表
   },
   data: {
-    randomSwitch: false, //随机开关
+    randomSwitch: false, //随机模式开关
     playIndex: 0, //播放歌曲对应标识
     playMode: ['单曲循环', '列表循环', '随机播放'], //播放模式
     playModeIndex: 0, //播放模式标识
@@ -100,26 +100,21 @@ Component({
           }
           break;
         default: //随机
-          console.log('随机-下一首');
-          if (this.data.randomSwitch) {
-            if (this.data.playIndex == this.properties.randomList.length - 1) {
-              num = 0;
-            } else {
-              num = this.data.playIndex + 1
-            }
+          
+          if (this.data.playIndex == this.properties.randomList.length - 1) {
+            num = 0;
+          } else {
+            num = this.data.playIndex + 1
           }
+          console.log('随机-下一首',num);
+          // if (this.data.randomSwitch) { }
           break;
       }
       this.setData({
-        playIndex: num
+        playIndex: num,
+        randomSwitch: true //随机开关
       });
-      this.playSong()
-    },
-    onplayerList() { //打开播放列表
-      // console.log('打开播放列表');
-      this.setData({
-        playerList: true
-      })
+      this.playSong();
     },
     playSong() { //切换 | 播放 ——实际运用函数;
       let song = '';
@@ -139,7 +134,7 @@ Component({
         }
       }
       let PlayNum = this.data.playIndex;
-      console.log(song)
+      
       // console.log(this.properties.randomList)
       manage.title = song[PlayNum].name; //歌曲标题
       manage.epname = song[PlayNum].album; //专辑名称
@@ -147,12 +142,11 @@ Component({
       manage.coverImgUrl = song[PlayNum].cover; //封面图 URL
       manage.src = song[PlayNum].src;
       manage.currentTime = 0;
+      // console.log(manage);
       let that = this;
       manage.onPlay(() => { //监听播放
-        console.log('正在播放')
-        that.setData({
-          playerState: true
-        });
+        // console.log('正在播放')
+        that.setData({ playerState: true});
         that.counTimeDown(manage); //记录一次进度
       });
       manage.onPause(() => { //监听暂停
@@ -184,7 +178,8 @@ Component({
         }
         that.setData({
           playerState: false,
-          playIndex: endNum
+          playIndex: endNum,
+          randomSwitch: true //随机开关
         });
         this.playSong();
       })
@@ -239,23 +234,23 @@ Component({
       }
       return times;
     },
+    onplayerList() { //打开播放列表(播放列表-弹出层) 
+      this.setData({playerList: true})
+    },
     modeSwitch() { //播放 模式切换 (播放列表-弹出层) 
       switch (this.data.playModeIndex) {
         case 0:
           this.setData({
             playModeIndex: this.data.playModeIndex + 1,
-            randomSwitch: false
+            randomSwitch: false//随机开关
           })
           break;
         case 1:
           let arr = this.properties.song;
-          let randomArr = arr.sort(() => {
-            return .5 - Math.random()
-          });
+          let randomArr = arr.sort(() => {return Math.random()>0.5?-1:1});//乱序
           this.setData({
             playModeIndex: this.data.playModeIndex + 1,
             randomList: randomArr, //随机列表
-            randomSwitch: true //随机开关
           });
           console.log(this.properties.randomList);
           break;

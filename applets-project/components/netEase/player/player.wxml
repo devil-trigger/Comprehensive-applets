@@ -43,8 +43,8 @@
                     <text class="cuIcon-unfold"></text>
                 </view>
                 <view class="text-center">
-                    <view>{{song[playIndex].name}}</view>
-                    <view class="text-xs">{{song[playIndex].singer}}</view>
+                    <view>{{randomSwitch?randomList[playIndex].name:song[playIndex].name}}</view>
+                    <view class="text-xs">{{randomSwitch?randomList[playIndex].singer:song[playIndex].singer}}</view>
                 </view>
                 <view class="padding-xs">
                     <text class="cuIcon-forward"></text>
@@ -65,7 +65,7 @@
                                         <image src="/image/music-page/record.png" mode="aspectFit"></image>
                                     </view>
                                     <view class="album round {{playerState?'':'playerPaused'}}">
-                                        <image src="{{song[playIndex].cover}}" mode="aspectFit">
+                                        <image src="{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
                                         </image>
                                     </view>
                                 </view>
