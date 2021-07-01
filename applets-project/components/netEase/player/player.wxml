@@ -8,7 +8,7 @@
                 <view class="playerContent flex justify-between align-center" catchtap="showPopup">
                     <view class="flex align-center">
                         <view>
-                            <image class="round" src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/{{item.cover}}" mode="aspectFill">
+                            <image class="round" src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{item.cover}}" mode="aspectFill">
                             </image>
                         </view>
                         <view class="padding-lg flex">
@@ -65,7 +65,7 @@
                                         <image src="/image/music-page/record.png" mode="aspectFit"></image>
                                     </view>
                                     <view class="album round {{playerState?'':'playerPaused'}}">
-                                        <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/小程序其他文件/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
+                                        <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
                                         </image>
                                     </view>
                                 </view>
@@ -116,12 +116,15 @@
     </view>
 </van-popup>
 
+
+
+
 <!-- 播放列表弹出层 -->
 <van-popup show="{{ playerList }}" catchtouchmove='prohibit' position="bottom" round custom-style="height:70%;"
     closeable bind:close="popupClose" close-icon='arrow-down'>
     <view class="margin-top margin-left margin-right">
         <view class="margin-bottom">
-            当前播放<text class="text-xs text-gray">（12）</text>
+            当前播放<text class="text-xs text-gray">（{{song.length}}）</text>
         </view>
         <view>
             <view class="playerList-content flex justify-between">

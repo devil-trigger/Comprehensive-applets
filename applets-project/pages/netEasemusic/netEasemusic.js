@@ -59,6 +59,13 @@ Page({
                 cover:'demo3.jpg',
                 src:'demo3.m4a'
             },
+            {
+                name:'爱与诚',
+                album:'大雄',
+                singer:'古巨基',
+                cover:'demo4.jpg',
+                src:'demo4.mp3'
+            },
         ],
         randomList:[],//随机列表
     },
