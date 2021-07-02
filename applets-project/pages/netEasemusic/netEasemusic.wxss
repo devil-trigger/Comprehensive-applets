@@ -55,7 +55,7 @@ page {
 }
 
 .tag {
-    padding: 7rpx 17rpx 7rpx 17rpx;
+    padding: 5rpx 15rpx 5rpx 15rpx;
     border: 1rpx solid #f2f2f2;
     border-radius: 30rpx;
     font-size: 25rpx;

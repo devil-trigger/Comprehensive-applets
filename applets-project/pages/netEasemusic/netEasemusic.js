@@ -4,12 +4,11 @@ import {
 } from '../../utils/util';
 Page({
     data: {
-        navigationSty: { //标题栏样式（适配）
-            navBarHeight: 0,
-            menuRight: 0,
-            menuBotton: 0,
-            menuHeight: 0
-        },
+        SortList:[//分类
+            {url:'gedan',name:'歌单'},
+            {url:'gengxin',name:'每日推荐'},
+            {url:'paihang',name:'排行榜'},
+        ],
         bannerImgHeight: 0,//轮播图图片高度
         swiperList: [], //轮播图data
         remdList: [], //推荐歌单data
@@ -67,7 +66,6 @@ Page({
                 src:'demo4.mp3'
             },
         ],
-        randomList:[],//随机列表
     },
     onLoad: function (options) {
         this.getdata();
@@ -96,7 +94,9 @@ Page({
 
     },
     getSwiperlist() { //获取轮播图数据
-        netEaseAPI('banner').then(res => {
+        netEaseAPI('banner?type=2').then(res => {
+            // type  0.pc 1.android 2.iphone 3.ipad
+            // console.log(res.data);
             this.setData({
                 swiperList: res.data.banners
             })
@@ -164,6 +164,24 @@ Page({
         }).then(res=>{
             console.log(res.data)
         })
+    },
+    toBannerDetails(e){//点击轮播图图片 进入详情
+        console.log(e.currentTarget.dataset.url);
+        let toUrl='';
+        switch (e.currentTarget.dataset.url!=null) {
+            case true:
+                toUrl=e.currentTarget.dataset.url
+                break;
+            default:
+                toUrl='https://y.music.163.com/m/';
+                break;
+        }
+        wx.showLoading({title: '正在进入...',mask: true})
+        setTimeout(() => {
+            wx.hideLoading({})
+            wx.navigateTo({url:`/pages/Subpage/MusicSubPage/bannerDetails/bannerDetails?url=${toUrl}`})
+        }, 1500);
+
     },
     toSearch() { //进入搜索界面
         wx.navigateTo({url:'/pages/Subpage/MusicSubPage/SearchMusic/SearchMusic'})

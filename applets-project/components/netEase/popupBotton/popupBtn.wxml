@@ -1,0 +1,27 @@
+<!-- 按钮组 -->
+<view class="popupPlayer">
+    <view class="flex align-center justify-between margin-sm text-sm text-white">
+        <view>{{slideInfo.progressText}}</view>
+        <view class="play-progress">
+            <van-slider value="{{slideInfo.progress}}" bar-height='7rpx' active-color="#fff" inactive-color="#676767"
+                use-button-slot step="0.5" bind:change="changeSlider" bind:drag="dragSlider">
+                <view class="custom-button round" slot="button">
+                </view>
+            </van-slider>
+        </view>
+        <view>{{slideInfo.durationText}}</view>
+    </view>
+    <view>
+        <view class="padding flex justify-center align-center popup-playerItem">
+            <view class="popupTag" bindtap="lastSong">
+                <image src="/image/music-page/playIcon/previous.svg"></image>
+            </view>
+            <view class="popup-playItem round" bindtap="playSwitchFun">
+                <image src="/image/music-page/playIcon/{{playerState}}.svg"></image>
+            </view>
+            <view class="popupTag" bindtap="nextSong">
+                <image src="/image/music-page/playIcon/next.svg"></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -112,6 +112,7 @@
                     </view>
                 </view>
             </view>
+            <!-- <popupBtn playerState="{{playerState}}" slideInfo="{{slideInfo}}"></popupBtn> -->
         </view>
     </view>
 </van-popup>

@@ -13,6 +13,7 @@ Page({
         currentTab: 0, //热搜榜tab切换
         hotList: [], //热搜榜data
         value: '', //输入框内容
+        SongSheetList:[],//歌单分类列表data
     },
 
     //生命周期函数--监听页面加载
@@ -22,6 +23,7 @@ Page({
         })
         this.getHotList(); //热词
         this.getDefault(); //默认关键字
+        this.getPlayList();//热门歌单分类
     },
     SearchFun(searchtext) { //搜索主函数
         let SearchArr=[];
@@ -186,6 +188,14 @@ Page({
     },
     otherHot() { //展开更多热搜
         console.log('更多热搜')
+    },
+    getPlayList(){//热门歌单分类
+        netEaseAPI('playlist/catlist').then(res=>{
+            console.log(res);
+            this.setData({
+                SongSheetList:res.data.tags
+            })
+        })
     },
     //生命周期函数--监听页面初次渲染完成
     onReady: function () {},

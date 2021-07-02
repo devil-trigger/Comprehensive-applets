@@ -1,14 +1,15 @@
 {
   "pages":[
     "pages/netEasemusic/netEasemusic",
+    "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
+    "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm",
     "pages/index/index",
     "pages/toutiao/toutiao",
     "pages/weather/weather",
     "pages/my/my",
-    "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm",
     "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
-    "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
+    "pages/Subpage/MusicSubPage/bannerDetails/bannerDetails",
     "pages/Subpage/ToutiaoDetails/ToutiaoDetails"
   ],
   "window":{

@@ -1,35 +1,19 @@
-import {netEaseAPI,} from '../../../../utils/util';
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
-        playData:0,
-        otherData:{}
+        srcUrl:''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.getplayDetails(5033464627)
-        this.getDynamic(5033464627)
-    },
-    getplayDetails(playid){//歌单详情内容
-        netEaseAPI('playlist/detail',{id:playid}).then(res=>{
-            console.log(res.data)
+        if(options){
             this.setData({
-                playData:res.data
+                srcUrl:options.url
             })
-        })
+        }
     },
-    getDynamic(playid){//歌单详情其他（评论、播放数）
-        netEaseAPI('playlist/detail/dynamic',{id:playid}).then(res=>{
-            console.log(res.data)
-            this.setData({otherData:res.data})
-        })
-    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

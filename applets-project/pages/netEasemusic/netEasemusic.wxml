@@ -1,48 +1,38 @@
+<!-- 搜索跳转按钮 -->
 <view bindtap="toSearch">
     <van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦" readonly/>
 </view>
 
+
 <view class="content">
     <!-- 轮播图 -->
     <view class="margin-bottom">
-        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="7000"
+        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="4600"
             duration="1200">
-            <swiper-item wx:for="{{swiperList}}" wx:key="index">
+            <swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="toBannerDetails" data-url="{{item.url}}">
                 <view class="swiperItem flex align-center">
-                    <image src="{{item.imageUrl}}" mode="aspectFill" style="height:{{bannerImgHeight}};"></image>
+                    <image src="{{item.pic}}" mode="aspectFill" style="height:{{bannerImgHeight}};"></image>
                 </view>
             </swiper-item>
         </swiper>
     </view>
 
-    <!-- 播单（分类） -->
+    <!-- 分 类  -->
     <view>
         <view class="flex justify-around sort_content text-center">
-            <view class="sort_item">
+            <view class="sort_item" wx:for="{{SortList}}" wx:key="index">
                 <view class="sort_imgItem flex align-center justify-center">
-                    <image src="/image/music-page/gedan.svg"></image>
+                    <image src="/image/music-page/{{item.url}}.svg"></image>
                 </view>
-                <view>歌单</view>
-            </view>
-            <view class="sort_item">
-                <view class="sort_imgItem flex align-center justify-center">
-                    <image src="/image/music-page/gengxin.svg"></image>
-                </view>
-                <view>每日推荐</view>
-            </view>
-            <view class="sort_item">
-                <view class="sort_imgItem flex align-center justify-center">
-                    <image src="/image/music-page/paihang.svg"></image>
-                </view>
-                <view>排行榜</view>
+                <view>{{item.name}}</view>
             </view>
         </view>
     </view>
 
-    <!-- 分界线 -->
-    <van-divider hairline />
+<!-- 分界线 -->
+<van-divider hairline />
 
-    <!-- 推荐歌单 -->
+<!-- 推荐歌单 -->
     <view class="padding-sm">
         <view class="flex justify-between margin-bottom-xs">
             <view class="text-bold text-lg">推荐歌单</view>
@@ -62,17 +52,6 @@
                         </view>
                         <view class="remd_title text-xs margin-top-xs">{{item.name}}</view>
                     </view>
-                    <!-- <view class="remd_item margin-xs">
-                        <view class="remd_playNum text-xs">
-                            <text class="cuIcon-playfill"></text> 531万
-                        </view>
-                        <view class="remd_imgItem">
-                            <image src="http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg"
-                                mode="aspectFill">
-                            </image>
-                        </view>
-                        <view class="remd_title text-xs margin-top-xs">陈奕迅：用我的歌来治愈你的伤口</view>
-                    </view> -->
                 </view>
             </scroll-view>
         </view>
@@ -152,8 +131,8 @@
 
 <!-- 新歌 | 新碟 -->
 <view class="margin-top content">
-    <view class="padding-sm">
-        <view class="flex justify-between margin-bottom-xs">
+    <view class="padding">
+        <view class="flex justify-between margin-sm">
             <view class="text-bold text-lg">
                 新歌 | 新碟
             </view>
@@ -191,6 +170,9 @@
         </view>
     </view>
 </view>
+
+
+
 <!-- 播放器——核心 -->
-<player song="{{SongData}}" ramdomList="{{randomList}}"></player>
+<player song="{{SongData}}"></player>
 

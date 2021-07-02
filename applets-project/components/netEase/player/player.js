@@ -4,19 +4,17 @@ Component({
     song: {
       type: Array
     },
-    randomList: {
-      type: Array
-    }, //随机播放列表
   },
   data: {
     playIndex: 0, //播放歌曲对应标识
     playMode: ['单曲循环', '列表循环', '随机播放'], //播放模式
     playModeIndex: 0, //播放模式标识
     randomSwitch: false, //随机模式-开关
-    randomAdd: 0, //随机模式-判定数字
+    randomList:[],//随机播放列表
+    randomAdd: 0, //随机模式-判定是否生成数字
     popupDisplay: false, //打开播放器-弹出层
     playerList: false, //打开播放列表-弹出层
-    playListIndex: 0, //播放列表 歌曲标识
+    playListIndex: 0, //播放列表 歌曲标识(播放列表-弹出层)
     playerState: false, //播放状态(播放|暂停)
     slideInfo: { //播放长度信息
       duration: 0, //全长
@@ -94,6 +92,7 @@ Component({
           listindex = this.properties.song.indexOf(this.properties.randomList[num]);
           break;
       }
+      manage.stop();
       this.setData({
         playIndex: num,
         playListIndex: listindex
@@ -244,12 +243,10 @@ Component({
       this.setData({
         'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail.value * 0.01)
       });
-
     },
     changeSlider(ee) { //点击进度条 
       let changeTime = ee.detail * 0.01 * this.data.slideInfo.duration
       manage.seek(changeTime); //设置歌曲进度
-
     },
     formatTime(second) { //播放时间（文字）格式化
       let times = '';
