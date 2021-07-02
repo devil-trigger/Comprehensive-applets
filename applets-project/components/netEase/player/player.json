@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "popupBtn":"../popupBotton/popupBtn",
-    "van-popup": "/dist/popup/index"
+    "record":"/components/netEase/popupRecord/record",
+    "van-popup": "/dist/popup/index",
+    "van-slider": "/dist/slider/index"
   }
 }

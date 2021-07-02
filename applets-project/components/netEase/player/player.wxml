@@ -8,7 +8,9 @@
                 <view class="playerContent flex justify-between align-center" catchtap="showPopup">
                     <view class="flex align-center">
                         <view>
-                            <image class="round" src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{item.cover}}" mode="aspectFill">
+                            <image class="round"
+                                src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{item.cover}}"
+                                mode="aspectFill">
                             </image>
                         </view>
                         <view class="padding-lg flex">
@@ -52,38 +54,12 @@
             </view>
         </view>
         <view class="player-popContent">
-            <!-- 唱片 | 歌词 -->
-            <view>
-                <swiper class="" duration="300" style="height:60vh;">
-                    <!-- 唱片 展示 模块-->
-                    <swiper-item>
-                        <view class="record-content flex justify-center align-center padding margin-top">
-                            <view class="recordImg">
-                                <!-- 唱片|专辑 -->
-                                <view class="recordItem {{playerState?'':'playerPaused'}}">
-                                    <view class="record">
-                                        <image src="/image/music-page/record.png" mode="aspectFit"></image>
-                                    </view>
-                                    <view class="album round {{playerState?'':'playerPaused'}}">
-                                        <image src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}" mode="aspectFit">
-                                        </image>
-                                    </view>
-                                </view>
-                                <!-- 唱片指针 -->
-                                <view class="needle {{playerState?'needlePlay':'needlePause'}}">
-                                    <image src="/image/music-page/needle-ab.png" mode="aspectFit"></image>
-                                </view>
-                            </view>
-                        </view>
-                    </swiper-item>
-                    <!-- 歌词 模块 -->
-                    <swiper-item>
-                        <view>
-                            歌词
-                        </view>
-                    </swiper-item>
-                </swiper>
-            </view>
+            <!-- 唱片 展示 模块-->
+            <record randomSwitch="{{randomSwitch}}" 
+            randomList="{{randomList}}" 
+            playIndex="{{playIndex}}"
+            song="{{song}}" 
+            playerState="{{playerState}}"></record>
             <!-- 按钮组 -->
             <view class="popupPlayer">
                 <view class="flex align-center justify-between margin-sm text-sm text-white">
@@ -112,7 +88,7 @@
                     </view>
                 </view>
             </view>
-            <!-- <popupBtn playerState="{{playerState}}" slideInfo="{{slideInfo}}"></popupBtn> -->
+
         </view>
     </view>
 </van-popup>

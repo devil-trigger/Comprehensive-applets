@@ -1,0 +1,86 @@
+.record-content {
+    width: 100%;
+    height: 100%;
+  }
+  /* 唱片、专辑图片 */
+  .record-content .recordImg {
+    height:680rpx;
+    width:680rpx;
+    position: relative;
+    /* width: 100%; */
+  }
+  .record-content .recordImg .recordItem{
+    width: 100%;
+    height: 100%;
+    animation: 5s linear 0s normal none infinite rotate;
+    -webkit-animation: 5s linear 0s normal none infinite rotate;
+    animation-play-state: running;
+    -webkit-animation-play-state:running; /* Safari 和 Chrome */
+  }
+  .record-content .recordImg .playerPaused {
+    /* 暂停 */
+    animation-play-state: paused;
+    -webkit-animation-play-state:paused; /* Safari 和 Chrome */
+  }
+  
+  @keyframes rotate {
+    from { -webkit-transform: rotate(0deg)}
+  
+    to {-webkit-transform: rotate(360deg)}
+  
+    from {transform: rotate(0deg)}
+  
+    to {transform: rotate(360deg)}
+  }
+  
+  .record-content .record {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+  }
+  
+  .record-content .album {
+    overflow: hidden;
+    background: url('https://s3.music.126.net/mobile-new/img/disc_default.png?ba7c53e25dbac9fe14f024846ddb57d2=') no-repeat;
+    /* background: url('/image/music-page/disc_default.png') no-repeat; */
+    background-size: contain;
+    height: 85%;
+    width: 85%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+  }
+  
+  /* 唱片-指针 */
+  .record-content .needle {
+    position: absolute;
+    margin-left: -50rpx;
+    left:50%;
+    top:-30rpx;
+    z-index: 55;
+    width:150rpx;
+    height:246rpx;
+    transition: all .7s;
+    transform-origin: 1% 1%;
+  }
+  
+  .record-content .needlePlay {
+    transform: rotate(-25deg);
+  }
+  
+  .record-content .needlePause {
+    transform: rotate(-50deg);
+  }
+  
+  /* .record-content .needle image{} */
+  
+  .record-content image {
+    height: 100%;
+    width: 100%;
+  }
+  

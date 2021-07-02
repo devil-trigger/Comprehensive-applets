@@ -56,6 +56,7 @@ Component({
         manage.pause();
       } else {
         manage.play()
+        this.playSong();
       }
       this.setData({
         playerState: !state
@@ -137,6 +138,7 @@ Component({
       this.playSong();
     },
     playSong() { //切换 | 播放 ——————————————————————————————实际运用函数;
+      // console.log(this.data.playIndex);
       let song = '';
       if (this.properties.song.length != 0) {
         if (this.data.playModeIndex == 2) {
@@ -332,7 +334,7 @@ Component({
 
   lifetimes: {
     attached() {
-      this.playSong();
+      // this.playSong();
 
     }, //在组件实例进入页面节点树时执行
     detached() {}, //在组件实例被从页面节点树移除时执行

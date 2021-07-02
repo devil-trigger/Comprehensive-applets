@@ -10,12 +10,12 @@
     height: calc( 100vh - 108rpx ) ;
     background:#fff;
 }
-.section-search .section-loading{
-}
+/* .section-search .section-loading{
+} */
 /* 搜索历史 */
-.historyTag{
-    /* flex:3; */
-}
+/* .historyTag{
+
+} */
 .historyItem{
     width:80%;
     /* flex: 8; */
@@ -55,9 +55,8 @@
 .HotItem{
     width: 50%;
 }
-.HotItem .hot-name{
-    /* width:30%; */
-}
+/* .HotItem .hot-name{
+} */
 .HotItem .HotImgItem{
     width: 64.8rpx;
     height:33.6rpx;

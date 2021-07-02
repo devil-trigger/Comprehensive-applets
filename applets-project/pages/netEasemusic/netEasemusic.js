@@ -38,6 +38,13 @@ Page({
         ], //随机歌曲data
         SongData:[//播放歌曲data
             {
+                name:'爱上未来的你',
+                album:'时光机',
+                singer:'刘瑞琦',
+                cover:'demo3.jpg',
+                src:'demo3.m4a'
+            },
+            {
                 name:'淘汰',
                 album:'',
                 singer:'陈奕迅',
@@ -50,13 +57,6 @@ Page({
                 singer:'周杰伦',
                 cover:'demo2.jpg',
                 src:'demo2.mp3'
-            },
-            {
-                name:'爱上未来的你',
-                album:'时光机',
-                singer:'刘瑞琦',
-                cover:'demo3.jpg',
-                src:'demo3.m4a'
             },
             {
                 name:'爱与诚',
