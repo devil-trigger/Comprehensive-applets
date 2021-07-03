@@ -38,32 +38,36 @@ Page({
         ], //随机歌曲data
         SongData:[//播放歌曲data
             {
-                name:'爱上未来的你',
-                album:'时光机',
-                singer:'刘瑞琦',
-                cover:'demo3.jpg',
-                src:'demo3.m4a'
-            },
-            {
                 name:'淘汰',
                 album:'',
                 singer:'陈奕迅',
                 cover:'demo1.jpg',
-                src:'demo1.mp3'
+                src:'demo1.mp3',
+                lrc:'demo1.lrc'
             },
             {
                 name:'黑色毛衣',
                 album:'',
                 singer:'周杰伦',
                 cover:'demo2.jpg',
-                src:'demo2.mp3'
+                src:'demo2.mp3',
+                lrc:''
+            },
+            {
+                name:'爱上未来的你',
+                album:'时光机',
+                singer:'刘瑞琦',
+                cover:'demo3.jpg',
+                src:'demo3.m4a',
+                lrc:''
             },
             {
                 name:'爱与诚',
                 album:'大雄',
                 singer:'古巨基',
                 cover:'demo4.jpg',
-                src:'demo4.mp3'
+                src:'demo4.mp3',
+                lrc:''
             },
         ],
     },

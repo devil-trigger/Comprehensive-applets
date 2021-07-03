@@ -8,8 +8,6 @@
 }
 
 .playerItem .playerContent {
-  /* background-image: linear-gradient(transparent,#fff, #fff); */
-  /* background-color: #fff; */
   padding: 0 15rpx 5rpx 15rpx;
 }
 
@@ -51,18 +49,7 @@
   background-size: auto 100%;
   /* background-image: url(http://ww1.sinaimg.cn/large/00650Xxqjw1f68ayoa8h4j30sg0lcjud.jpg); */
 }
-
-/* .song-bg:before {
-
-} */
-
-/* .player-popContent{} */
-
 .popupItem {
   z-index: 70;
   position: relative;
 }
-
-/* .popSwiper{
-
-} */

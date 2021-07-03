@@ -175,4 +175,3 @@
 
 <!-- 播放器——核心 -->
 <player song="{{SongData}}"></player>
-

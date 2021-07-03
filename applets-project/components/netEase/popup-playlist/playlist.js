@@ -24,6 +24,9 @@ Component({
         deleteListSong(e) { //列表歌曲删除
             this.triggerEvent('deleteListSong', e.currentTarget.dataset.index)
         },
+        deletePlaylist(){//清空列表
+            this.triggerEvent('deletePlaylist')
+        },
         popupClose() {//关闭弹出层
             this.triggerEvent('popupClose')
         }

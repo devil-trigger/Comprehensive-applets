@@ -8,8 +8,7 @@
                     <view class="flex align-center">
                         <view>
                             <image class="round"
-                                src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{item.cover}}"
-                                mode="aspectFill">
+                                src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{item.cover}}"  mode="aspectFill">
                             </image>
                         </view>
                         <view class="padding-lg flex">
@@ -32,8 +31,12 @@
 </view>
 
 <!-- 播放器 弹出层 -->
-<van-popup show="{{ popupDisplay }}" bind:close="popupClose" position="bottom"
-    custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
+<van-popup show="{{ popupDisplay }}" 
+        bind:close="popupClose"
+        position="bottom"
+        custom-style="height: 97%;background:#f3f3f3" 
+        round='true' 
+        catchtouchmove='prohibit'>
     <view class="song-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}});"></view>
     <view class="popupItem">
         <!-- 顶部 标题|歌手|分享 -->
@@ -86,5 +89,8 @@
     bind:popupClose="popupClose"
     bind:listSongSwitch="listSongSwitch"
     bind:deleteListSong="deleteListSong"
+    bind:deletePlaylist="deletePlaylist"
     bind:modeSwitch="modeSwitch">
 </playlist>
+
+

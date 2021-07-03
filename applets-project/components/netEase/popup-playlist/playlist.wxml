@@ -17,24 +17,28 @@
                         {{item}}
                     </view>
                 </view>
-                <view class="padding-xs">
+                <view class="padding-xs" bindtap="deletePlaylist">
                     <text class="cuIcon-delete"></text>
                 </view>
             </view>
         </view>
     </view>
     <view class="margin-top-sm">
-        <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}">
-            <view
-                class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playListIndex?'bg-gray':''}}">
-                <view>
-                    {{item.name}}
-                    <text class="text-xs text-gray"> - {{item.singer}}</text>
+        <view class="songList">
+            <scroll-view scroll-y="true" style="height:100%">
+                <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}">
+                    <view
+                        class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playListIndex?'bg-gray':''}}">
+                        <view>
+                            {{item.name}}
+                            <text class="text-xs text-gray"> - {{item.singer}}</text>
+                        </view>
+                        <view class="padding-xs" bindtap="deleteListSong" data-index="{{index}}">
+                            <text class="cuIcon-close text-lg"></text>
+                        </view>
+                    </view>
                 </view>
-                <view class="padding-xs" bindtap="deleteListSong" data-index="{{index}}">
-                    <text class="cuIcon-close text-lg"></text>
-                </view>
-            </view>
+            </scroll-view>
         </view>
     </view>
 </van-popup>
