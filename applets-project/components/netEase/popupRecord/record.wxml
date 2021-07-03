@@ -7,10 +7,10 @@
                     <!-- 唱片|专辑 -->
                     <view class="recordItem {{playerState?'':'playerPaused'}}">
                         <view class="record">
-                            <image src="/image/music-page/record.png" mode="aspectFit"></image>
+                            <image class="imgItem" src="/image/music-page/record.png" mode="aspectFit"></image>
                         </view>
                         <view class="album round {{playerState?'':'playerPaused'}}">
-                            <image
+                            <image class="imgItem"
                                 src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}"
                                 mode="aspectFit">
                             </image>
@@ -18,7 +18,7 @@
                     </view>
                     <!-- 唱片指针 -->
                     <view class="needle {{playerState?'needlePlay':'needlePause'}}">
-                        <image src="/image/music-page/needle-ab.png" mode="aspectFit"></image>
+                        <image class="imgItem" src="/image/music-page/needle-ab.png" mode="aspectFit"></image>
                     </view>
                 </view>
             </view>

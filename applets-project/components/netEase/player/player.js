@@ -36,9 +36,6 @@ Component({
       })
       this.playSong();
     },
-    prohibit() { //阻止播放器弹出层下层滚动
-      return true
-    },
     popupClose() { //关闭弹出层
       this.setData({
         popupDisplay: false,
@@ -243,7 +240,7 @@ Component({
     dragSlider(e) { //拖动进度条（动态改变正在播放 时间值）
       this.counTimeDown(manage, true); //不即时更新progressText
       this.setData({
-        'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail.value * 0.01)
+        'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail * 0.01)
       });
     },
     changeSlider(ee) { //点击进度条 
@@ -315,21 +312,25 @@ Component({
       return randomArr
     },
     deleteListSong(e) { //删除列表歌曲(播放列表-弹出层)  
-      console.log('删除第' + e.currentTarget.dataset.index + '号歌曲')
+      console.log('删除' + this.properties.song[e.detail].name + '歌曲')
     },
     listSongSwitch(e) { //列表切换歌曲(播放列表-弹出层)  
+      let detail=e.detail
       let ListIndex = 0;
       if (this.data.playModeIndex <= 1) { //判断是否是随机播放
-        ListIndex = e.currentTarget.dataset.index
+        ListIndex = detail
       } else {
-        ListIndex = this.properties.song.indexOf(this.properties.randomList[e.currentTarget.dataset.index])
+        ListIndex = this.properties.song.indexOf(this.properties.randomList[detail])
       }
       this.setData({
         playIndex: ListIndex,
-        playListIndex: e.currentTarget.dataset.index
+        playListIndex: detail
       })
       this.playSong()
     },
+    prohibit() { //阻止播放器弹出层下层滚动
+      return true
+  },
   },
 
   lifetimes: {

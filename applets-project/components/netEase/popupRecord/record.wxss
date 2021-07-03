@@ -79,7 +79,7 @@
   
   /* .record-content .needle image{} */
   
-  .record-content image {
+  .record-content .imgItem {
     height: 100%;
     width: 100%;
   }
