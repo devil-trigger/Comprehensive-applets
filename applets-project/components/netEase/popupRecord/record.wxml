@@ -11,7 +11,7 @@
                         </view>
                         <view class="album round {{playerState?'':'playerPaused'}}">
                             <image class="imgItem"
-                                src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}"
+                                src="{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}"
                                 mode="aspectFit">
                             </image>
                         </view>
@@ -26,7 +26,19 @@
         <!-- 歌词 模块 -->
         <swiper-item>
             <view>
-                歌词
+                <view class="margin">
+                    <scroll-view scroll-y="true" style="height:50vh;" scroll-top="{{scrollTop}}" scroll-with-animation="true">
+                        <view class="text-white text-center text-xl padding">
+                            <!-- 歌名 -->
+                            <view class="text-xxl">{{randomSwitch?randomList[playIndex].name:song[playIndex].name}}
+                            </view>
+                            <!-- 歌词 -->
+                            <view class="margin" wx:for="{{lrcData}}" wx:key="index">    
+                                {{item.lrc}}
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
             </view>
         </swiper-item>
     </swiper>

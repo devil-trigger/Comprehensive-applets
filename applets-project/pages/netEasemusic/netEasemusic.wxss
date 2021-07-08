@@ -21,7 +21,7 @@ page {
 }
 
 .swiperItem image {
-    border-radius: 45rpx;
+    border-radius: 60rpx;
     /* height:138px; */
 }
 
@@ -30,8 +30,6 @@ page {
 .sort_content {
     width: 100%;
 }
-
-/* .sort_item {} */
 
 .sort_item .sort_imgItem {
     width: 100rpx;
@@ -46,7 +44,8 @@ page {
     height: 60%;
 }
 
-/* 歌单 推荐 */
+
+/* 歌单 推荐----组件 */
 .remd_other {
     padding: 7rpx 17rpx 7rpx 17rpx;
     border: 1rpx solid #f2f2f2;
@@ -94,28 +93,5 @@ page {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-}
-
-/* 歌曲随机推荐 */
-/* .music-item {} */
-
-/* .music-item .music-Imgitem {
-
-} */
-
-.music-item .music-Imgitem image {
-    width: 100rpx;
-    height: 100rpx;
-    border-radius: 10rpx;
-}
-
-/* .music-item .music-info {} */
-
-/* .music-item .music-info .music-singer {} */
-
-.music-item .music-play view {
-    padding: 3rpx 5rpx;
-    border: 5rpx solid #f3f3f3;
-    border-radius: 10rpx;
 }
 

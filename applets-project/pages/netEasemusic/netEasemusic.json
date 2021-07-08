@@ -7,6 +7,8 @@
     "van-divider": "/dist/divider/index",
     "van-popup": "/dist/popup/index",
     "van-slider": "/dist/slider/index",
+    "songlist":"/components/netEase/home-songlist/song-list",
+    "albumlist":"/components/netEase//home-albumlist/albumlist",
     "player":"/components/netEase/player/player"
   }
 }

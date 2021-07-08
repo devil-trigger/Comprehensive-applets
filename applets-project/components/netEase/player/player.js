@@ -19,13 +19,73 @@ Component({
     slideInfo: { //播放长度信息
       duration: 0, //全长
       durationText: '00:00', //全长-文字
-      progress: 0, //当前播放进度 ————(进度条百分比)
+      progress: 0, //当前播放进度 ————(进度条百分比%)
       progressText: '00:00', //当前播放进度-文字
     },
+    defaultList: [{ //默认歌曲
+        name: '淘汰',
+        al: {
+          name: '认了吧',
+          picUrl: 'demo1.jpg',
+          id: 0
+        },
+        ar: [{
+            name: '陈奕迅',
+            id: 0
+          },
+          {
+            name: '周杰伦',
+            id: 0
+          },
+        ],
+        src: 'demo1.mp3'
+      },
+      {
+        name: '黑色毛衣',
+        al: {
+          name: '十一月的肖邦',
+          picUrl: 'demo2.jpg',
+          id: 0
+        },
+        ar: [{
+          name: '周杰伦',
+          id: 0
+        }],
+        src: 'demo2.mp3'
+      },
+      {
+        name: '爱上未来的你',
+        al: {
+          name: '时光机',
+          picUrl: 'demo3.jpg',
+          id: 0
+        },
+        ar: [{
+          name: '刘瑞琦',
+          id: 0
+        }],
+        src: 'demo3.m4a'
+      },
+      {
+        name: '爱与诚',
+        al: {
+          name: '大雄',
+          picUrl: 'demo4.jpg',
+          id: 0
+        },
+        ar: [{
+          name: '古巨基',
+          id: 0
+        }],
+        src: 'demo4.mp3'
+      },
+    ], //随机歌曲data
+    SongData: [] //播放歌曲data
+
   },
   observers: {
     'song': res => {
-      // console.log(res)
+      // console.log(res.length)
     }
 
   },
@@ -47,7 +107,7 @@ Component({
         popupDisplay: true
       })
     },
-    playSwitchFun() { //播放、暂停 按钮切换
+    playSwitchFun() { //播放、暂停——（切换）
       let state = this.data.playerState;
       if (state) {
         manage.pause();
@@ -139,41 +199,33 @@ Component({
       this.playSong();
     },
     playSong() { //切换 | 播放 ——————————————————————————————实际运用函数;
-      // console.log(this.data.playIndex);
       let song = '';
-      if (this.properties.song.length != 0) {
-        if (this.data.playModeIndex == 2) {
-          song = this.properties.randomList; //随机列表
+      if (this.properties.song.length != 0) {//判断是否有播放列表
+        if (this.data.playModeIndex == 2) { //判断是否是随机模式（2:随机）
+          song = this.properties.randomList;
         } else {
-          song = this.properties.song; //播放列表
+          song = this.properties.song;
         }
-      } else {
-        //song=默认歌曲
+      }else{
+          song = this.data.defaultList;
       }
+      console.log(song);
       let PlayNum = this.data.playIndex;
-      let srcFormat = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/';
       // console.log(PlayNum)
       manage.title = song[PlayNum].name; //歌曲标题
-      manage.epname = song[PlayNum].album; //专辑名称
-      manage.singer = song[PlayNum].singer; //歌手名
-      manage.coverImgUrl = srcFormat + song[PlayNum].cover; //封面图 URL
-      manage.src = srcFormat + song[PlayNum].src;
+      manage.epname = song[PlayNum].al.name; //专辑名称
+      manage.singer = song[PlayNum].ar[0].name; //歌手名
+      manage.coverImgUrl = song[PlayNum].al.picUrl; //封面图 URL
+      manage.src = song[PlayNum].src;
       manage.currentTime = 0;
-      // console.log(manage);
       let that = this;
       manage.onPlay(() => { //监听播放
-        // console.log('正在播放')
-        that.setData({
-          playerState: true
-        });
+        that.setData({playerState: true});
         that.counTimeDown(manage); //记录一次进度
       });
       manage.onPause(() => { //监听暂停
-        // console.log('暂停了');
-        that.setData({
-          playerState: false
-        });
-        that.counTimeDown(manage); ////记录一次进度
+        that.setData({playerState: false});
+        that.counTimeDown(manage); //记录一次进度
       });
       manage.onEnded(() => { //监听播完停止
         console.log('停止/播完');
@@ -233,7 +285,8 @@ Component({
         duration: Math.ceil(audioCtx.duration),
         durationText: this.formatTime(Math.ceil(audioCtx.duration)),
         progress: Math.floor(Math.ceil(audioCtx.currentTime) / Math.ceil(audioCtx.duration) * 100),
-        progressText: this.formatTime(Math.ceil(audioCtx.currentTime))
+        progressText: this.formatTime(Math.ceil(audioCtx.currentTime)),
+        progressSecond: Math.ceil(audioCtx.currentTime),
       };
       if (updateSwitch) {
         return
@@ -354,18 +407,26 @@ Component({
       })
       this.playSong()
     },
-    prohibit() { //阻止播放器弹出层下层滚动
+    prohibit() {
       return true
-    },
+    }, //阻止播放器弹出层下层滚动
   },
 
   lifetimes: {
     attached() {
       // this.playSong();
-      // console.log("https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/" + this.properties.song[0].lrc);
-
-    }, //在组件实例进入页面节点树时执行
-    detached() {}, //在组件实例被从页面节点树移除时执行
+      //若song没东西，则修改默认列表内容
+      let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
+      let defauleJson = this.data.defaultList
+      this.data.defaultList.forEach((item) => {
+        item.al.picUrl = urlText + item.al.picUrl;
+        item.src = urlText + item.src;
+      })
+      this.setData({
+        defaultList: defauleJson
+      })
+    },
+    detached() {},
   },
   options: {
     addGlobalClass: true,

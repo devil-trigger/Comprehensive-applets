@@ -5,22 +5,25 @@
         <swiper-item wx:for="{{randomSwitch?randomList:song}}" wx:key="index">
             <view>
                 <view class="playerContent flex justify-between align-center" catchtap="showPopup">
-                    <view class="flex align-center">
-                        <view>
-                            <image class="round"
-                                src="https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{item.cover}}"  mode="aspectFill">
+                    <view class="flex align-center basis-lg">
+                        <view class="basis-xs">
+                            <image class="round" src="{{item.al.picUrl}}" mode="aspectFill">
                             </image>
                         </view>
-                        <view class="padding-lg flex">
-                            <view class="text-bold">{{item.name}}</view>
-                            <view> - {{item.singer}}</view>
+                        <view style="width:350rpx;">
+                            <view class="padding-left-lg flex align-center">
+                                <view class="text-bold text-center text-cut" style="max-width: 100%;">{{item.name}}</view>
+                                <view class="text-xs text-cut margin-left-xs" style="max-width:65%;">
+                                    - <text wx:for="{{item.ar}}" wx:key="index">{{index>0?'/':''}}{{item.name}}</text>
+                                </view>
+                            </view>
                         </view>
                     </view>
-                    <view class="flex playerTag">
-                        <view class="text-df playTag text-center round margin-right" catchtap="playSwitchFun">
+                    <view class="flex justify-around playerTag basis-sm">
+                        <view class="text-df playTag text-center round " catchtap="playSwitchFun">
                             <text class="cuIcon-{{playerState?'stop':'playfill'}}"></text>
                         </view>
-                        <view class="sortTag margin-right" catchtap="onplayerList">
+                        <view class="sortTag " catchtap="onplayerList">
                             <text class="cuIcon-sort"></text>
                         </view>
                     </view>
@@ -31,13 +34,11 @@
 </view>
 
 <!-- 播放器 弹出层 -->
-<van-popup show="{{ popupDisplay }}" 
-        bind:close="popupClose"
-        position="bottom"
-        custom-style="height: 97%;background:#f3f3f3" 
-        round='true' 
-        catchtouchmove='prohibit'>
-    <view class="song-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}});"></view>
+<van-popup show="{{ popupDisplay }}" bind:close="popupClose" position="bottom"
+    custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
+    <view class="song-bg"
+        style="background-image: url({{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}});">
+    </view>
     <view class="popupItem">
         <!-- 顶部 标题|歌手|分享 -->
         <view>
@@ -55,22 +56,12 @@
             </view>
         </view>
         <view class="player-popContent">
-            <!-- 唱片 展示 模块-->
-            <record 
-                randomSwitch="{{randomSwitch}}" 
-                randomList="{{randomList}}" 
-                playIndex="{{playIndex}}"
-                song="{{song}}" 
-                playerState="{{playerState}}"
-            ></record>
+            <!-- 唱片 + 歌词 展示 模块-->
+            <record randomSwitch="{{randomSwitch}}" randomList="{{randomList}}" playIndex="{{playIndex}}"
+                song="{{song}}" playerState="{{playerState}}" playTime="{{slideInfo.progressSecond}}"></record>
             <!-- 按钮组+进度条 -->
-            <popupBtn 
-                playerState="{{playerState}}" 
-                slideInfo="{{slideInfo}}" 
-                bind:changeSlider="changeSlider"
-                bind:dragSlider="dragSlider"
-                bind:lastSong="lastSong"
-                bind:nextSong="nextSong" 
+            <popupBtn playerState="{{playerState}}" slideInfo="{{slideInfo}}" bind:changeSlider="changeSlider"
+                bind:dragSlider="dragSlider" bind:lastSong="lastSong" bind:nextSong="nextSong"
                 bind:playSwitchFun="playSwitchFun">
             </popupBtn>
         </view>
@@ -79,18 +70,8 @@
 
 
 <!-- 播放列表弹出层 -->
-<playlist
-    song="{{song}}"
-    playMode="{{playMode}}"
-    playListIndex="{{playListIndex}}"
-    playerList="{{playerList}}"
-    playIndex="{{playIndex}}"
-    playModeIndex="{{playModeIndex}}"
-    bind:popupClose="popupClose"
-    bind:listSongSwitch="listSongSwitch"
-    bind:deleteListSong="deleteListSong"
-    bind:deletePlaylist="deletePlaylist"
+<playlist song="{{song}}" playMode="{{playMode}}" playListIndex="{{playListIndex}}" playerList="{{playerList}}"
+    playIndex="{{playIndex}}" playModeIndex="{{playModeIndex}}" bind:popupClose="popupClose"
+    bind:listSongSwitch="listSongSwitch" bind:deleteListSong="deleteListSong" bind:deletePlaylist="deletePlaylist"
     bind:modeSwitch="modeSwitch">
 </playlist>
-
-

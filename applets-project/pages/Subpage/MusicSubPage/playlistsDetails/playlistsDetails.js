@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        id:null,
         playData:0,
         otherData:{}
     },
@@ -13,8 +14,18 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.getplayDetails(5033464627)
-        this.getDynamic(5033464627)
+        if (options.id) {
+            this.setData({
+                id:options.id
+            })
+        }else{
+            this.setData({
+                id:5033464627
+            })
+        }
+
+        this.getplayDetails(this.data.id)//详情
+        this.getDynamic(this.data.id)//评论
     },
     getplayDetails(playid){//歌单详情内容
         netEaseAPI('playlist/detail',{id:playid}).then(res=>{

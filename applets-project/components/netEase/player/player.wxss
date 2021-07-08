@@ -8,7 +8,7 @@
 }
 
 .playerItem .playerContent {
-  padding: 0 15rpx 5rpx 15rpx;
+  margin:5rpx 15rpx 5rpx 25rpx;
 }
 
 .playerItem .round {
@@ -18,13 +18,14 @@
 
 /* .playerItem .playerTag {} */
 
+/* 底部栏播放 按钮 */
 .playerItem .playerTag .playTag {
   width: 70rpx;
   height: 70rpx;
   line-height: 65rpx;
   border: 5rpx solid #d3d3d3;
 }
-
+/* 底部栏列表 按钮 */
 .playerItem .playerTag .sortTag {
   font-size: 65rpx;
 }

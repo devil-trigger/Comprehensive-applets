@@ -7,11 +7,11 @@
 <view class="content">
     <!-- 轮播图 -->
     <view class="margin-bottom">
-        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="4600"
+        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true"  interval="4600"
             duration="1200">
             <swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="toBannerDetails" data-url="{{item.url}}">
                 <view class="swiperItem flex align-center">
-                    <image src="{{item.pic}}" mode="aspectFill" style="height:{{bannerImgHeight}};"></image>
+                    <image src="{{item.pic}}" mode="aspectFill" style="height:90%;"></image>
                 </view>
             </swiper-item>
         </swiper>
@@ -31,147 +31,26 @@
 
 <!-- 分界线 -->
 <van-divider hairline />
+<!-- 分界线 -->
 
 <!-- 推荐歌单 -->
     <view class="padding-sm">
-        <view class="flex justify-between margin-bottom-xs">
-            <view class="text-bold text-lg">推荐歌单</view>
-            <view class="remd_other tag">更多<text class="cuIcon-right"></text></view>
-        </view>
-        <view>
-            <scroll-view scroll-x='true'>
-                <view class="flex">
-                    <view class="remd_item margin-xs" wx:for="{{remdList}}" wx:key='index' bindtap="toRemd"
-                        data-id="{{item.id}}">
-                        <view class="remd_playNum text-xs">
-                            <text class="cuIcon-playfill"></text> {{item.playVolume}}万
-                        </view>
-                        <view class="remd_imgItem">
-                            <image src="{{item.picUrl}}" mode="aspectFill">
-                            </image>
-                        </view>
-                        <view class="remd_title text-xs margin-top-xs">{{item.name}}</view>
-                    </view>
-                </view>
-            </scroll-view>
-        </view>
+        <albumlist title="推荐歌单" listArr="{{remdList}}" bind:playlist="playlist"></albumlist>
     </view>
 </view>
-
 
 <!-- 随机歌曲 -->
+<songlist remdSongList="{{remdSongList}}" title="你在找的华语歌" iconName="refresh"></songlist>
+
+<!-- 精品歌单 -->
 <view class="margin-top content">
     <view class="padding">
-        <view class="margin-sm flex justify-between">
-            <view class="text-bold text-lg">
-                <text class="cuIcon-refresh"></text> 你在找的华语歌
-            </view>
-            <view class="tag">
-                播放<text class="cuIcon-playfill"></text>
-            </view>
-        </view>
-        <view>
-            <swiper next-margin="25px" style="height:350rpx;">
-                <swiper-item wx:for="{{remdSongList}}" wx:key="index">
-                    <view wx:for="{{item}}" wx:key="index" class="flex music-item margin-bottom-xs">
-                        <view class="music-Imgitem basis-xs flex justify-center padding-bottom-xs">
-                            <image src="{{item.picUrl}}" mode="aspectFill"></image>
-                            <!-- <text class="cuIcon-playfill"></text> -->
-                        </view>
-                        <view class="music-info basis-lg flex align-center solid-bottom">
-                            <view>
-                                <view class="flex align-center">
-                                    <view class="text-bold text-lg">{{item.name}}</view>
-                                    <view class="text-gray text-xs"> - {{item.singer}}</view>
-                                </view>
-                                <view class="text-yellow text-xs">
-                                    超65%人播放
-                                </view>
-                            </view>
-                        </view>
-                        <view class="music-play basis-xs flex justify-center align-center">
-                            <view class="text-gray">
-                                <text class="cuIcon-playfill"></text>
-                            </view>
-                        </view>
-                    </view>
-                </swiper-item>
-            </swiper>
-        </view>
-    </view>
-</view>
-
-
-<!-- 最新专辑 -->
-<view class="margin-top content">
-    <view class="padding">
-        <view class="flex justify-between margin-bottom-xs">
-            <view class="text-bold text-lg">最新专辑</view>
-            <view class="remd_other tag">更多<text class="cuIcon-right"></text></view>
-        </view>
-        <view>
-            <scroll-view scroll-x='true'>
-                <view class="flex">
-                    <view class="remd_item margin-xs" wx:for="{{newAlbums}}" wx:key='index'>
-                        <view class="remd_playNum text-xs">
-                            <text class="cuIcon-playfill"></text> 531万
-                        </view>
-                        <view class="remd_imgItem">
-                            <image src="{{item.blurPicUrl}}" mode="aspectFill">
-                            </image>
-                        </view>
-                        <view class="text-cut text-sm content remd_title">{{item.name}}</view>
-                        <view class="text-gray text-xs">{{item.artist.name}}</view>
-                    </view>
-                </view>
-            </scroll-view>
-        </view>
+        <albumlist title="精品歌单" listArr="{{highList}}" bind:playlist="playlist"></albumlist>
     </view>
 </view>
 
 <!-- 新歌 | 新碟 -->
-<view class="margin-top content">
-    <view class="padding">
-        <view class="flex justify-between margin-sm">
-            <view class="text-bold text-lg">
-                新歌 | 新碟
-            </view>
-            <view class="tag">
-                播放<text class="cuIcon-playfill"></text>
-            </view>
-        </view>
-        <view>
-            <swiper next-margin="25px" style="height:350rpx;">
-                <swiper-item wx:for="{{remdSongList}}" wx:key="index">
-                    <view wx:for="{{item}}" wx:key="index" class="flex music-item margin-bottom-xs">
-                        <view class="music-Imgitem basis-xs flex justify-center padding-bottom-xs">
-                            <image src="{{item.picUrl}}" mode="aspectFill"></image>
-                            <!-- <text class="cuIcon-playfill"></text> -->
-                        </view>
-                        <view class="music-info basis-lg flex align-center solid-bottom">
-                            <view>
-                                <view class="flex align-center">
-                                    <view class="text-bold text-lg">{{item.name}}</view>
-                                    <view class="text-gray text-xs"> - {{item.singer}}</view>
-                                </view>
-                                <view class="text-yellow text-xs">
-                                    超65%人播放
-                                </view>
-                            </view>
-                        </view>
-                        <view class="music-play basis-xs flex justify-center align-center">
-                            <view class="text-gray">
-                                <text class="cuIcon-playfill"></text>
-                            </view>
-                        </view>
-                    </view>
-                </swiper-item>
-            </swiper>
-        </view>
-    </view>
-</view>
-
-
+<songlist remdSongList="{{remdSongList}}" title="新歌 | 新碟"></songlist>
 
 <!-- 播放器——核心 -->
 <player song="{{SongData}}"></player>
