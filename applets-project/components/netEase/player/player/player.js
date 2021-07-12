@@ -91,9 +91,7 @@ Component({
   },
   methods: {
     Playerslide(e) { //底部播放器左右滑动监听
-      this.setData({
-        playIndex: e.detail.current
-      })
+      this.setData({ playIndex: e.detail})
       this.playSong();
     },
     popupClose() { //关闭弹出层
@@ -102,12 +100,10 @@ Component({
         playerList: false
       });
     },
-    showPopup() { //打开播放器弹出层
-      this.setData({
-        popupDisplay: true
-      })
+    showPopup(e) { //打开播放器弹出层
+      this.setData({popupDisplay: e.detail})
     },
-    playSwitchFun() { //播放、暂停——（切换）
+    playSwitchFun(e) { //播放、暂停——（切换）
       let state = this.data.playerState;
       if (state) {
         manage.pause();
@@ -115,9 +111,7 @@ Component({
         manage.play()
         this.playSong();
       }
-      this.setData({
-        playerState: !state
-      })
+      this.setData({ playerState: e.detail})
     },
     lastSong() { //————————————————————————————————————————————————上一首
       let num = '';
@@ -209,7 +203,7 @@ Component({
       }else{
           song = this.data.defaultList;
       }
-      console.log(song);
+      // console.log(song);
       let PlayNum = this.data.playIndex;
       // console.log(PlayNum)
       manage.title = song[PlayNum].name; //歌曲标题
@@ -296,7 +290,6 @@ Component({
         });
       }
       // console.log(this.data.slideInfo)
-
     },
     dragSlider(e) { //拖动进度条（动态改变正在播放 时间值）
       this.counTimeDown(manage, true); //不即时更新progressText
@@ -325,10 +318,8 @@ Component({
       }
       return times;
     },
-    onplayerList() { //打开播放列表(播放列表-弹出层) 
-      this.setData({
-        playerList: true
-      })
+    onplayerList(e) { //打开播放列表(播放列表-弹出层) 
+      this.setData({playerList: e.detail})
     },
     modeSwitch() { //播放 模式切换 ！！！！！！！！！！！！！！！！！(播放列表-弹出层) 
       switch (this.data.playModeIndex) {
@@ -416,15 +407,18 @@ Component({
     attached() {
       // this.playSong();
       //若song没东西，则修改默认列表内容
-      let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
-      let defauleJson = this.data.defaultList
-      this.data.defaultList.forEach((item) => {
-        item.al.picUrl = urlText + item.al.picUrl;
-        item.src = urlText + item.src;
-      })
-      this.setData({
-        defaultList: defauleJson
-      })
+      if (this.properties.song.length==0) {
+        let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
+        let defauleJson = this.data.defaultList
+        this.data.defaultList.forEach((item) => {
+          item.al.picUrl = urlText + item.al.picUrl;
+          item.src = urlText + item.src;
+        })
+        this.setData({
+          defaultList: defauleJson,
+          song: defauleJson
+        })
+      }
     },
     detached() {},
   },

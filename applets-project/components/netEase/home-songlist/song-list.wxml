@@ -13,7 +13,7 @@
                 <swiper-item wx:for="{{remdSongList}}" wx:key="index">
                     <view wx:for="{{item}}" wx:key="index" class="flex music-item margin-bottom-xs">
                         <view class="music-Imgitem basis-xs flex justify-center padding-bottom-xs">
-                            <image src="{{item.picUrl}}" mode="aspectFill"></image>
+                            <image class="img-item" src="{{item.picUrl}}" mode="aspectFill"></image>
                             <!-- <text class="cuIcon-playfill"></text> -->
                         </view>
                         <view class="music-info basis-lg flex align-center solid-bottom">

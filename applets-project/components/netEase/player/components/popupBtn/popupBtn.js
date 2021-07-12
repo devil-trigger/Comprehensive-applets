@@ -19,7 +19,7 @@ Component({
             this.triggerEvent('nextSong')
         },
         playSwitchFun(){//播放|暂停 切换
-            this.triggerEvent('playSwitchFun');
+            this.triggerEvent('playSwitchFun',!this.properties.playerState);
         },
     },
     options: {

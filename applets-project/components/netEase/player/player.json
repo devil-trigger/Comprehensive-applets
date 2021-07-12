@@ -1,9 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "van-popup": "/dist/popup/index",
-    "playlist":"/components/netEase/popup-playlist/playlist",
-    "record":"/components/netEase/popupRecord/record",
-    "popupBtn":"/components/netEase/popupBtn/popupBtn"
-  }
-}

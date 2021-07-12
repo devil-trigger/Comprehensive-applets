@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-popup": "/dist/popup/index",
+    "swiperItem":"../components/swiper-play/swiper-play",
+    "playlist":"../components/popup-playlist/playlist",
+    "record":"../components/popupRecord/record",
+    "popupBtn":"../components/popupBtn/popupBtn"
+  }
+}

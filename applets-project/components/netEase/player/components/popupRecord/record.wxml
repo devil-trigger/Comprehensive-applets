@@ -11,7 +11,7 @@
                         </view>
                         <view class="album round {{playerState?'':'playerPaused'}}">
                             <image class="imgItem"
-                                src="{{randomSwitch?randomList[playIndex].cover:song[playIndex].cover}}"
+                                src="{{randomSwitch?randomList[playIndex].al.picUrl:song[playIndex].al.picUrl}}"
                                 mode="aspectFit">
                             </image>
                         </view>
