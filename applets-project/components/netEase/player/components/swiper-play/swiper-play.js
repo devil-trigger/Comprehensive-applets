@@ -6,9 +6,7 @@ Component({
         song:Array,
         playIndex:Number
     },
-    data: {
-
-    },
+    data: {  },
     methods: {
         showPopup() { //打开播放器弹出层
             this.triggerEvent('showPopup',true)
@@ -22,6 +20,9 @@ Component({
         onplayerList(){//打开播放列表 弹出层
             this.triggerEvent('onplayerList',true)
         }
+    },
+    lifetimes:{
+        attached(){ }
     },
     options: {addGlobalClass: true}
 })

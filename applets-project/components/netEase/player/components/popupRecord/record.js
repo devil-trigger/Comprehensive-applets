@@ -2,9 +2,7 @@ import { netEaseAPI } from '../../../../../utils/util';
 Component({
     properties: {
         randomSwitch: Boolean,
-        randomList: Array,
-        playIndex: Number,
-        song: Array,
+        dataJson:Object,
         playerState: Boolean,
         playTime: Number
     },

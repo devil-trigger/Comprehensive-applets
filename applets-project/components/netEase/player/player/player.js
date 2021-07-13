@@ -91,7 +91,7 @@ Component({
   },
   methods: {
     Playerslide(e) { //底部播放器左右滑动监听
-      this.setData({ playIndex: e.detail})
+      this.setData({playIndex: e.detail,playListIndex:e.detail})
       this.playSong();
     },
     popupClose() { //关闭弹出层
@@ -141,7 +141,7 @@ Component({
               randomList: this.toRandomList(), //生成新随机列表
               randomAdd: 0 //随机add清零
             });
-            num = 0;
+            num = 3;
           }
           listindex = this.properties.song.indexOf(this.properties.randomList[num]);
           break;
@@ -151,6 +151,7 @@ Component({
         playIndex: num,
         playListIndex: listindex
       });
+      console.log(this.data.playIndex);
       this.playSong()
     },
     nextSong() { //————————————————————————————————————————————————下一首
@@ -180,7 +181,7 @@ Component({
               randomList: this.toRandomList(), //生成新随机列表
               randomAdd: 0 //随机add清零
             });
-            num = 0;
+            num = 1;
           }
           listIndex = this.properties.song.indexOf(this.properties.randomList[num]);
           break;
@@ -256,7 +257,7 @@ Component({
                 randomList: this.toRandomList(), //生成新随机列表
                 randomAdd: 0 //随机add清零
               });
-              endNum = 0;
+              endNum = 1;
             }
             listIndex = this.properties.song.indexOf(this.properties.randomList[endNum]);
             //弹出层播放列表 对应 曲目
@@ -293,8 +294,7 @@ Component({
     },
     dragSlider(e) { //拖动进度条（动态改变正在播放 时间值）
       this.counTimeDown(manage, true); //不即时更新progressText
-      this.setData({
-        'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail * 0.01)
+      this.setData({'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail * 0.01)
       });
     },
     changeSlider(ee) { //点击进度条 
@@ -349,25 +349,27 @@ Component({
       })
     },
     toRandomList() { //——————————————————————————————————生成 播放列表乱序函数
-      let arr = this.properties.song.slice(0, this.properties.song.length);
+      let arr = null;
+      if (this.data.randomSwitch) {
+        arr=this.data.randomList.slice(0, this.properties.song.length);
+        // console.log('开启随机');
+      }else{
+        arr=this.properties.song.slice(0, this.properties.song.length);
+        // console.log('未开启随机');
+      }
+      let playing=arr[this.data.playIndex];//取出正在播放的那首
+      arr.splice(this.data.playIndex,1);//删掉正在播放的那首
       let randomArr = arr.sort(() => {
         return Math.random() > 0.5 ? -1 : 1
       }); //乱序
-      let index = randomArr.indexOf(this.properties.song[this.data.playIndex]);
+      randomArr.unshift(playing);//将正在播放的那首放入乱序后的第一位（保持播放）
       console.log(randomArr);
-      if (!this.data.randomSwitch) {
-        console.log('混入随机列表内', index)
-        this.setData({
-          playIndex: index
-        })
-      }
       return randomArr
     },
     deleteListSong(e) { //删除列表歌曲(播放列表-弹出层)  
       console.log('删除' + this.properties.song[e.detail].name + '歌曲')
     },
     deletePlaylist() {
-      // this.setData({playerList:false})
       wx.showModal({
           cancelColor: '#000',
           title: '温馨提示',

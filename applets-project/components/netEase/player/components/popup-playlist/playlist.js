@@ -4,12 +4,13 @@ Component({
         playMode: Array,
         playerList: Boolean,
         playModeIndex: Number,
-        playListIndex: Number,
-        playIndex: Number,
+        playListIndex: Number
     },
-
-    data: {
-
+    data: {},
+    observers:{
+        'playListIndex':function (res) {
+            // console.log(res);
+        }
     },
     methods: {
         prohibit() { //阻止播放器弹出层下层滚动
@@ -31,7 +32,6 @@ Component({
             this.triggerEvent('popupClose')
         }
     },
-
     options: {
         addGlobalClass: true,
     }

@@ -19,23 +19,16 @@
     </view>
     <view class="popupItem">
         <!-- 顶部 标题|歌手|分享 -->
-        <view>
-            <view class="text-white padding flex justify-between text-lg">
-                <view class="padding-xs" bindtap="popupClose">
-                    <text class="cuIcon-unfold"></text>
-                </view>
-                <view class="text-center">
-                    <view>{{randomSwitch?randomList[playIndex].name:song[playIndex].name}}</view>
-                    <view class="text-xs">{{randomSwitch?randomList[playIndex].singer:song[playIndex].singer}}</view>
-                </view>
-                <view class="padding-xs">
-                    <text class="cuIcon-forward"></text>
-                </view>
-            </view>
-        </view>
+        <popup-title
+            dataJson="{{randomSwitch?randomList[playIndex]:song[playIndex]}}"
+            bind:popupClose="popupClose"
+        ></popup-title>
+
+        <!-- 中部核心  -->
         <view class="player-popContent">
             <!-- 唱片 + 歌词 展示 模块-->
             <record randomSwitch="{{randomSwitch}}" randomList="{{randomList}}" playIndex="{{playIndex}}"
+            dataJson="{{randomSwitch?randomList[playIndex]:song[playIndex]}}"
                 song="{{song}}" playerState="{{playerState}}" playTime="{{slideInfo.progressSecond}}"></record>
             <!-- 按钮组+进度条 -->
             <popupBtn playerState="{{playerState}}" slideInfo="{{slideInfo}}" bind:changeSlider="changeSlider"
@@ -49,7 +42,8 @@
 
 <!-- 播放列表弹出层 -->
 <playlist song="{{song}}" playMode="{{playMode}}" playListIndex="{{playListIndex}}" playerList="{{playerList}}"
-    playIndex="{{playIndex}}" playModeIndex="{{playModeIndex}}" bind:popupClose="popupClose"
+    playIndex="{{playIndex}}" playModeIndex="{{playModeIndex}}"
+    bind:popupClose="popupClose"
     bind:listSongSwitch="listSongSwitch" bind:deleteListSong="deleteListSong" bind:deletePlaylist="deletePlaylist"
     bind:modeSwitch="modeSwitch">
 </playlist>
