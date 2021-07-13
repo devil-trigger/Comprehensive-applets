@@ -139,7 +139,7 @@ Component({
           } else {
             this.setData({
               randomList: this.toRandomList(), //生成新随机列表
-              randomAdd: 0 //随机add清零
+              randomAdd:-1 //随机add清零
             });
             num = 3;
           }
@@ -179,7 +179,7 @@ Component({
           } else {
             this.setData({
               randomList: this.toRandomList(), //生成新随机列表
-              randomAdd: 0 //随机add清零
+              randomAdd: 1 //随机add清零
             });
             num = 1;
           }
@@ -255,7 +255,7 @@ Component({
             } else {
               this.setData({
                 randomList: this.toRandomList(), //生成新随机列表
-                randomAdd: 0 //随机add清零
+                randomAdd: 1 //随机add清零
               });
               endNum = 1;
             }
@@ -352,10 +352,8 @@ Component({
       let arr = null;
       if (this.data.randomSwitch) {
         arr=this.data.randomList.slice(0, this.properties.song.length);
-        // console.log('开启随机');
       }else{
         arr=this.properties.song.slice(0, this.properties.song.length);
-        // console.log('未开启随机');
       }
       let playing=arr[this.data.playIndex];//取出正在播放的那首
       arr.splice(this.data.playIndex,1);//删掉正在播放的那首
@@ -365,26 +363,6 @@ Component({
       randomArr.unshift(playing);//将正在播放的那首放入乱序后的第一位（保持播放）
       console.log(randomArr);
       return randomArr
-    },
-    deleteListSong(e) { //删除列表歌曲(播放列表-弹出层)  
-      console.log('删除' + this.properties.song[e.detail].name + '歌曲')
-    },
-    deletePlaylist() {
-      wx.showModal({
-          cancelColor: '#000',
-          title: '温馨提示',
-          content: '确定清空列表？',
-        })
-        .then(res => {
-          switch (res.confirm) {
-            case true:
-              console.log('确认')
-              break;
-            default:
-              console.log('取消')
-              break;
-          }
-        })
     },
     listSongSwitch(e) { //列表切换歌曲(播放列表-弹出层)  
       let detail = e.detail
@@ -400,9 +378,15 @@ Component({
       })
       this.playSong()
     },
-    prohibit() {
+    deleteSong(e) { //删除列表歌曲(播放列表-弹出层)  
+      this.triggerEvent('deleteSong',e.detail)
+    },
+    empty() {//清空播放列表
+      this.triggerEvent('empty')
+    },
+    prohibit() {//阻止播放器弹出层下层滚动
       return true
-    }, //阻止播放器弹出层下层滚动
+    }, 
   },
 
   lifetimes: {
@@ -424,7 +408,5 @@ Component({
     },
     detached() {},
   },
-  options: {
-    addGlobalClass: true,
-  }
+  options: { addGlobalClass: true}
 })
