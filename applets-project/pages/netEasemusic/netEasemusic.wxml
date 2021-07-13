@@ -3,7 +3,6 @@
     <van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦" readonly/>
 </view>
 
-
 <view class="content">
     <!-- 轮播图 -->
     <view class="margin-bottom">

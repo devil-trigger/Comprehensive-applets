@@ -196,7 +196,10 @@ Page({
             netEaseAPI('song/detail?', {
                 ids: Idtext
             }).then(res => {
-                console.log(res.data.songs[0]);
+                console.log(res.data.songs);
+                // this.setData({
+                //     SongData:res.data.songs
+                // })
                 //name歌名、ar艺术家(name:歌手名、id：id)、al专辑（专辑图）
             })
         })
