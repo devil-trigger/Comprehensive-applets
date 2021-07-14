@@ -1,6 +1,5 @@
-import {
-    netEaseAPI,
-} from '../../utils/util';
+import {netEaseAPI} from '../../utils/util';
+const defaultdata = getApp().globalData.defaultList;
 Page({
     data: {
         SortList: [ //分类
@@ -43,12 +42,12 @@ Page({
                 singer: 'Taylor Swift'
             }]
         ], //随机歌曲data
-        SongData: [], //播放歌曲列表data
+        SongData: {}, //播放歌曲列表data
 
     },
     onLoad: function (options) {
         this.getdata();
-
+        this.setDefaultList();//设置默认数据
     },
     getdata() {
         // this.getSongDetails();//歌曲详情
@@ -196,15 +195,18 @@ Page({
             netEaseAPI('song/detail?', {
                 ids: Idtext
             }).then(res => {
-                console.log(res.data.songs);
+                let datalist={};
+                datalist.type='';
+                datalist.songs=res.data.songs;
                 // this.setData({
-                //     SongData:res.data.songs
+                //     SongData:datalist
                 // })
+                // console.log(datalist);
                 //name歌名、ar艺术家(name:歌手名、id：id)、al专辑（专辑图）
             })
         })
     },
-    empty() {
+    empty() {//清空 播放列表 + +
         wx.showModal({
             cancelColor: '#000',
             title: '温馨提示',
@@ -212,13 +214,29 @@ Page({
         }).then(res => {
             switch (res.confirm) {
                 case true:
-                    console.log('确认')
+                    this.setData({
+                        SongData:[]
+                    })
+                    wx.showToast({
+                      title: '已清空',
+                      icon: 'none',
+                      mask: true,
+                    })
                     break;
                 default:
                     console.log('取消')
                     break;
             }
         })
+    },
+    setDefaultList(){//处理默认数据
+        let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
+        let list = defaultdata
+        list.songs.forEach((item) => {
+          item.al.picUrl = urlText + item.al.picUrl;
+          item.src = urlText + item.src;
+        })
+        this.setData({SongData: list})
     },
     deleteSong(e){
         console.log('删除歌曲'+e.detail);

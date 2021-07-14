@@ -1,10 +1,10 @@
 const manage = getApp().globalData.AudioCtx;
-import {netEaseAPI} from '../../../../utils/util';
+import {
+  netEaseAPI
+} from '../../../../utils/util';
 Component({
   properties: {
-    song: {
-      type: Array
-    },
+    song:Object
   },
   data: {
     playIndex: 0, //播放歌曲对应标识
@@ -12,7 +12,7 @@ Component({
     playModeIndex: 0, //播放模式标识
     randomSwitch: false, //随机模式-开关
     randomList: [], //随机播放列表
-    randomAdd: 0, //随机模式-判定是否生成数字
+    randomAdd: 0, //随机模式-判定是否生成
     popupDisplay: false, //打开播放器-弹出层
     playerList: false, //打开播放列表-弹出层
     playListIndex: 0, //播放列表 歌曲标识(播放列表-弹出层)
@@ -23,113 +23,53 @@ Component({
       progress: 0, //当前播放进度 ————(进度条百分比%)
       progressText: '00:00', //当前播放进度-文字
     },
-    defaultList: [{ //默认歌曲
-        name: '淘汰',
-        al: {
-          name: '认了吧',
-          picUrl: 'demo1.jpg',
-          id: 0
-        },
-        ar: [{
-            name: '陈奕迅',
-            id: 0
-          },
-          {
-            name: '周杰伦',
-            id: 0
-          },
-        ],
-        src: 'demo1.mp3',
-        id:65528
-      },
-      {
-        name: '黑色毛衣',
-        al: {
-          name: '十一月的肖邦',
-          picUrl: 'demo2.jpg',
-          id: 0
-        },
-        ar: [{
-          name: '周杰伦',
-          id: 0
-        }],
-        src: 'demo2.mp3',
-        id:185908
-      },
-      {
-        name: '爱上未来的你',
-        al: {
-          name: '时光机',
-          picUrl: 'demo3.jpg',
-          id: 0
-        },
-        ar: [{
-          name: '刘瑞琦',
-          id: 0
-        }],
-        src: 'demo3.m4a',
-        id:1475308845
-      },
-      {
-        name: '爱与诚',
-        al: {
-          name: '大雄',
-          picUrl: 'demo4.jpg',
-          id: 0
-        },
-        ar: [{
-          name: '古巨基',
-          id: 0
-        }],
-        src: 'demo4.mp3',
-        id:86503
-      },
-    ], //随机歌曲data
-    SongData: [] //播放歌曲data
-
+    SongData:{}, //播放歌曲data
   },
   observers: {
-    'song': function(res) {
-      switch (res.length==0) {
-        case true:
-          let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
-          let defauleJson = this.data.defaultList
-          this.data.defaultList.forEach((item) => {
-            item.al.picUrl = urlText + item.al.picUrl;
-            item.src = urlText + item.src;
-          })
-          this.setData({
-            defaultList: defauleJson,
-            song: defauleJson
-          })
-          break;
-      
-        default:
-          
-          break;
+    'song': function (res) {//监听处理无数据情况
+      if (res.length == 0) {
+        this.popupClose()
+        this.setData({
+          SongData: {
+            type:'none',
+            songs:[
+              {
+                name: '七柚音乐',
+                al: { picUrl: '/image/music-page/disc_default.png', id: 0},
+                ar: [{name: '听 ! 好音乐',id: 0}]
+              },
+            ]
+          }
+        })
+        return
       }
+      this.setData({
+        SongData: res
+      })
+      console.log(res);
     }
   },
   methods: {
     Playerslide(e) { //底部播放器左右滑动监听
-      this.setData({playIndex: e.detail,playListIndex:e.detail})
-      this.playSong();
-    },
-    popupClose() { //关闭弹出层
       this.setData({
-        popupDisplay: false,
-        playerList: false
-      });
+        playIndex: e.detail,
+        playListIndex: e.detail
+      })
+      this.playSong();
     },
     playSwitchFun(e) { //播放、暂停——（切换）
       let state = this.data.playerState;
+      // manage.onPause(()=>{})
+      if (this.data.SongData.type=='none') return
+      if (this.data.slideInfo.progress==0) {
+        this.playSong();
+      }
       if (state) {
         manage.pause();
       } else {
         manage.play()
-        this.playSong();
       }
-      this.setData({ playerState: e.detail})
+      this.setData({playerState: e.detail})
     },
     lastSong() { //————————————————————————————————————————————————上一首
       let num = '';
@@ -157,7 +97,7 @@ Component({
           } else {
             this.setData({
               randomList: this.toRandomList(), //生成新随机列表
-              randomAdd:-1 //随机add清零
+              randomAdd: -1 //随机add清零
             });
             num = 3;
           }
@@ -172,7 +112,7 @@ Component({
       console.log(this.data.playIndex);
       this.playSong()
     },
-    nextSong() { //————————————————————————————————————————————————下一首
+    nextSong() {//————————————————————————————————————————————————下一首
       let num = '';
       let listIndex = 0;
       switch (this.data.playModeIndex < 2) {
@@ -211,21 +151,29 @@ Component({
       });
       this.playSong();
     },
-    getSongUrl(iid){//获取音乐 url
-      netEaseAPI('song/url',{id:iid}).then(res=>{
-        console.log(res.data.data);
+    getSongUrl(index) { //获取音乐 url
+      return new Promise((resolve,rej)=>{
+        netEaseAPI('song/url', {
+          id:this.data.SongData.songs[index].id
+        }).then(res => {
+          resolve(res)
+        })
       })
     },
-    playSong() { //切换 | 播放 ——————————————————————————————实际运用函数;
+    playSong() { //歌曲播放—————实际运用函数;
+      wx.showLoading({
+        title: '正在播放...',
+        mask: true,
+      })
+      this.setData({
+        playerState:false
+      })
       let song = '';
-      if (this.properties.song.length != 0) {//判断是否有播放列表
-        if (this.data.playModeIndex == 2) { //判断是否是随机模式（2:随机）
-          song = this.properties.randomList;
-        } else {
-          song = this.properties.song;
-        }
-      }else{
-          song = this.data.defaultList;
+      if (this.data.playModeIndex == 2) { //判断是否是随机模式（2:随机）
+        song = this.properties.randomList;
+      } else {
+        song = this.data.SongData.songs;
+        //SongData已经处理了无数据的情况（可直接赋值）
       }
       let PlayNum = this.data.playIndex;
       manage.title = song[PlayNum].name; //歌曲标题
@@ -233,15 +181,26 @@ Component({
       manage.singer = song[PlayNum].ar[0].name; //歌手名
       manage.coverImgUrl = song[PlayNum].al.picUrl; //封面图 URL
       // this.getSongUrl(song[PlayNum].id);
+      setTimeout(()=>{
+        manage.src = song[PlayNum].src;
+        wx.hideLoading();
+        this.setData({
+          playerState:true
+        })
+      },1200)
       manage.src = song[PlayNum].src;
       manage.currentTime = 0;
       let that = this;
       manage.onPlay(() => { //监听播放
-        that.setData({playerState: true});
+        that.setData({
+          playerState: true
+        });
         that.counTimeDown(manage); //记录一次进度
       });
       manage.onPause(() => { //监听暂停
-        that.setData({playerState: false});
+        that.setData({
+          playerState: false
+        });
         that.counTimeDown(manage); //记录一次进度
       });
       manage.onEnded(() => { //监听播完停止
@@ -316,7 +275,8 @@ Component({
     },
     dragSlider(e) { //拖动进度条（动态改变正在播放 时间值）
       this.counTimeDown(manage, true); //不即时更新progressText
-      this.setData({'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail * 0.01)
+      this.setData({
+        'slideInfo.progressText': this.formatTime(this.data.slideInfo.duration * e.detail * 0.01)
       });
     },
     changeSlider(ee) { //点击进度条 
@@ -341,7 +301,9 @@ Component({
       return times;
     },
     onplayerList(e) { //打开播放列表(播放列表-弹出层) 
-      this.setData({playerList: e.detail})
+      this.setData({
+        playerList: e.detail
+      })
     },
     modeSwitch() { //模式切换 ！！！！(播放列表-弹出层) 
       switch (this.data.playModeIndex) {
@@ -373,16 +335,16 @@ Component({
     toRandomList() { //—————生成 播放列表乱序函数
       let arr = null;
       if (this.data.randomSwitch) {
-        arr=this.data.randomList.slice(0, this.properties.song.length);
-      }else{
-        arr=this.properties.song.slice(0, this.properties.song.length);
+        arr = this.data.randomList.slice(0, this.properties.song.length);
+      } else {
+        arr = this.properties.song.slice(0, this.properties.song.length);
       }
-      let playing=arr[this.data.playIndex];//取出正在播放的那首
-      arr.splice(this.data.playIndex,1);//删掉正在播放的那首
+      let playing = arr[this.data.playIndex]; //取出正在播放的那首
+      arr.splice(this.data.playIndex, 1); //删掉正在播放的那首
       let randomArr = arr.sort(() => {
         return Math.random() > 0.5 ? -1 : 1
       }); //乱序
-      randomArr.unshift(playing);//将正在播放的那首放入乱序后的第一位（保持播放）
+      randomArr.unshift(playing); //将正在播放的那首放入乱序后的第一位（保持播放）
       console.log(randomArr);
       return randomArr
     },
@@ -401,37 +363,36 @@ Component({
       this.playSong()
     },
     showPopup(e) { //打开播放器弹出层
-      this.setData({popupDisplay: e.detail})
+      this.setData({
+        popupDisplay: e.detail
+      })
     },
     deleteSong(e) { //删除列表歌曲(播放列表-弹出层)  
-      this.triggerEvent('deleteSong',e.detail)
+      this.triggerEvent('deleteSong', e.detail)
     },
-    empty() {//清空播放列表
-      this.triggerEvent('empty')
+    empty(e) { //清空播放列表
+      this.triggerEvent('empty');
     },
-    prohibit() {//阻止播放器弹出层下层滚动
+    prohibit() { //阻止播放器弹出层下层滚动
       return true
-    }, 
+    },
+    popupClose() { //关闭弹出层
+      this.setData({
+        popupDisplay: false,
+        playerList: false
+      });
+    },
   },
 
   lifetimes: {
     attached() {
       // this.playSong();
-      //若song没东西，则修改默认列表内容
-      // if (this.properties.song.length==0) {
-      //   let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
-      //   let defauleJson = this.data.defaultList
-      //   this.data.defaultList.forEach((item) => {
-      //     item.al.picUrl = urlText + item.al.picUrl;
-      //     item.src = urlText + item.src;
-      //   })
-      //   this.setData({
-      //     defaultList: defauleJson,
-      //     song: defauleJson
-      //   })
-      // }
+
+
     },
     detached() {},
   },
-  options: { addGlobalClass: true}
+  options: {
+    addGlobalClass: true
+  }
 })

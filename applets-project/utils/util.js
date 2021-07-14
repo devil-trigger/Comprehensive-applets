@@ -58,7 +58,7 @@ let netEaseAPI=(URL,dataJson)=>{//网易云api
 }
 module.exports={
   formatTime,
-  ChangeTime,
+  ChangeTime,  //时间转换函数（转换成date格式）
   netEaseAPI,  //网易云api
   setNavSty,  //标题栏自定义适配
 }

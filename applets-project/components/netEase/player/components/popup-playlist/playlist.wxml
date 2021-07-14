@@ -7,6 +7,7 @@
         </view>
         <view>
             <view class="playerList-content flex justify-between">
+                <!-- 播放模式 -->
                 <view class="text-sm flex align-center padding-xs" wx:for="{{playMode}}" wx:key='index'
                     wx:if="{{index==playModeIndex}}" bindtap="modeSwitch" data-index="{{index}}">
                     <view>
@@ -18,6 +19,7 @@
                         {{item}}
                     </view>
                 </view>
+                <!-- 清空 -->
                 <view class="padding-xs" bindtap="empty">
                     <text class="cuIcon-delete"></text>
                 </view>
@@ -28,7 +30,7 @@
     <view class="margin-top-sm">
         <view class="songList">
             <scroll-view scroll-y="true" style="height:100%">
-                <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}">
+                <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}" wx:if="{{item.name!='七柚音乐'}}">
                     <view
                         class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playListIndex?'bg-gray':''}}">
                         <view>

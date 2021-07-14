@@ -1,7 +1,6 @@
 import { netEaseAPI } from '../../../../../utils/util';
 Component({
     properties: {
-        randomSwitch: Boolean,
         dataJson:Object,
         playerState: Boolean,
         playTime: Number
@@ -81,7 +80,6 @@ Component({
     lifetimes: {
         attached() {
             this.getlrcData('65528');
-            // console.log(this.properties.song);
         },
         detached() {
 

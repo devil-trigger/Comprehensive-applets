@@ -4,7 +4,7 @@
     randomList="{{randomList}}"
     playIndex="{{playIndex}}"
     playerState="{{playerState}}"
-    song="{{song}}"
+    song="{{SongData.songs}}"
     bind:showPopup="showPopup"
     bind:Playerslide="Playerslide"
     bind:playSwitchFun="playSwitchFun"
@@ -14,22 +14,25 @@
 <!-- 播放器 弹出层 -->
 <van-popup show="{{ popupDisplay }}" bind:close="popupClose" position="bottom"
     custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
+    <!-- 底部背景 -->
     <view class="song-bg"
         style="background-image: url({{randomSwitch?randomList[playIndex].al.picUrl:song[playIndex].al.picUrl}});">
     </view>
     <view class="popupItem">
         <!-- 顶部 标题|歌手|分享 -->
         <popup-title
-            dataJson="{{randomSwitch?randomList[playIndex]:song[playIndex]}}"
+            dataJson="{{randomSwitch?randomList[playIndex]:SongData.songs[playIndex]}}"
             bind:popupClose="popupClose"
         ></popup-title>
 
         <!-- 中部核心  -->
         <view class="player-popContent">
             <!-- 唱片 + 歌词 展示 模块-->
-            <record randomSwitch="{{randomSwitch}}" randomList="{{randomList}}" playIndex="{{playIndex}}"
-            dataJson="{{randomSwitch?randomList[playIndex]:song[playIndex]}}"
-                song="{{song}}" playerState="{{playerState}}" playTime="{{slideInfo.progressSecond}}"></record>
+            <record 
+             dataJson="{{randomSwitch?randomList[playIndex]:SongData.songs[playIndex]}}"
+             playerState="{{playerState}}" 
+             playTime="{{slideInfo.progressSecond}}"
+             ></record>
             <!-- 按钮组+进度条 -->
             <popupBtn playerState="{{playerState}}" slideInfo="{{slideInfo}}" bind:changeSlider="changeSlider"
                 bind:dragSlider="dragSlider" bind:lastSong="lastSong" bind:nextSong="nextSong"
@@ -41,7 +44,7 @@
 
 
 <!-- 播放列表弹出层 -->
-<playlist song="{{song}}" playMode="{{playMode}}" playListIndex="{{playListIndex}}" playerList="{{playerList}}"
+<playlist song="{{SongData.songs}}" playMode="{{playMode}}" playListIndex="{{playListIndex}}" playerList="{{playerList}}"
     playIndex="{{playIndex}}" playModeIndex="{{playModeIndex}}"
     bind:popupClose="popupClose"
     bind:listSongSwitch="listSongSwitch" bind:empty="empty" bind:deleteSong="deleteSong"
