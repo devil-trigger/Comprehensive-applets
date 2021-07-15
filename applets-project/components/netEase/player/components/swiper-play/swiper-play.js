@@ -1,13 +1,16 @@
 Component({
     properties: {
-        randomSwitch:Boolean,
         playerState:Boolean,
-        randomList:Array,
-        song:Array,
         playIndex:Number,
-        dataJson:Object
+        dataJson:Object,
+        slideInfo:Object,//按钮圆形进度
     },
-    data: {  },
+    data: {
+        gradientColor:{//环形进度按钮渐变色(待调整)
+            '0%': '#d3d3d3',
+            '100%': '#fff',
+        }
+    },
     methods: {
         showPopup() { //打开播放器弹出层
             this.triggerEvent('showPopup',true)
@@ -23,11 +26,8 @@ Component({
         }
     },
     lifetimes:{
-        attached(){   }
-    },
-    observers:{
-        'dataJson':function(res) {
-            // console.log(res);
+        attached(){
+            // console.log(this.properties.slideInfo);
         }
     },
     options: {addGlobalClass: true}

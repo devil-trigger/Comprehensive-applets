@@ -48,7 +48,7 @@ Component({
           })
           break;
       }
-      console.log(this.data.SongData);
+      // console.log(this.data.SongData);
     }
   },
   methods: {
@@ -80,7 +80,7 @@ Component({
       }
       this.setData({playerState: e.detail})
     },
-    lastSong() { //————————————————————————————————————————————————上一首
+    lastSong() { //上一首—上一首——上一首——上一首——上一首
       let num = '';
       let listindex = 0;
       switch (this.data.playModeIndex <= 1) {
@@ -121,7 +121,7 @@ Component({
       console.log(this.data.playIndex);
       this.playSong()
     },
-    nextSong() {//————————————————————————————————————————————————下一首
+    nextSong() {//下一首————下一首————下一首—下一首
       let num = '';
       let listIndex = 0;
       switch (this.data.playModeIndex < 2) {
@@ -171,10 +171,6 @@ Component({
     },
     playSong() { //歌曲播放—————实际运用函数;
       // if (this.data.SongData.type=='none') return
-      wx.showLoading({
-        title: '正在播放...',
-        mask: true,
-      })
       this.setData({playerState:false})
       let song = '';
       if (this.data.playModeIndex == 2) { //判断是否是随机模式（2:随机）
@@ -184,7 +180,7 @@ Component({
         //SongData已经处理了无数据的情况（可直接赋值）
       }
       let PlayNum = this.data.playIndex;
-      // console.log(PlayNum);
+      console.log(PlayNum);
       manage.title = song[PlayNum].name; //歌曲标题
       manage.epname = song[PlayNum].al.name; //专辑名称
       manage.singer = song[PlayNum].ar[0].name; //歌手名
@@ -192,7 +188,6 @@ Component({
       // this.getSongUrl(song[PlayNum].id);
       setTimeout(()=>{
         manage.src = song[PlayNum].src;
-        wx.hideLoading();
         this.setData({
           playerState:true
         })
@@ -372,8 +367,8 @@ Component({
         ListIndex =this.data.randomList.indexOf(this.data.SongData[detail])
       }
       this.setData({
-        playIndex: ListIndex,
-        playListIndex: detail
+        playListIndex: detail,//列表index
+        playIndex: ListIndex//歌曲播放index
       })
       this.playSong()
     },
@@ -400,11 +395,7 @@ Component({
   },
 
   lifetimes: {
-    attached() {
-      // this.playSong();
-
-
-    },
+    attached() { },
     detached() {},
   },
   options: {

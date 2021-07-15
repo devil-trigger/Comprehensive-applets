@@ -1,7 +1,8 @@
-<!-- 播放器-核心 -->
+<!-- 底部栏 -->
 <swiperItem 
     playIndex="{{playIndex}}"
     playerState="{{playerState}}"
+    slideInfo="{{slideInfo}}"
     dataJson="{{randomSwitch?randomList:SongData}}"
     bind:showPopup="showPopup"
     bind:Playerslide="Playerslide"
@@ -22,10 +23,9 @@
             dataJson="{{randomSwitch?randomList[playIndex]:SongData[playIndex]}}"
             bind:popupClose="popupClose"
         ></popup-title>
-
-        <!-- 中部核心  -->
+        <!-- 唱片+按钮组  -->
         <view class="player-popContent">
-            <!-- 唱片 + 歌词 展示 模块-->
+            <!-- 唱片 + 歌词-->
             <record 
              dataJson="{{randomSwitch?randomList[playIndex]:SongData[playIndex]}}"
              playerState="{{playerState}}" 

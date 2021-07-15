@@ -20,10 +20,16 @@
 .playerItem .playerTag .playTag {
   width: 70rpx;
   height: 70rpx;
-  line-height: 65rpx;
-  border: 5rpx solid #d3d3d3;
+  position: relative;
+  line-height: 70rpx;
+  /* border: 5rpx solid #d3d3d3; */
 }
-
+.playerItem .playerTag .playTag .circle{
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* z-index: 20; */
+}
 /* 底部栏列表 按钮 */
 .playerItem .playerTag .sortTag {
   font-size: 65rpx;

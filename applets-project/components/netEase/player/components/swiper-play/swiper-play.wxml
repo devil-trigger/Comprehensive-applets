@@ -21,6 +21,10 @@
                     <view class="flex justify-around playerTag basis-sm">
                         <view class="text-lg playTag text-center round " catchtap="playSwitchFun">
                             <text class="cuIcon-{{playerState?'stop':'playfill'}}"></text>
+                            <view class="circle">
+                                <van-circle value="{{slideInfo.progress}}" text="" size="35" stroke-width="2"   layer-color="#d3d3d3"
+                                color="#E12F13"/>
+                            </view>
                         </view>
                         <view class="sortTag " catchtap="onplayerList">
                             <text class="cuIcon-sort"></text>
