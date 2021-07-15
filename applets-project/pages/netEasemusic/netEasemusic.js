@@ -1,5 +1,4 @@
 import {netEaseAPI} from '../../utils/util';
-const defaultdata = getApp().globalData.defaultList;
 Page({
     data: {
         SortList: [ //分类
@@ -42,12 +41,13 @@ Page({
                 singer: 'Taylor Swift'
             }]
         ], //随机歌曲data
-        SongData: {}, //播放歌曲列表data
+        SongData: {
+            type:'default',
+        }, //播放歌曲列表data
 
     },
     onLoad: function (options) {
         this.getdata();
-        this.setDefaultList();//设置默认数据
     },
     getdata() {
         // this.getSongDetails();//歌曲详情
@@ -228,15 +228,6 @@ Page({
                     break;
             }
         })
-    },
-    setDefaultList(){//处理默认数据
-        let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
-        let list = defaultdata
-        list.songs.forEach((item) => {
-          item.al.picUrl = urlText + item.al.picUrl;
-          item.src = urlText + item.src;
-        })
-        this.setData({SongData: list})
     },
     deleteSong(e){
         console.log('删除歌曲'+e.detail);

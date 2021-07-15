@@ -4,7 +4,8 @@ Component({
         playerState:Boolean,
         randomList:Array,
         song:Array,
-        playIndex:Number
+        playIndex:Number,
+        dataJson:Object
     },
     data: {  },
     methods: {
@@ -22,7 +23,12 @@ Component({
         }
     },
     lifetimes:{
-        attached(){ }
+        attached(){   }
+    },
+    observers:{
+        'dataJson':function(res) {
+            // console.log(res);
+        }
     },
     options: {addGlobalClass: true}
 })

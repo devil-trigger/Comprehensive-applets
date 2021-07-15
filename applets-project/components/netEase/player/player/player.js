@@ -1,4 +1,5 @@
 const manage = getApp().globalData.AudioCtx;
+const defaultdata = getApp().globalData.defaultList;
 import {
   netEaseAPI
 } from '../../../../utils/util';
@@ -23,45 +24,53 @@ Component({
       progress: 0, //当前播放进度 ————(进度条百分比%)
       progressText: '00:00', //当前播放进度-文字
     },
-    SongData:{}, //播放歌曲data
+    SongData:[], //播放歌曲data
   },
   observers: {
-    'song': function (res) {//监听处理无数据情况
-      if (res.length == 0) {
-        this.popupClose()
-        this.setData({
-          SongData: {
-            type:'none',
-            songs:[
-              {
-                name: '七柚音乐',
-                al: { picUrl: '/image/music-page/disc_default.png', id: 0},
-                ar: [{name: '听 ! 好音乐',id: 0}]
-              },
-            ]
-          }
-        })
-        return
+    'song': function (res) {//监听
+      switch (res.type) {
+        case 'none'://空列表（被清空）
+          this.popupClose()
+          this.setData({SongData: []})
+          break;
+        case 'default'://默认列表（淘汰、黑色毛衣...）
+            let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
+            let list = defaultdata
+            list.forEach((item) => {
+              item.al.picUrl = urlText + item.al.picUrl;
+              item.src = urlText + item.src;
+            })
+            this.setData({SongData: list})
+          break;
+        default://一般列表
+          this.setData({//只赋其歌曲列表
+            SongData: 'res.songs'
+          })
+          break;
       }
-      this.setData({
-        SongData: res
-      })
-      console.log(res);
+      console.log(this.data.SongData);
     }
   },
   methods: {
     Playerslide(e) { //底部播放器左右滑动监听
+      let listIndex=0;
+      if (this.data.randomSwitch) {//判断是否开启随机
+          listIndex=this.data.SongData.indexOf(this.data.randomList[e.detail]);
+      }else{
+          listIndex=e.detail
+      }
+      // console.log(listIndex);
       this.setData({
         playIndex: e.detail,
-        playListIndex: e.detail
+        playListIndex: listIndex
       })
       this.playSong();
     },
     playSwitchFun(e) { //播放、暂停——（切换）
       let state = this.data.playerState;
       // manage.onPause(()=>{})
-      if (this.data.SongData.type=='none') return
-      if (this.data.slideInfo.progress==0) {
+      // if (this.data.SongData.type=='none') return
+      if (this.data.slideInfo.progressText=='00:00') {
         this.playSong();
       }
       if (state) {
@@ -78,19 +87,19 @@ Component({
         case true: //单循 || 列循
           num = this.data.playIndex;
           if (this.data.playIndex == 0) {
-            num = this.properties.song.length - 1;
+            num =this.data.SongData.length - 1;
           } else {
             num = this.data.playIndex - 1
           };
           listindex = num;
           break;
         default: //随机
-          if (this.data.randomAdd != -this.properties.randomList.length + 1) { //判断是否播完该随机列表 （播完则产生新列表）
+          if (this.data.randomAdd != -this.data.randomList.length + 1) { //判断是否播完该随机列表 （播完则产生新列表）
             this.setData({
               randomAdd: this.data.randomAdd - 1
             })
             if (this.data.playIndex == 0) {
-              num = this.properties.randomList.length - 1;
+              num = this.data.randomList.length - 1;
             } else {
               num = this.data.playIndex - 1
             };
@@ -101,7 +110,7 @@ Component({
             });
             num = 3;
           }
-          listindex = this.properties.song.indexOf(this.properties.randomList[num]);
+          listindex =this.data.SongData.indexOf(this.data.randomList[num]);
           break;
       }
       manage.stop();
@@ -117,7 +126,7 @@ Component({
       let listIndex = 0;
       switch (this.data.playModeIndex < 2) {
         case true: //单循 || 列循
-          if (this.data.playIndex == this.properties.song.length - 1) {
+          if (this.data.playIndex ==this.data.SongData.length - 1) {
             num = 0; //放到播放列表最后一个就跳回第一个
           } else {
             num = this.data.playIndex + 1
@@ -125,11 +134,11 @@ Component({
           listIndex = num;
           break;
         default: //随机
-          if (this.data.randomAdd != this.properties.randomList.length - 1) { //判断是否播完该随机列表 （播完则产生新列表）
+          if (this.data.randomAdd != this.data.randomList.length - 1) { //判断是否播完该随机列表 （播完则产生新列表）
             this.setData({
               randomAdd: this.data.randomAdd + 1
             })
-            if (this.data.playIndex == this.properties.song.length - 1) {
+            if (this.data.playIndex ==this.data.SongData.length - 1) {
               num = 0;
             } else {
               num = this.data.playIndex + 1
@@ -141,7 +150,7 @@ Component({
             });
             num = 1;
           }
-          listIndex = this.properties.song.indexOf(this.properties.randomList[num]);
+          listIndex =this.data.SongData.indexOf(this.data.randomList[num]);
           break;
       }
       manage.stop();
@@ -154,28 +163,28 @@ Component({
     getSongUrl(index) { //获取音乐 url
       return new Promise((resolve,rej)=>{
         netEaseAPI('song/url', {
-          id:this.data.SongData.songs[index].id
+          id:this.data.SongData[index].id
         }).then(res => {
           resolve(res)
         })
       })
     },
     playSong() { //歌曲播放—————实际运用函数;
+      // if (this.data.SongData.type=='none') return
       wx.showLoading({
         title: '正在播放...',
         mask: true,
       })
-      this.setData({
-        playerState:false
-      })
+      this.setData({playerState:false})
       let song = '';
       if (this.data.playModeIndex == 2) { //判断是否是随机模式（2:随机）
-        song = this.properties.randomList;
+        song = this.data.randomList;
       } else {
-        song = this.data.SongData.songs;
+        song = this.data.SongData;
         //SongData已经处理了无数据的情况（可直接赋值）
       }
       let PlayNum = this.data.playIndex;
+      // console.log(PlayNum);
       manage.title = song[PlayNum].name; //歌曲标题
       manage.epname = song[PlayNum].al.name; //专辑名称
       manage.singer = song[PlayNum].ar[0].name; //歌手名
@@ -223,7 +232,7 @@ Component({
             listIndex = endNum;
             break;
           case 2: //随机
-            if (this.data.randomAdd != this.properties.randomList.length - 1) {
+            if (this.data.randomAdd != this.data.randomList.length - 1) {
               this.setData({
                 randomAdd: this.data.randomAdd + 1
               })
@@ -240,7 +249,7 @@ Component({
               });
               endNum = 1;
             }
-            listIndex = this.properties.song.indexOf(this.properties.randomList[endNum]);
+            listIndex =this.data.SongData.indexOf(this.data.randomList[endNum]);
             //弹出层播放列表 对应 曲目
             break;
         }
@@ -308,22 +317,27 @@ Component({
     modeSwitch() { //模式切换 ！！！！(播放列表-弹出层) 
       switch (this.data.playModeIndex) {
         case 0:
+          // let index=this.data.SongData.indexOf(this.data.randomList[num]);
           this.setData({
             playModeIndex: this.data.playModeIndex + 1,
+            // playIndex:this.data.playListIndex+1,
             randomSwitch: false //随机开关
           })
           break;
         case 1:
+          // let index=this.data.SongData.indexOf(this.data.randomList[num]);
           this.setData({
             playModeIndex: this.data.playModeIndex + 1,
             randomList: this.toRandomList(), //随机列表
-            randomSwitch: true
+            playIndex:0,
+            randomSwitch: true//随机开关
           });
           break;
         default:
           this.setData({
             playModeIndex: 0,
-            randomSwitch: false
+            playIndex:this.data.playListIndex,
+            randomSwitch: false//随机开关
           });
           break;
       }
@@ -333,11 +347,12 @@ Component({
       })
     },
     toRandomList() { //—————生成 播放列表乱序函数
+      // console.logthis.data.SongDatas.songs.length);
       let arr = null;
       if (this.data.randomSwitch) {
-        arr = this.data.randomList.slice(0, this.properties.song.length);
+        arr = this.data.randomList.slice(0,this.data.SongData.length);
       } else {
-        arr = this.properties.song.slice(0, this.properties.song.length);
+        arr = this.data.SongData.slice(0,this.data.SongData.length);
       }
       let playing = arr[this.data.playIndex]; //取出正在播放的那首
       arr.splice(this.data.playIndex, 1); //删掉正在播放的那首
@@ -349,12 +364,12 @@ Component({
       return randomArr
     },
     listSongSwitch(e) { //列表切换歌曲(播放列表-弹出层)  
-      let detail = e.detail
+      let detail = e.detail;//正序index
       let ListIndex = 0;
       if (this.data.playModeIndex <= 1) { //判断是否是随机播放
         ListIndex = detail
       } else {
-        ListIndex = this.properties.song.indexOf(this.properties.randomList[detail])
+        ListIndex =this.data.randomList.indexOf(this.data.SongData[detail])
       }
       this.setData({
         playIndex: ListIndex,
