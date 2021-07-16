@@ -31,14 +31,17 @@ Component({
       switch (res.type) {
         case 'none'://空列表（被清空）
           this.popupClose()
-          this.setData({SongData: [
+          this.setData({
+            SongData: [
             {
               name: '七柚音乐',
               al: { picUrl: '/image/music-page/disc_default.png', id: 0},
               ar: [{name: '听 ! 好音乐',id: 0}],
               src:'http://qwbslmfl2.hn-bkt.clouddn.com/default.mp3'
-            },
-          ]})
+            }
+          ],
+          playIndex:0
+        })
           this.playSong()
           break;
         case 'default'://默认列表（淘汰、黑色毛衣...）

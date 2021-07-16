@@ -222,9 +222,7 @@ Page({
         }).then(res => {
             switch (res.confirm) {
                 case true:
-                    this.setData({
-                        SongData:{type:'none'}
-                    })
+                    this.setData({SongData:{type:'none'}})
                     wx.showToast({
                       title: '已清空',
                       icon: 'none',
