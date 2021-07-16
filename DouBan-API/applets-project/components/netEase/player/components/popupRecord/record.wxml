@@ -1,0 +1,45 @@
+<view>
+    <swiper class="" duration="300" style="height:60vh;">
+        <!-- 唱片 展示 模块-->
+        <swiper-item>
+            <view class="record-content flex justify-center align-center padding margin-top">
+                <view class="recordImg">
+                    <!-- 唱片|专辑 -->
+                    <view class="recordItem {{playerState?'':'playerPaused'}}">
+                        <view class="record">
+                            <image class="imgItem" src="/image/music-page/record.png" mode="aspectFit"></image>
+                        </view>
+                        <view class="album round {{playerState?'':'playerPaused'}}">
+                            <image class="imgItem"
+                                src="{{dataJson.al.picUrl}}"
+                                mode="aspectFit">
+                            </image>
+                        </view>
+                    </view>
+                    <!-- 唱片指针 -->
+                    <view class="needle {{playerState?'needlePlay':'needlePause'}}">
+                        <image class="imgItem" src="/image/music-page/needle-ab.png" mode="aspectFit"></image>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <!-- 歌词 模块 -->
+        <swiper-item>
+            <view>
+                <view class="margin">
+                    <scroll-view scroll-y="true" style="height:50vh;" scroll-top="{{scrollTop}}" scroll-with-animation="true">
+                        <view class="text-white text-center text-xl padding">
+                            <!-- 歌名 -->
+                            <view class="text-xxl">{{dataJson.name}}
+                            </view>
+                            <!-- 歌词 -->
+                            <view class="margin" wx:for="{{lrcData}}" wx:key="index">    
+                                {{item.lrc}}
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+</view>

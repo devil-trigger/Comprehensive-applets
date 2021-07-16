@@ -1,0 +1,51 @@
+<!-- 底部栏 -->
+<swiperItem 
+    playIndex="{{playIndex}}"
+    playerState="{{playerState}}"
+    slideInfo="{{slideInfo}}"
+    dataJson="{{randomSwitch?randomList:SongData}}"
+    bind:showPopup="showPopup"
+    bind:Playerslide="Playerslide"
+    bind:playSwitchFun="playSwitchFun"
+    bind:onplayerList="onplayerList"
+></swiperItem>
+
+<!-- 播放器 弹出层 -->
+<van-popup show="{{ popupDisplay }}" bind:close="popupClose" position="bottom"
+    custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
+    <!-- 底面背景 -->
+    <view class="song-bg"
+        style="background-image: url({{randomSwitch?randomList[playIndex].al.picUrl:SongData[playIndex].al.picUrl}});">
+    </view>
+    <view class="popupItem">
+        <!-- 顶部 标题|歌手|分享 -->
+        <popup-title
+            dataJson="{{randomSwitch?randomList[playIndex]:SongData[playIndex]}}"
+            bind:popupClose="popupClose"
+        ></popup-title>
+        <!-- 唱片+按钮组  -->
+        <view class="player-popContent">
+            <!-- 唱片 + 歌词-->
+            <record 
+             dataJson="{{randomSwitch?randomList[playIndex]:SongData[playIndex]}}"
+             playerState="{{playerState}}" 
+             playTime="{{slideInfo.progressSecond}}"
+             ></record>
+            <!-- 按钮组+进度条 -->
+            <popupBtn playerState="{{playerState}}" slideInfo="{{slideInfo}}" bind:changeSlider="changeSlider"
+                bind:dragSlider="dragSlider" bind:lastSong="lastSong" bind:nextSong="nextSong"
+                bind:playSwitchFun="playSwitchFun">
+            </popupBtn>
+        </view>
+    </view>
+</van-popup>
+
+
+<!-- 播放列表弹出层 -->
+<playlist song="{{SongData}}" playMode="{{playMode}}" playListIndex="{{playListIndex}}" playerList="{{playerList}}"
+    playIndex="{{playIndex}}" playModeIndex="{{playModeIndex}}"
+    bind:popupClose="popupClose"
+    bind:listSongSwitch="listSongSwitch" bind:empty="empty" bind:deleteSong="deleteSong"
+    bind:modeSwitch="modeSwitch"
+    bind:createDefault="createDefault">
+</playlist>

@@ -1,0 +1,24 @@
+<view>随机获取一张合适的图片</view>
+<view>
+    <image src="{{url}}" mode="aspectFill"></image>
+</view>
+
+
+<van-cell-group>
+  <van-field
+  label="请求图的Url"
+    value="{{ url }}"
+    disabled="true"
+    border="false"
+    bind:change="onChange"
+  />
+</van-cell-group>
+<van-button type="default" bindtap="squareType">正方形</van-button>
+<van-button type="info">模糊效果</van-button>
+<van-button type="warning">高灰度效果</van-button>
+<view>
+    <van-button type="primary">请求</van-button>
+</view>
+<view>
+    <view>方案1</view>
+</view>

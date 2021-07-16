@@ -1,0 +1,40 @@
+/* 播放弹出层 -按钮组+进度条 */
+.popupPlayer {
+  /* margin-top:50rpx ; */
+  width: 100%;
+  position: fixed;
+  bottom:15 rpx;left: 0;
+}
+
+.custom-button {
+  /* 进度条按钮 */
+  background: #fff;
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.play-progress {
+  /* 进度条长度 */
+  flex-basis: 75%;
+}
+
+/* 弹出层底部播放按钮组 */
+/* .popup-playerItem{
+
+} */
+.popup-playerItem .play-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-playItem {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx 50rpx;
+  /* border: 10rpx solid #fff; */
+}
+
+.popupTag {
+  width: 60rpx;
+  height: 60rpx;
+}

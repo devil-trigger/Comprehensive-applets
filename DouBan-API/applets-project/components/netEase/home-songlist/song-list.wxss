@@ -1,0 +1,15 @@
+/* 歌曲随机推荐 */
+/* .music-item {} */
+/* .music-item .music-Imgitem {} */
+
+.music-item .music-Imgitem .img-item {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+}
+
+.music-item .music-play .text-gray {
+    padding: 3rpx 5rpx;
+    border: 5rpx solid #f3f3f3;
+    border-radius: 10rpx;
+}

@@ -1,0 +1,29 @@
+<view class="navigation-Item" style="height:{{navigationSty.navBarHeight}}px;">
+	<view class="capsule-box flex justify-center"
+		style="height:{{navigationSty.menuHeight}}px; min-height:{{navigationSty.menuHeight}}px; line-height:{{navigationSty.menuHeight}}px; bottom:{{navigationSty.menuBotton}}px;left:{{navigationSty.menuRight}}px;">
+		<!-- <view class="nav-handle">
+
+        </view> -->
+		<view class="nav-title basis-sm text-center">
+			<!-- <van-button block round plain size='small' type="info" icon="search">搜索</van-button> -->
+			<!-- 七柚天气 -->
+		</view>
+	</view>
+</view>
+
+<view id='weathItem' style="margin-top:{{navigationSty.navBarHeight}}px;">
+	<view>
+		<view class="">
+			<view class="text-lg text-center">
+				<text class="cuIcon-locationfill"></text>南山
+			</view>
+			<view class="temp margin-top text-center">26°</view>
+			<view>多云</view>
+		</view>
+		<view>
+
+		</view>
+	</view>
+
+
+</view>

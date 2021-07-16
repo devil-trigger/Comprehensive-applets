@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText":"搜！ 好音乐",
+  "usingComponents": {
+    "stickys": "/dist/sticky/index",
+    "van-search": "/dist/search/index",
+    "van-dialog": "/dist/dialog/index",
+    "van-tab": "/dist/tab/index",
+    "van-tabs": "/dist/tabs/index",
+    "van-loading": "/dist/loading/index"
+  }
+}

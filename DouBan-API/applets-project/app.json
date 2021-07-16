@@ -1,0 +1,53 @@
+{
+  "pages":[
+    "pages/netEasemusic/netEasemusic",
+    "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
+    "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
+    "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm",
+    "pages/index/index",
+    "pages/toutiao/toutiao",
+    "pages/weather/weather",
+    "pages/my/my",
+    "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
+    "pages/Subpage/MusicSubPage/bannerDetails/bannerDetails",
+    "pages/Subpage/ToutiaoDetails/ToutiaoDetails"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "七柚D潮玩汇",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath":"/image/tabbar/douban.png",
+        "selectedIconPath": "image/tabbar/douban-s.png",
+        "text": "豆瓣"
+      },
+      {
+        "pagePath": "pages/toutiao/toutiao",
+        "iconPath":"/image/tabbar/toutiao.png",
+        "selectedIconPath": "image/tabbar/toutiao-s.png",
+        "text": "头条"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath":"/image/tabbar/my.png",
+        "selectedIconPath": "image/tabbar/my-s.png",
+        "text": "我"
+      }
+    ]
+  },
+  "usingComponents": {
+    "van-empty": "/dist/empty/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于天气数据展示"
+    }
+  }
+}

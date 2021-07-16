@@ -1,0 +1,48 @@
+<van-popup show="{{ playerList }}" catchtouchmove='prohibit' position="bottom" round custom-style="height:70%;"
+    closeable bind:close="popupClose" close-icon='arrow-down'>
+    <!-- 列表信息 -->
+    <view class="margin-top margin-left margin-right">
+        <view class="margin-bottom">
+            当前播放<text class="text-xs text-gray">（{{song.length}}）</text>
+        </view>
+        <view>
+            <view class="playerList-content flex justify-between">
+                <!-- 播放模式 -->
+                <view class="text-sm flex align-center padding-xs" wx:for="{{playMode}}" wx:key='index'
+                    wx:if="{{index==playModeIndex}}" bindtap="modeSwitch" data-index="{{index}}">
+                    <view>
+                        <image class="iconItem" src="/image/music-page/playIcon/player-{{index+1}}.svg"
+                            mode="aspectFit">
+                        </image>
+                    </view>
+                    <view class="margin-left-xs">
+                        {{item}}
+                    </view>
+                </view>
+                <!-- 清空 -->
+                <view class="padding-xs" bindtap="empty" bindlongpress="createDefault">
+                    <text class="cuIcon-delete"></text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 歌曲列表 -->
+    <view class="margin-top-sm">
+        <view class="songList">
+            <scroll-view scroll-y="true" style="height:100%">
+                <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}" wx:if="{{item.name!='七柚音乐'}}">
+                    <view
+                        class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playListIndex?'bg-gray':''}}">
+                        <view>
+                            {{item.name}}
+                            <text class="text-xs text-gray"> - {{item.singer}}</text>
+                        </view>
+                        <view class="padding-xs" catchtap="delete" data-index="{{index}}">
+                            <text class="cuIcon-close text-lg"></text>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</van-popup>

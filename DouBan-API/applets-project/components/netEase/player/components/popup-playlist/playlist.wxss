@@ -1,0 +1,12 @@
+.playerList-content .iconItem {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.playerList-Item {
+  /* 播放列表 歌曲切换过渡 */
+  transition: all 0.7s;
+}
+.songList{
+  height: 50vh;
+}

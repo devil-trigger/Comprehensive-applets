@@ -1,0 +1,36 @@
+/* 播放器核心 */
+.playerItem {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 70;
+}
+
+.playerItem .playerContent {
+  margin:0rpx 15rpx 5rpx 25rpx;
+}
+
+.playerItem .round {
+  height: 120rpx;
+  width: 120rpx;
+}
+
+/* 底部栏播放 按钮 */
+.playerItem .playerTag .playTag {
+  width: 70rpx;
+  height: 70rpx;
+  position: relative;
+  line-height: 70rpx;
+  /* border: 5rpx solid #d3d3d3; */
+}
+.playerItem .playerTag .playTag .circle{
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* z-index: 20; */
+}
+/* 底部栏列表 按钮 */
+.playerItem .playerTag .sortTag {
+  font-size: 65rpx;
+}

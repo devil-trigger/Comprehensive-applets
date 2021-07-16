@@ -1,0 +1,37 @@
+<view class="playerItem bg-white">
+    <swiper class="swiper-playslide" duration="300" bindchange="bindslide" style="height:130rpx"
+        current="{{playIndex}}">
+        <swiper-item wx:for="{{dataJson}}" wx:key="index">
+            <view>
+                <view class="playerContent flex justify-between align-center" catchtap="showPopup">
+                    <view class="flex align-center basis-lg">
+                        <view class="basis-xs">
+                            <image class="round" src="{{item.al.picUrl}}" mode="aspectFill">
+                            </image>
+                        </view>
+                        <view style="width:350rpx;">
+                            <view class="padding-left-lg flex align-center">
+                                <view class="text-bold text-center text-cut" style="max-width: 100%;">{{item.name}}</view>
+                                <view class="text-xs text-cut margin-left-xs" style="max-width:65%;">
+                                    - <text wx:for="{{item.ar}}" wx:key="index">{{index>0?'/':''}}{{item.name}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="flex justify-around playerTag basis-sm">
+                        <view class="text-lg playTag text-center round " catchtap="playSwitchFun">
+                            <text class="cuIcon-{{playerState?'stop':'playfill'}}"></text>
+                            <view class="circle">
+                                <van-circle value="{{slideInfo.progress}}" text="" size="35" stroke-width="2"   layer-color="#d3d3d3"
+                                color="#E12F13"/>
+                            </view>
+                        </view>
+                        <view class="sortTag " catchtap="onplayerList">
+                            <text class="cuIcon-sort"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+</view>
