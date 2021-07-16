@@ -36,9 +36,10 @@ Component({
               name: '七柚音乐',
               al: { picUrl: '/image/music-page/disc_default.png', id: 0},
               ar: [{name: '听 ! 好音乐',id: 0}],
-              src:'default.mp3'
+              src:'http://qwbslmfl2.hn-bkt.clouddn.com/default.mp3'
             },
           ]})
+          this.playSong()
           break;
         case 'default'://默认列表（淘汰、黑色毛衣...）
             this.setData({SongData: defaultdata});
@@ -47,7 +48,6 @@ Component({
           this.setData({ SongData:res.songs})//只赋其歌曲列表
           break;
       }
-
     }
   },
   methods: {
@@ -309,6 +309,7 @@ Component({
       })
     },
     modeSwitch() { //模式切换 ！！！！(播放列表-弹出层) 
+      if(this.properties.song.type=='none') return
       switch (this.data.playModeIndex) {
         case 0:
           // let index=this.data.SongData.indexOf(this.data.randomList[num]);

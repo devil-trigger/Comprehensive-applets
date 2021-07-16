@@ -207,6 +207,14 @@ Page({
         })
     },
     empty() {//清空 播放列表 + +
+        if(this.data.SongData.type=='none'){
+            wx.showToast({
+              title: '已清空',
+              icon: 'none',
+              mask: true,
+            })
+            return
+        };//无数据则无法清空
         wx.showModal({
             cancelColor: '#000',
             title: '温馨提示',
