@@ -13,7 +13,7 @@ Component({
     },
     methods: {
         showPopup() { //打开播放器弹出层
-            this.triggerEvent('showPopup',true)
+            this.triggerEvent('showPopup',{popupDisplay:true})
           },
         bindslide(e){//左右滑动监听
             this.triggerEvent('Playerslide',e.detail.current)
@@ -22,7 +22,7 @@ Component({
             this.triggerEvent('playSwitchFun',!this.properties.playerState)
         },
         onplayerList(){//打开播放列表 弹出层
-            this.triggerEvent('onplayerList',true)
+            this.triggerEvent('onplayerList',{playerList:true})
         }
     },
     lifetimes:{

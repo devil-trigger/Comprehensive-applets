@@ -10,3 +10,15 @@
 .songList{
   height: 50vh;
 }
+
+.listItem{
+  width:calc( 100% -  70rpx);
+}
+/* 歌曲名 */
+.songitem-name{
+  max-width: 60%;
+}
+/* 歌手 */
+.songitem-singer{
+  max-width:50%;
+}

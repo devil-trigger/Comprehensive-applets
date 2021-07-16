@@ -14,11 +14,13 @@
 <van-popup show="{{ popupDisplay }}" bind:close="popupClose" position="bottom"
     custom-style="height: 97%;background:#f3f3f3" round='true' catchtouchmove='prohibit'>
     <!-- 底面背景 -->
+    <!-- 列表不为空 -->
     <view class="song-bg"
         style="background-image: url({{randomSwitch?randomList[playIndex].al.picUrl:SongData[playIndex].al.picUrl}});" wx:if="{{song.type!='none'}}">
     </view>
+    <!-- 清空 -->
     <view class="song-bg"
-        style="background-image: url(https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/weather-bg/1.jpg);" wx:if="{{song.type=='none'}}">
+        style="background-image: url(https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/default.jpeg);" wx:if="{{song.type=='none'}}">
     </view>
     <!-- 中间 核心 -->
     <view class="popupItem">

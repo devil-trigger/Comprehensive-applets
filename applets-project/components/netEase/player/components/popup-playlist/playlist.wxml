@@ -3,7 +3,7 @@
     <!-- 列表信息 -->
     <view class="margin-top margin-left margin-right">
         <view class="margin-bottom">
-            当前播放<text class="text-xs text-gray">（{{song.length}}）</text>
+            当前播放<text class="text-xs text-gray">（{{song[0].name=='七柚音乐'?0:song.length}}）</text>
         </view>
         <view>
             <view class="playerList-content flex justify-between">
@@ -33,10 +33,13 @@
                 <view wx:for="{{song}}" wx:key="index" bindtap="listSongSwitch" data-index="{{index}}" wx:if="{{item.name!='七柚音乐'}}">
                     <view
                         class="playerList-Item flex justify-between align-center margin-bottom-xs radius padding-left padding-right padding-top-xs padding-bottom-xs {{index==playListIndex?'bg-gray':''}}">
-                        <view>
-                            {{item.name}}
-                            <text class="text-xs text-gray"> - {{item.singer}}</text>
+                        <view class="flex align-center listItem text-cut" >
+                            <view class="songitem-name text-cut">{{item.name}}</view>
+                            <view class="songitem-singer text-cut"> - 
+                                <text class="text-xs text-gray" wx:for="{{item.ar}}">{{index==0?'':'/'}}{{item.name}}</text>
+                            </view>
                         </view>
+
                         <view class="padding-xs" catchtap="delete" data-index="{{index}}">
                             <text class="cuIcon-close text-lg"></text>
                         </view>

@@ -8,8 +8,9 @@ Component({
     },
     data: {},
     observers:{
-        'playListIndex':function (res) {
+        'song':function (res) {
             // console.log(res);
+            console.log(res);
         }
     },
     methods: {

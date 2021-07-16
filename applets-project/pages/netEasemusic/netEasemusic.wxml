@@ -30,7 +30,6 @@
 
 <!-- 分界线 -->
 <van-divider hairline />
-<!-- 分界线 -->
 
 <!-- 推荐歌单 -->
     <view class="padding-sm">

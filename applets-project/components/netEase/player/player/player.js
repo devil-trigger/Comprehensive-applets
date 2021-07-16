@@ -206,6 +206,14 @@ Component({
         });
         that.counTimeDown(manage); //记录一次进度
       });
+      manage.onError((res) => {//监听播放失败情况
+        console.log(res);
+        wx.showToast({
+          title: '播放失败',
+          icon: 'error',
+          mask: true,
+        })
+      })
       manage.onEnded(() => { //监听播完停止
         console.log('停止/播完');
         let endNum = PlayNum;
@@ -303,11 +311,6 @@ Component({
       }
       return times;
     },
-    onplayerList(e) { //打开播放列表(播放列表-弹出层) 
-      this.setData({
-        playerList: e.detail
-      })
-    },
     modeSwitch() { //模式切换 ！！！！(播放列表-弹出层) 
       if(this.properties.song.type=='none') return
       switch (this.data.playModeIndex) {
@@ -372,11 +375,6 @@ Component({
       })
       this.playSong()
     },
-    showPopup(e) { //打开播放器弹出层
-      this.setData({
-        popupDisplay: e.detail
-      })
-    },
     deleteSong(e) { //删除列表歌曲(播放列表-弹出层)  
       this.triggerEvent('deleteSong', e.detail)
     },
@@ -389,6 +387,12 @@ Component({
     prohibit() { //阻止播放器弹出层下层滚动
       return true
     },
+    onplayerList(e) { //打开播放列表 
+      this.setData(e.detail)
+    },
+    showPopup(e) { //打开播放器弹出层
+      this.setData(e.detail)
+    },
     popupClose() { //关闭弹出层
       this.setData({
         popupDisplay: false,
@@ -398,7 +402,7 @@ Component({
   },
 
   lifetimes: {
-    attached() { },
+    attached() {},
     detached() {},
   },
   options: {
