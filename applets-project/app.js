@@ -5,6 +5,11 @@ App({
 
     this.globalData.AudioCtx = wx.getBackgroundAudioManager(); //定义播放器方法
 
+    let urlText = 'http://qwbslmfl2.hn-bkt.clouddn.com/'
+    this.globalData.defaultList.forEach(item=>{
+      item.al.picUrl = urlText + item.al.picUrl;
+      item.src = urlText + item.src;
+    })//处理默认列表
 
   },
   globalData: {

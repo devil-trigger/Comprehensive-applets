@@ -215,7 +215,7 @@ Page({
             switch (res.confirm) {
                 case true:
                     this.setData({
-                        SongData:[]
+                        SongData:{type:'none'}
                     })
                     wx.showToast({
                       title: '已清空',
@@ -231,6 +231,11 @@ Page({
     },
     deleteSong(e){
         console.log('删除歌曲'+e.detail);
+    },
+    createDefault(e){
+        this.setData({
+            SongData:{type:'default' }
+        })
     },
     //生命周期函数--监听页面初次渲染完成
     onReady: function () {},

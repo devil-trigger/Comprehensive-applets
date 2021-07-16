@@ -31,24 +31,23 @@ Component({
       switch (res.type) {
         case 'none'://空列表（被清空）
           this.popupClose()
-          this.setData({SongData: []})
+          this.setData({SongData: [
+            {
+              name: '七柚音乐',
+              al: { picUrl: '/image/music-page/disc_default.png', id: 0},
+              ar: [{name: '听 ! 好音乐',id: 0}],
+              src:'default.mp3'
+            },
+          ]})
           break;
         case 'default'://默认列表（淘汰、黑色毛衣...）
-            let urlText = 'https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/'
-            let list = defaultdata
-            list.forEach((item) => {
-              item.al.picUrl = urlText + item.al.picUrl;
-              item.src = urlText + item.src;
-            })
-            this.setData({SongData: list})
+            this.setData({SongData: defaultdata});
           break;
         default://一般列表
-          this.setData({//只赋其歌曲列表
-            SongData: 'res.songs'
-          })
+          this.setData({ SongData:res.songs})//只赋其歌曲列表
           break;
       }
-      // console.log(this.data.SongData);
+
     }
   },
   methods: {
@@ -180,7 +179,7 @@ Component({
         //SongData已经处理了无数据的情况（可直接赋值）
       }
       let PlayNum = this.data.playIndex;
-      console.log(PlayNum);
+      // console.log(PlayNum);
       manage.title = song[PlayNum].name; //歌曲标题
       manage.epname = song[PlayNum].al.name; //专辑名称
       manage.singer = song[PlayNum].ar[0].name; //歌手名
@@ -380,8 +379,11 @@ Component({
     deleteSong(e) { //删除列表歌曲(播放列表-弹出层)  
       this.triggerEvent('deleteSong', e.detail)
     },
-    empty(e) { //清空播放列表
+    empty() { //清空播放列表
       this.triggerEvent('empty');
+    },
+    createDefault(){//产生新默认列表
+      this.triggerEvent('createDefault');
     },
     prohibit() { //阻止播放器弹出层下层滚动
       return true

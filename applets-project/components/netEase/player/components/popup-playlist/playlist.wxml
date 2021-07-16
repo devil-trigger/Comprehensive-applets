@@ -20,7 +20,7 @@
                     </view>
                 </view>
                 <!-- 清空 -->
-                <view class="padding-xs" bindtap="empty">
+                <view class="padding-xs" bindtap="empty" bindlongpress="createDefault">
                     <text class="cuIcon-delete"></text>
                 </view>
             </view>

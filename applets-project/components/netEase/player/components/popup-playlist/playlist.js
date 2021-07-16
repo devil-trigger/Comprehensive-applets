@@ -30,6 +30,10 @@ Component({
         },
         popupClose() {//关闭弹出层
             this.triggerEvent('popupClose')
+        },
+        createDefault(){//生成默认列表（彩蛋）
+            wx.vibrateShort()
+            this.triggerEvent('createDefault')
         }
     },
     options: {

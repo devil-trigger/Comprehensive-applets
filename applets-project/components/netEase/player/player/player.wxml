@@ -46,5 +46,6 @@
     playIndex="{{playIndex}}" playModeIndex="{{playModeIndex}}"
     bind:popupClose="popupClose"
     bind:listSongSwitch="listSongSwitch" bind:empty="empty" bind:deleteSong="deleteSong"
-    bind:modeSwitch="modeSwitch">
+    bind:modeSwitch="modeSwitch"
+    bind:createDefault="createDefault">
 </playlist>

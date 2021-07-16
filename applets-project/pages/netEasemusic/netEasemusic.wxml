@@ -52,4 +52,4 @@
 <songlist remdSongList="{{remdSongList}}" title="新歌 | 新碟"></songlist>
 
 <!-- 播放器——核心 -->
-<player song="{{SongData}}" bind:empty="empty" bind:deleteSong="deleteSong"></player>
+<player song="{{SongData}}" bind:empty="empty" bind:createDefault="createDefault" bind:deleteSong="deleteSong"></player>
