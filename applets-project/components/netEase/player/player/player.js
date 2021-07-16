@@ -382,7 +382,11 @@ Component({
       this.triggerEvent('empty');
     },
     createDefault(){//产生新默认列表
+      if(this.properties.song.type!='none') return
       this.triggerEvent('createDefault');
+      wx.vibrateShort()
+      manage.pause();
+      
     },
     prohibit() { //阻止播放器弹出层下层滚动
       return true

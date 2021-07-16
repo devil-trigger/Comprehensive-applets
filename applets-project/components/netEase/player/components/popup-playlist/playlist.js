@@ -8,10 +8,10 @@ Component({
     },
     data: {},
     observers:{
-        'song':function (res) {
-            // console.log(res);
-            console.log(res);
-        }
+        // 'song':function (res) {
+        //     // console.log(res);
+        //     console.log(res);
+        // }
     },
     methods: {
         prohibit() { //阻止播放器弹出层下层滚动
@@ -33,7 +33,6 @@ Component({
             this.triggerEvent('popupClose')
         },
         createDefault(){//生成默认列表（彩蛋）
-            wx.vibrateShort()
             this.triggerEvent('createDefault')
         }
     },
