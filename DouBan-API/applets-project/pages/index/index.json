@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "van-button": "/dist/button/index",
-    "van-icon": "/dist/icon/index",
-    "van-tab": "/dist/tab/index",
-  "van-tabs": "/dist/tabs/index",
-  "van-rate": "/dist/rate/index"
-  }
-}
