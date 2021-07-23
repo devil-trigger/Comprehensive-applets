@@ -1,4 +1,6 @@
-import {netEaseAPI} from '../../utils/util';
+import {
+    netEaseAPI,getSongDetails
+} from '../../utils/util';
 Page({
     data: {
         SortList: [ //分类
@@ -18,39 +20,15 @@ Page({
         swiperList: [], //轮播图data
         remdList: [], //推荐歌单data
         highList: [], //精品歌单
-        remdSongList: [
-            [{
-                    picUrl: 'https://pic4.zhimg.com/50/v2-a436f4c1749c1127b6d4c73a74bdb2cd_720w.jpg?source=54b3c3a5',
-                    name: '22',
-                    singer: 'Taylor Swift'
-                },
-                {
-                    picUrl: 'https://pic4.zhimg.com/50/v2-a436f4c1749c1127b6d4c73a74bdb2cd_720w.jpg?source=54b3c3a5',
-                    name: '22',
-                    singer: 'Taylor Swift'
-                },
-                {
-                    picUrl: 'https://pic4.zhimg.com/50/v2-a436f4c1749c1127b6d4c73a74bdb2cd_720w.jpg?source=54b3c3a5',
-                    name: '22',
-                    singer: 'Taylor Swift'
-                },
-            ],
-            [{
-                picUrl: 'https://pic4.zhimg.com/50/v2-a436f4c1749c1127b6d4c73a74bdb2cd_720w.jpg?source=54b3c3a5',
-                songtitle: '22',
-                singer: 'Taylor Swift'
-            }]
-        ], //随机歌曲data
+        remdSongList: [], //随机歌曲data
         SongData: {
-            type:'default',
+            type: 'default',
         }, //播放歌曲列表data
-
     },
     onLoad: function (options) {
         this.getdata();
     },
     getdata() {
-        // this.getSongDetails();//歌曲详情
         this.getSwiperlist(); //轮播图
         this.getRemdList(); //歌单
         this.getRemdSongList(); //歌曲
@@ -83,7 +61,6 @@ Page({
     getSwiperlist() { //获取轮播图数据
         netEaseAPI('banner?type=2').then(res => {
             // type  0.pc 1.android 2.iphone 3.ipad
-            // console.log(res.data);
             this.setData({
                 swiperList: res.data.banners
             })
@@ -116,42 +93,10 @@ Page({
         })
     },
     getRemdSongList() { //获取推荐歌曲
-        netEaseAPI('personalized/newsong?limit=12').then(res => {
-            //    console.log(res.data.result);
-            let dataArr = res.data.result;
-            let datalist = [];
-            let num = 0;
-            let singerName = ''
-            dataArr.forEach((item, index) => {
-                item.song.artists.forEach((a, b) => { //歌手数组处理
-                    singerName += '/' + a.name
-                    if (item.song.artists.length == b + 1) {
-                        dataArr[index].singer = singerName.substr(1)
-                        // console.log(dataArr)
-                        singerName = ''
-                    }
-                })
-                let groupNum = index + 1;
-                if (groupNum % 3 == 0) { //音乐分组
-                    let count = groupNum;
-                    datalist.push(dataArr.slice(num, count))
-                    num = count;
-                    // console.log(datalist,num)
-                    if (datalist.length == 4) {
-                        this.setData({
-                            remdSongList: datalist
-                        })
-                        //  console.log(this.data.remdSongList);
-                    }
-                }
+        netEaseAPI('personalized/newsong?limit=9').then(res => {
+            this.setData({
+                remdSongList: res.data.result
             })
-        })
-    },
-    getSongDetails() {
-        netEaseAPI('song/url', {
-            id: '1822297556'
-        }).then(res => {
-            console.log(res.data)
         })
     },
     toBannerDetails(e) { //点击轮播图图片 进入详情
@@ -182,39 +127,32 @@ Page({
             url: '/pages/Subpage/MusicSubPage/SearchMusic/SearchMusic'
         })
     },
-    playlist(e) {
+    playlist(e) { //点击歌单
         netEaseAPI('playlist/detail', {
             id: e.detail
         }).then(res => {
-            // console.log(res.data.playlist.trackIds);
-            let Idtext = '';
-            res.data.playlist.trackIds.forEach(item => {
-                Idtext += `,${item.id}`
-            })
-            Idtext = Idtext.substr(1)
-            netEaseAPI('song/detail?', {
-                ids: Idtext
-            }).then(res => {
-                let datalist={};
-                datalist.type='';
-                datalist.songs=res.data.songs;
+            getSongDetails(res.data.playlist.trackIds).then(res => {
+                // console.log(res);
+                let datalist = {};
+                datalist.type = '';
+                datalist.songs = res.songs;
+                console.log(datalist);
+                //name歌名、ar艺术家(name:歌手名、id：id)、al专辑（专辑图）
                 // this.setData({
                 //     SongData:datalist
                 // })
-                // console.log(datalist);
-                //name歌名、ar艺术家(name:歌手名、id：id)、al专辑（专辑图）
             })
         })
     },
-    empty() {//清空 播放列表 + +
-        if(this.data.SongData.type=='none'){
+    empty() { //清空 播放列表 + +
+        if (this.data.SongData.type == 'none') {
             wx.showToast({
-              title: '已清空',
-              icon: 'none',
-              mask: true,
+                title: '已清空',
+                icon: 'none',
+                mask: true,
             })
             return
-        };//无数据则无法清空
+        }; //无数据则无法清空
         wx.showModal({
             cancelColor: '#000',
             title: '温馨提示',
@@ -222,11 +160,15 @@ Page({
         }).then(res => {
             switch (res.confirm) {
                 case true:
-                    this.setData({SongData:{type:'none'}})
+                    this.setData({
+                        SongData: {
+                            type: 'none'
+                        }
+                    })
                     wx.showToast({
-                      title: '已清空',
-                      icon: 'none',
-                      mask: true,
+                        title: '已清空',
+                        icon: 'none',
+                        mask: true,
                     })
                     break;
                 default:
@@ -235,12 +177,89 @@ Page({
             }
         })
     },
-    deleteSong(e){
-        console.log('删除歌曲'+e.detail);
+    deleteSong(e) { //删除歌曲
+        switch (typeof (e.detail)) {
+            case 'string':
+                this.setData({
+                    'SongData.type': e.detail
+                })
+                break;
+            default:
+                console.log('删除歌曲' + e.detail);
+                break;
+        }
+        // let newArr=this.data.SongData;
+        // // newArr.slice(e.detail,1);
     },
-    createDefault(){
-        this.setData({SongData:{type:'default'}})
+    createDefault() { //生成默认音乐
+        this.setData({
+            SongData: {
+                type: 'default'
+            }
+        })
     },
+    playSonglist(e) { //播放随机列表
+        wx.showToast({
+            icon: 'loading',
+            title: '播放中..',
+            mask: true,
+        })
+        getSongDetails(e.detail).then(res => {
+            let dataJson = {
+                type: 'remdlist',
+                songs: res.songs
+            };
+            this.setData({
+                SongData: dataJson
+            })
+        })
+    },
+    remdplaySong(e) { //songlist 单曲播放
+        getSongDetails(e.detail).then(res => {
+            let jsondata = {songs: []};
+            switch (this.data.SongData.type) {
+                case 'default': //有默认歌曲
+                    jsondata.type = 'remd';
+                    jsondata.songs.push(res.songs[0])
+                    break;
+                case 'none': //无歌曲
+                    jsondata.type = 'remd';
+                    jsondata.songs.push(res.songs[0])
+                    break;
+                default: //正常列表        
+                    jsondata.type = this.data.SongData.type;
+                    jsondata.songs = this.data.SongData.songs;
+                    jsondata.songs.push(res.songs[0])
+                    break;
+            }
+            // console.log(jsondata);
+            this.setData({
+                SongData: jsondata
+            })
+        })
+
+    },
+    // getSongDetails(idData) { //获取歌曲详情(不包含url实际播放地址)
+    //     let Idtext = ''; //  数组Obj、数字id Num
+    //     switch (typeof (idData)) {
+    //         case 'object':
+    //             idData.forEach((item) => {
+    //                 Idtext += `,${item.id}`
+    //             });
+    //             Idtext = Idtext.substr(1)
+    //             break;
+    //         default:
+    //             Idtext = idData
+    //             break;
+    //     }
+    //     return new Promise((ress, rej) => {
+    //         netEaseAPI('song/detail?', {
+    //             ids: Idtext
+    //         }).then(res => {
+    //             ress(res.data)
+    //         })
+    //     })
+    // },
     //生命周期函数--监听页面初次渲染完成
     onReady: function () {},
     //生命周期函数--监听页面显示

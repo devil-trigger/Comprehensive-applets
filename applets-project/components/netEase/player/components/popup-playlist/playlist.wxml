@@ -36,7 +36,7 @@
                         <view class="flex align-center listItem text-cut" >
                             <view class="songitem-name text-cut">{{item.name}}</view>
                             <view class="songitem-singer text-cut"> - 
-                                <text class="text-xs text-gray" wx:for="{{item.ar}}">{{index==0?'':'/'}}{{item.name}}</text>
+                                <text class="text-xs text-gray" wx:for="{{item.ar}}" wx:key="index">{{index==0?'':'/'}}{{item.name}}</text>
                             </view>
                         </view>
 

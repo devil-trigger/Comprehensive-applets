@@ -7,27 +7,22 @@ Component({
         playListIndex: Number
     },
     data: {},
-    observers:{
-        // 'song':function (res) {
-        //     // console.log(res);
-        //     console.log(res);
-        // }
-    },
     methods: {
         prohibit() { //阻止播放器弹出层下层滚动
             return true
         },
-        modeSwitch(e) { //模式切换
+        modeSwitch(e) { //播放模式切换
             this.triggerEvent('modeSwitch', e.currentTarget.dataset.index)
         },
         listSongSwitch(e) { //列表歌曲切换
-            this.triggerEvent('listSongSwitch', e.currentTarget.dataset.index)
+            this.triggerEvent(`listSongSwitch`, e.currentTarget.dataset.index)
+            
         },
         delete(e) { //列表歌曲删除
-            this.triggerEvent('deleteSong', e.currentTarget.dataset.index)
+            this.triggerEvent(`deleteSong`, e.currentTarget.dataset.index)
         },
         empty(){//清空列表
-            this.triggerEvent('empty')
+            this.triggerEvent(`empty`);
         },
         popupClose() {//关闭弹出层
             this.triggerEvent('popupClose')
@@ -37,6 +32,6 @@ Component({
         }
     },
     options: {
-        addGlobalClass: true,
+        addGlobalClass: true
     }
 })

@@ -56,9 +56,33 @@ let netEaseAPI=(URL,dataJson)=>{//网易云api
     })
   })
 }
+
+let getSongDetails=(idData) => { //获取歌曲详情(不包含url实际播放地址)
+  let Idtext = ''; //  数组Obj、数字id Num
+  switch (typeof (idData)) {
+      case 'object':
+          idData.forEach((item) => {
+              Idtext += `,${item.id}`
+          });
+          Idtext = Idtext.substr(1)
+          break;
+      default:
+          Idtext = idData
+          break;
+  }
+  return new Promise((ress, rej) => {
+      netEaseAPI('song/detail?', {
+          ids: Idtext
+      }).then(res => {
+          ress(res.data)
+      })
+  })
+}
+
 module.exports={
   formatTime,
   ChangeTime,  //时间转换函数（转换成date格式）
   netEaseAPI,  //网易云api
   setNavSty,  //标题栏自定义适配
+  getSongDetails,//获取歌曲详情(不包含url)
 }

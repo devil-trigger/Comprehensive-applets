@@ -4,23 +4,25 @@
             <view class="text-bold text-lg">
                 <text class="cuIcon-{{iconName}}"></text> {{title}}
             </view>
-            <view class="tag">
+            <view class="tag" bindtap="playSonglist">
                 播放<text class="cuIcon-playfill"></text>
             </view>
         </view>
         <view>
             <swiper next-margin="25px" style="height:350rpx;">
-                <swiper-item wx:for="{{remdSongList}}" wx:key="index">
+                <swiper-item wx:for="{{list}}" wx:key="index">
                     <view wx:for="{{item}}" wx:key="index" class="flex music-item margin-bottom-xs">
                         <view class="music-Imgitem basis-xs flex justify-center padding-bottom-xs">
                             <image class="img-item" src="{{item.picUrl}}" mode="aspectFill"></image>
                             <!-- <text class="cuIcon-playfill"></text> -->
                         </view>
                         <view class="music-info basis-lg flex align-center solid-bottom">
-                            <view>
-                                <view class="flex align-center">
-                                    <view class="text-bold text-lg">{{item.name}}</view>
-                                    <view class="text-gray text-xs"> - {{item.singer}}</view>
+                            <view class="listItem">
+                                <view class="flex align-center text-cut">
+                                    <view class="text-bold text-lg text-cut">{{item.name}}</view>
+                                    <view class="text-gray text-xs text-cut"> - 
+                                        <text wx:for="{{item.song.artists}}" wx:key="index">{{index==0?'':'/'}}{{item.name}}</text>
+                                    </view>
                                 </view>
                                 <view class="text-yellow text-xs">
                                     超65%人播放
@@ -28,7 +30,7 @@
                             </view>
                         </view>
                         <view class="music-play basis-xs flex justify-center align-center">
-                            <view class="text-gray" bindtap="">
+                            <view class="text-gray" bindtap="playSong" data-index="{{index}}">
                                 <text class="cuIcon-playfill"></text>
                             </view>
                         </view>

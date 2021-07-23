@@ -48,9 +48,14 @@ Component({
             this.setData({SongData: defaultdata});
           break;
         default://一般列表
-          this.setData({ SongData:res.songs})//只赋其歌曲列表
+          this.setData({SongData:res.songs,playIndex:res.songs.length-1,playListIndex:res.songs.length-1});
+          manage.stop()
+          setTimeout(() => {
+            this.playSong()
+          }, 1700);
           break;
       }
+      // console.log(this.data.SongData);
     }
   },
   methods: {
@@ -66,12 +71,12 @@ Component({
         playIndex: e.detail,
         playListIndex: listIndex
       })
-      this.playSong();
+      setTimeout(() => {
+        this.playSong();
+      }, 320);
     },
     playSwitchFun(e) { //播放、暂停——（切换）
       let state = this.data.playerState;
-      // manage.onPause(()=>{})
-      // if (this.data.SongData.type=='none') return
       if (this.data.slideInfo.progressText=='00:00') {
         this.playSong();
       }
@@ -121,7 +126,9 @@ Component({
         playListIndex: listindex
       });
       console.log(this.data.playIndex);
-      this.playSong()
+      setTimeout(() => {
+        this.playSong();
+      }, 333);
     },
     nextSong() {//下一首————下一首————下一首—下一首
       let num = '';
@@ -160,14 +167,16 @@ Component({
         playIndex: num,
         playListIndex: listIndex //播放列表标识
       });
-      this.playSong();
+      setTimeout(() => {
+        this.playSong();
+      }, 333);
     },
     getSongUrl(index) { //获取音乐 url
       return new Promise((resolve,rej)=>{
         netEaseAPI('song/url', {
-          id:this.data.SongData[index].id
+          id:index
         }).then(res => {
-          resolve(res)
+          resolve(res.data)
         })
       })
     },
@@ -186,15 +195,15 @@ Component({
       manage.title = song[PlayNum].name; //歌曲标题
       manage.epname = song[PlayNum].al.name; //专辑名称
       manage.singer = song[PlayNum].ar[0].name; //歌手名
-      manage.coverImgUrl = song[PlayNum].al.picUrl; //封面图 URL
-      // this.getSongUrl(song[PlayNum].id);
-      setTimeout(()=>{
+      if (song[PlayNum].src) {//判断是否有src(普通列表没有)
+        manage.coverImgUrl = song[PlayNum].al.picUrl; //封面图 URL
         manage.src = song[PlayNum].src;
-        this.setData({
-          playerState:true
-        })
-      },1200)
-      manage.src = song[PlayNum].src;
+      }else{
+        this.getSongUrl(song[PlayNum].id).then(res=>{
+          manage.coverImgUrl = song[PlayNum].al.picUrl; //封面图 URL
+          manage.src = res.data[0].url;
+        });
+      }
       manage.currentTime = 0;
       let that = this;
       manage.onPlay(() => { //监听播放
@@ -376,20 +385,41 @@ Component({
         playListIndex: detail,//列表index
         playIndex: ListIndex//歌曲播放index
       })
-      this.playSong()
+      wx.showLoading({
+        title: '播放中...',
+        mask: true,
+      })
+      setTimeout(() => {
+          this.playSong()
+          wx.hideLoading()
+      }, 1300);
     },
     deleteSong(e) { //删除列表歌曲(播放列表-弹出层)  
-      this.triggerEvent('deleteSong', e.detail)
+      switch (this.properties.song.type) {
+        case 'default'://默认列表删除
+          let newArr=this.data.SongData;
+          newArr.splice(e.detail,1)
+          this.setData({SongData:newArr});
+          if(newArr.length==0){//删完了
+            this.triggerEvent('deleteSong','none');
+            return
+          }
+          this.playSong()
+          break;
+        default://一般 播放列表删除
+          this.triggerEvent('deleteSong', e.detail);
+          break;
+      }
     },
     empty() { //清空播放列表
       this.triggerEvent('empty');
     },
-    createDefault(){//产生新默认列表
+    createDefault(){//产生新默认列表(彩蛋)
       if(this.properties.song.type!='none') return
       this.triggerEvent('createDefault');
       wx.vibrateShort()
-      manage.pause();
-      
+      manage.stop();
+      this.setData({playIndex:0})
     },
     prohibit() { //阻止播放器弹出层下层滚动
       return true

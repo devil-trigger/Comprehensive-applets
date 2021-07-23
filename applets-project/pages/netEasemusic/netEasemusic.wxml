@@ -1,13 +1,12 @@
 <!-- 搜索跳转按钮 -->
 <view bindtap="toSearch">
-    <van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦" readonly/>
+    <van-search shape="round" background="#fff" placeholder="爱上未来的你-刘瑞琦" readonly />
 </view>
 
 <view class="content">
     <!-- 轮播图 -->
     <view class="margin-bottom">
-        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true"  interval="4600"
-            duration="1200">
+        <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" interval="4600" duration="1200">
             <swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="toBannerDetails" data-url="{{item.url}}">
                 <view class="swiperItem flex align-center">
                     <image src="{{item.pic}}" mode="aspectFill" style="height:90%;"></image>
@@ -28,17 +27,20 @@
         </view>
     </view>
 
-<!-- 分界线 -->
-<van-divider hairline />
+    <!-- 分界线 -->
+    <van-divider hairline />
+    <!-- 分界线 -->
 
-<!-- 推荐歌单 -->
+    <!-- 推荐歌单 -->
     <view class="padding-sm">
-        <albumlist title="推荐歌单" listArr="{{remdList}}" bind:playlist="playlist"></albumlist>
+        <albumlist title="推荐歌单" listArr="{{remdList}}" bind:playlist="playlist">
+        </albumlist>
     </view>
 </view>
 
-<!-- 随机歌曲 -->
-<songlist remdSongList="{{remdSongList}}" title="你在找的华语歌" iconName="refresh"></songlist>
+<!-- 你在找的华语歌 songlist-->
+<songlist remdSongList="{{remdSongList}}" title="你在找的华语歌" iconName="refresh" bind:playSonglist="playSonglist"
+    bind:remdplaySong="remdplaySong"></songlist>
 
 <!-- 精品歌单 -->
 <view class="margin-top content">
@@ -47,7 +49,7 @@
     </view>
 </view>
 
-<!-- 新歌 | 新碟 -->
+<!-- 新歌 | 新碟 songlist-->
 <songlist remdSongList="{{remdSongList}}" title="新歌 | 新碟"></songlist>
 
 <!-- 播放器——核心 -->

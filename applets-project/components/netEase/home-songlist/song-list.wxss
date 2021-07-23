@@ -9,7 +9,24 @@
 }
 
 .music-item .music-play .text-gray {
-    padding: 3rpx 5rpx;
+    padding: 3rpx 7rpx;
     border: 5rpx solid #f3f3f3;
     border-radius: 10rpx;
+}
+
+/* 歌名+歌手 */
+.music-info {
+    width: 60%;
+}
+.music-info .listItem{
+    width: 100%;
+}
+.music-info .flex{
+    width: 100%;
+}
+.music-info .text-bold{
+    max-width:65% ;
+}
+.music-info .text-gray{
+    max-width:35% ;
 }
