@@ -1,12 +1,12 @@
 {
   "pages":[
     "pages/netEasemusic/netEasemusic",
+    "pages/index/index",
+    "pages/weather/weather",
     "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
     "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm",
-    "pages/index/index",
     "pages/toutiao/toutiao",
-    "pages/weather/weather",
     "pages/my/my",
     "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
     "pages/Subpage/MusicSubPage/bannerDetails/bannerDetails",

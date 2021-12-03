@@ -37,7 +37,7 @@ Component({
               name: '七柚音乐',
               al: { picUrl: '/image/music-page/disc_default.png', id: 0},
               ar: [{name: '听 ! 好音乐',id: 0}],
-              src:'http://qwbslmfl2.hn-bkt.clouddn.com/default.mp3'
+              src:'http://81.71.88.145:8080/music-film/default.mp3'
             }
           ],
           playIndex:0

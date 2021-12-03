@@ -1,5 +1,6 @@
 import {
-    netEaseAPI,getSongDetails
+    netEaseAPI,
+    getSongDetails
 } from '../../utils/util';
 Page({
     data: {
@@ -28,7 +29,7 @@ Page({
     onLoad: function (options) {
         this.getdata();
     },
-    getdata() {
+    getdata() { //请求数据function
         this.getSwiperlist(); //轮播图
         this.getRemdList(); //歌单
         this.getRemdSongList(); //歌曲
@@ -92,7 +93,7 @@ Page({
             })
         })
     },
-    getRemdSongList() { //获取推荐歌曲
+    getRemdSongList() { //获取推荐歌曲 （你在找的华语歌）
         netEaseAPI('personalized/newsong?limit=9').then(res => {
             this.setData({
                 remdSongList: res.data.result
@@ -100,7 +101,7 @@ Page({
         })
     },
     toBannerDetails(e) { //点击轮播图图片 进入详情
-        console.log(e.currentTarget.dataset.url);
+        // console.log(e.currentTarget.dataset.url);
         let toUrl = '';
         switch (e.currentTarget.dataset.url != null) {
             case true:
@@ -202,7 +203,7 @@ Page({
         wx.showToast({
             icon: 'loading',
             title: '播放中..',
-            mask: true,
+            mask: true
         })
         getSongDetails(e.detail).then(res => {
             let dataJson = {
@@ -211,12 +212,14 @@ Page({
             };
             this.setData({
                 SongData: dataJson
-            })
+            });
         })
     },
     remdplaySong(e) { //songlist 单曲播放
         getSongDetails(e.detail).then(res => {
-            let jsondata = {songs: []};
+            let jsondata = {
+                songs: []
+            };
             switch (this.data.SongData.type) {
                 case 'default': //有默认歌曲
                     jsondata.type = 'remd';
@@ -239,27 +242,6 @@ Page({
         })
 
     },
-    // getSongDetails(idData) { //获取歌曲详情(不包含url实际播放地址)
-    //     let Idtext = ''; //  数组Obj、数字id Num
-    //     switch (typeof (idData)) {
-    //         case 'object':
-    //             idData.forEach((item) => {
-    //                 Idtext += `,${item.id}`
-    //             });
-    //             Idtext = Idtext.substr(1)
-    //             break;
-    //         default:
-    //             Idtext = idData
-    //             break;
-    //     }
-    //     return new Promise((ress, rej) => {
-    //         netEaseAPI('song/detail?', {
-    //             ids: Idtext
-    //         }).then(res => {
-    //             ress(res.data)
-    //         })
-    //     })
-    // },
     //生命周期函数--监听页面初次渲染完成
     onReady: function () {},
     //生命周期函数--监听页面显示

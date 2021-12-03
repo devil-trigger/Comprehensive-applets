@@ -35,7 +35,7 @@ let setNavSty=(callback)=>{ //设置标题栏高度
 
 let netEaseAPI=(URL,dataJson)=>{//网易云api
   // console.log('http://localhost:3000/'+URL);
-  let ipUrl='localhost'
+  let ipUrl='81.71.88.145'
   return new Promise((resolve, reject)=>{
     wx.request({
       url: `http://${ipUrl}:3000/${URL}`,//本地

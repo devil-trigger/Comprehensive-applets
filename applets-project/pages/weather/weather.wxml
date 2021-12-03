@@ -1,29 +1,73 @@
+<view class='bg_box'>
+    <image src='https://cdn.jsdelivr.net/gh/devil-trigger/Comprehensive-applets@master/otherData/weather-bg/1.jpg'></image>
+</view>
+
 <view class="navigation-Item" style="height:{{navigationSty.navBarHeight}}px;">
 	<view class="capsule-box flex justify-center"
 		style="height:{{navigationSty.menuHeight}}px; min-height:{{navigationSty.menuHeight}}px; line-height:{{navigationSty.menuHeight}}px; bottom:{{navigationSty.menuBotton}}px;left:{{navigationSty.menuRight}}px;">
-		<!-- <view class="nav-handle">
-
-        </view> -->
 		<view class="nav-title basis-sm text-center">
-			<!-- <van-button block round plain size='small' type="info" icon="search">搜索</van-button> -->
+			七柚天气
 			<!-- 七柚天气 -->
 		</view>
 	</view>
 </view>
 
+<!-- <view class="addItem">
+	<view class="bg-gradual-blue text-sl radius">
+		<text class="cuIcon-add"></text>
+	</view>
+</view> -->
+
 <view id='weathItem' style="margin-top:{{navigationSty.navBarHeight}}px;">
 	<view>
 		<view class="">
-			<view class="text-lg text-center">
-				<text class="cuIcon-locationfill"></text>南山
+			<view>
+				<view class="text-lg text-center flex justify-center align-center padding-sm">
+					<view class="locationItem radius">
+						<text class="cuIcon-locationfill"></text> 南山
+					</view>
+					<!-- <view class="temp-sth-img-item">
+						<image src="/image/weatherIcon/100.png" mode="aspectFit"></image>
+					</view> -->
+				</view>
 			</view>
-			<view class="temp margin-top text-center">26°</view>
-			<view>多云</view>
+			<view class="temp flex justify-center">
+				<view class="temp-item">26</view>
+				<view class="flex align-center">
+					<view class="temp-sth">
+						<view class="temp-sth-item">°C</view>
+						<view class="temp-sth-item">小雨</view>
+					</view>
+				</view>
+			</view>
+			<view class="text-center">西南风</view>
 		</view>
-		<view>
-
+		<!-- 24小时天气 -->
+		<view class="order-item">
+			<view class="margin-top">
+				<view class="temp-list margin-xs radius shadow">
+					<view>
+						<view class="temp-list-title padding-sm solid-bottom flex justify-between">
+							<view>未来24h天气</view>
+							<view bindtap="refreshRecent"><text class="cuIcon-refresh"></text></view>
+						</view>
+					</view>
+					<view class="padding-sm">
+						<scroll-view scroll-x="true">
+							<view class="flex align-center">
+								<view class="temp-list-item text-center" wx:for="{{recent}}" wx:key="index">
+									<view>{{item.correctTime}}</view>
+									<view>
+										<image class="temp-list-icon" src="/image/weatherIcon/{{item.icon}}.png"
+											mode="aspectFit"></image>
+									</view>
+									<view>{{item.temp+'°C'}}</view>
+								</view>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
 		</view>
 	</view>
-
-
 </view>

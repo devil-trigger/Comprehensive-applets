@@ -1,6 +1,4 @@
 {
   "navigationStyle": "custom",
-  "usingComponents": {
-    "van-button": "/dist/button/index"
-  }
+  "usingComponents": {  }
 }
