@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/netEasemusic/netEasemusic",
     "pages/index/index",
+    "pages/netEasemusic/netEasemusic",
     "pages/weather/weather",
     "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
