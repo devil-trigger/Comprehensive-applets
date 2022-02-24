@@ -5,7 +5,7 @@ App({
 
     this.globalData.AudioCtx = wx.getBackgroundAudioManager(); //定义播放器方法
 
-    let urlText = 'http://81.71.88.145:8080/music-film/';
+    let urlText = 'http://81.71.88.145:3000/music-film/';//默认歌曲的url目录
     this.globalData.defaultList.forEach(item=>{
       item.al.picUrl = urlText + item.al.picUrl;
       item.src = urlText + item.src;
