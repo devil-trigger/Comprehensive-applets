@@ -99,12 +99,12 @@ Page({
             this.setData({
                 reqInfo:dataJson
             })
-            this.weatherRequest('now', dataJson).then(res => {
-                // console.log(res);
-                this.setData({
-                    weatherData: res.data.now
-                })
-            })
+            // this.weatherRequest('now', dataJson).then(res => {
+            //     // console.log(res);
+            //     this.setData({
+            //         weatherData: res.data.now
+            //     })
+            // })
             this.getRecent(dataJson)
         });
     },
