@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/netEasemusic/netEasemusic",
     "pages/weather/weather",
+    "pages/netEasemusic/netEasemusic",
     "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
     "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm",
@@ -31,6 +31,12 @@
         "iconPath":"/image/tabbar/toutiao.png",
         "selectedIconPath": "image/tabbar/toutiao-s.png",
         "text": "头条"
+      },
+      {
+        "pagePath": "pages/weather/weather",
+        "iconPath":"/image/tabbar/toutiao.png",
+        "selectedIconPath": "image/tabbar/toutiao-s.png",
+        "text": "天气"
       },
       {
         "pagePath": "pages/my/my",

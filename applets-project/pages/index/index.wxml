@@ -1,6 +1,6 @@
-<view class="margin-sm" bindtap="toSearchPage">
+<!-- <view class="margin-sm" bindtap="toSearchPage">
   <van-button round plain size="small " icon="search" custom-style='width:100%' type="primary">搜索 </van-button>
-</view>
+</view> -->
 
 <van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
   <van-tab title="新片榜">
