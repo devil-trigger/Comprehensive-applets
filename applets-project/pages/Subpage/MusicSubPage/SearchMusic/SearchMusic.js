@@ -14,6 +14,7 @@ Page({
         hotList: [], //热搜榜data
         value: '', //输入框内容
         SongSheetList:[],//歌单分类列表data
+        // modalName:null
     },
 
     //生命周期函数--监听页面加载
@@ -196,6 +197,23 @@ Page({
         //     //     SongSheetList:res.data.tags
         //     // })
         // })
+    },
+    // showModal(e) {
+    //     console.log(e)
+    //     this.setData({
+    //         modalName:e.currentTarget.dataset.target
+    //     })
+    // },
+    // hideModal(e) {
+    //     this.setData({
+    //         modalName:null
+    //     })
+    //     console.log(this.data);
+    // },
+//这个函数没用到，我也不知道为什么源码作者写了
+    tabSelect(e) {
+        this.TabCur = e.currentTarget.dataset.id;
+        this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
     },
     //生命周期函数--监听页面初次渲染完成
     onReady: function () {},

@@ -1,64 +1,87 @@
+<<<<<<< HEAD
 <!-- <view class="margin-sm" bindtap="toSearchPage">
   <van-button round plain size="small " icon="search" custom-style='width:100%' type="primary">搜索 </van-button>
 </view> -->
+=======
+<view class="app">
+	<view class="navigation-Item" style="height:{{navigationSty.navBarHeight}}px;">
+	<view class="capsule-box flex justify-center"
+		style="height:{{navigationSty.menuHeight}}px; min-height:{{navigationSty.menuHeight}}px; line-height:{{navigationSty.menuHeight}}px; bottom:{{navigationSty.menuBotton}}px;left:{{navigationSty.menuRight}}px;">
+		<view class="nav-title basis-sm text-center">
+			七柚天气
+			<!-- 七柚天气 -->
+		</view>
+	</view>
+</view>
+>>>>>>> 47ef80585a9f706e5c803aed45c194e8aa700adc
 
-<van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
-  <van-tab title="新片榜">
-    <view class="flex-wrap margin flex justify-around align-center">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{NewFilm}}" wx:key="index" bindtap="toFilmDetailsPage" data-filmId="{{item.id}}">
-        <view class="filmImg">
-          <image class="radius" mode="aspectFill" src="{{item.images.medium}}"></image>
-        </view>
-        <view class="filmTitle text-center">
-          <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
-          <view>
-            <van-rate readonly allow-half value="{{item.rating.average/2}}" /> <text
-              class="text-bold text-xl">{{item.rating.average}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </van-tab>
-
-  <van-tab title="口碑榜">
-    <view class="flex-wrap margin flex justify-around align-center">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{Weekly}}" wx:key="index">
-        <view class="filmImg">
-          <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
-        </view>
-        <view class="text-center">
-          <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
-          <view>
-            <van-rate readonly allow-half value="{{item.subject.rating.average/2}}" /> <text
-              class="text-bold text-xl">{{item.subject.rating.average}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </van-tab>
-  <van-tab title="北美票房榜">
-    <view class="flex-wrap margin flex justify-around align-center">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{UsFilm}}" wx:key="index">
-        <view class="filmImg">
-          <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
-        </view>
-        <view class="text-center">
-          <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
-          <view>
-            <van-rate readonly allow-half value="{{item.subject.rating.average/2}}" /> <text
-              class="text-bold text-xl">{{item.subject.rating.average}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </van-tab>
-</van-tabs>
-
-
-<!-- 请求失败组件 -->
-<!-- <view>
-  <van-empty description="{{noDataText}}" image="network">
-  <text>重试</text>
-</van-empty>
-
+<!-- <view class="addItem">
+	<view class="bg-gradual-blue text-sl radius">
+		<text class="cuIcon-add"></text>
+	</view>
 </view> -->
+
+<view id='weathItem' style="margin-top:{{navigationSty.navBarHeight}}px;">
+	<view>
+		<view class="">
+			<view>
+				<view class="text-lg text-center flex justify-center align-center padding-sm">
+					<view class="locationItem radius">
+						<text class="cuIcon-locationfill"></text> 南山
+					</view>
+					<!-- <view class="temp-sth-img-item">
+						<image src="/image/weatherIcon/100.png" mode="aspectFit"></image>
+					</view> -->
+				</view>
+			</view>
+			<view class="temp flex justify-around">
+				<view class="flex">
+					<view class="temp-item">26</view>
+				<view class="flex align-center">
+					<view class="temp-sth">
+						<view class="temp-sth-item">°C</view>
+						<view class="temp-sth-item">多云</view>
+					</view>
+				</view>
+				</view>
+				<view>
+					icon
+				</view>
+				<view>
+					西南风
+				</view>
+			</view>
+			<!-- <view class="text-center">西南风</view> -->
+		</view>
+		<!-- 24小时天气 -->
+		<!-- <view class="order-item">
+			<view class="margin-top">
+				<view class="temp-list margin-xs radius shadow">
+					<view>
+						<view class="temp-list-title padding-sm solid-bottom flex justify-between">
+							<view>未来24h天气</view>
+							<view bindtap="refreshRecent"><text class="cuIcon-refresh"></text></view>
+						</view>
+					</view>
+					<view class="padding-sm">
+						<scroll-view scroll-x="true">
+							<view class="flex align-center">
+								<view class="temp-list-item text-center" wx:for="{{recent}}" wx:key="index">
+									<view>{{item.correctTime}}</view>
+									<view>
+										<image class="temp-list-icon" src="/image/weatherIcon/{{item.icon}}.png"
+											mode="aspectFit"></image>
+									</view>
+									<view>{{item.temp+'°C'}}</view>
+								</view>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
+		</view> -->
+	</view>
+</view>
+
+
+</view>
