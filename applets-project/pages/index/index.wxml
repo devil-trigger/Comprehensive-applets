@@ -1,52 +1,50 @@
-<view class="margin-sm" bindtap="toSearchPage">
+<!-- <view class="margin-sm" bindtap="toSearchPage">
   <van-button round plain size="small " icon="search" custom-style='width:100%' type="primary">搜索 </van-button>
-</view>
+</view> -->
 
 <van-tabs animated swipeable sticky color='#61CD72' active="{{ active }}" bind:change="onChange">
-  <van-tab title="新片榜">
+  <van-tab title="正在上映">
     <view class="flex-wrap margin flex justify-around align-center">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{NewFilm}}" wx:key="index" bindtap="toFilmDetailsPage" data-filmId="{{item.id}}">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{Playing}}" wx:key="index" bindtap="toFilmDetailsPage" data-filmId="{{item.m_id}}">
         <view class="filmImg">
-          <image class="radius" mode="aspectFill" src="{{item.images.medium}}"></image>
+          <image class="radius" mode="aspectFill" src="{{item.img}}"></image>
         </view>
         <view class="filmTitle text-center">
           <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
           <view>
-            <van-rate readonly allow-half value="{{item.rating.average/2}}" /> <text
-              class="text-bold text-xl">{{item.rating.average}}</text>
+            <van-rate readonly allow-half value="{{item.score/2}}" /> <text
+              class="text-bold text-xl">{{item.score}}</text>
           </view>
         </view>
       </view>
     </view>
   </van-tab>
-
-  <van-tab title="口碑榜">
+  <van-tab title="即将上映">
     <view class="flex-wrap margin flex justify-around align-center">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{Weekly}}" wx:key="index">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{Showing}}" wx:key="index" bindtap="toFilmDetailsPage" data-filmId="{{item.m_id}}">
         <view class="filmImg">
-          <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
+          <image class="radius" mode="aspectFill" src="{{item.img}}"></image>
         </view>
-        <view class="text-center">
-          <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
-          <view>
-            <van-rate readonly allow-half value="{{item.subject.rating.average/2}}" /> <text
-              class="text-bold text-xl">{{item.subject.rating.average}}</text>
+        <view class="filmTitle text-center">
+          <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
+          <view class="text-xs text-cut text-gray">
+              <text>{{item.plot}}</text>
           </view>
         </view>
       </view>
     </view>
   </van-tab>
-  <van-tab title="北美票房榜">
+  <van-tab title="Top250">
     <view class="flex-wrap margin flex justify-around align-center">
-      <view class="film-item basis-sm margin-bottom" wx:for="{{UsFilm}}" wx:key="index">
+      <view class="film-item basis-sm margin-bottom" wx:for="{{TopList}}" wx:key="index" bindtap="toFilmDetailsPage" data-filmId="{{item.m_id}}">
         <view class="filmImg">
-          <image class="radius" mode="aspectFill" src="{{item.subject.images.medium}}"></image>
+          <image class="radius" mode="aspectFill" src="{{item.img}}"></image>
         </view>
-        <view class="text-center">
-          <view class="margin-xs text-cut"><text>{{item.subject.title}}</text></view>
+        <view class="filmTitle text-center">
+          <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
           <view>
-            <van-rate readonly allow-half value="{{item.subject.rating.average/2}}" /> <text
-              class="text-bold text-xl">{{item.subject.rating.average}}</text>
+            <van-rate readonly allow-half value="{{item.score/2}}" /> <text
+              class="text-bold text-xl">{{item.score}}</text>
           </view>
         </view>
       </view>

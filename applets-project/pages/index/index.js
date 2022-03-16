@@ -1,54 +1,64 @@
-
+import {getDoubanData,pinyin} from '../../utils/util';
 Page({
     data: {
-        active: 0,//tab
+        active:0,//tab默认index
         noDataText:'数据请求失败',
-        NewFilm:[],//新片
-        Weekly:[],//口碑
-        UsFilm:[],//北美票房
+        Playing:[],//新片
+        Showing:[],//口碑
+        TopList:[],//北美票房
     },
 // 生命周期函数--监听页面加载
     onLoad: function (options) {
-        // this.getData('new_movies').then(res=>{//新片
-        //     // console.log(res.data.subjects[1])
-        //     this.setData({
-        //         NewFilm:res.data.subjects
-        //     })
-        // })
-        // this.getData('weekly').then(res=>{//口碑
-        //     // console.log(res.data.subjects[0])
-        //     this.setData({
-        //         Weekly:res.data.subjects
-        //     })
-        // })
-        // this.getData('us_box').then(res=>{//北美票房
-        //     // console.log(res.data.subjects[0])
-        //     this.setData({
-        //         UsFilm:res.data.subjects
-        //     })
-        // })
+        let city = wx.getStorageSync('CityInfo').adm2
+        let setPinYing=pinyin.getPinyin(city)
+        this.SynthesisGetDatafun(setPinYing)
+
     },
-    getData(parameter){//豆瓣数据请求
-        return new Promise((resolve,reject)=>{
-            let datajson={
-                url: `http://localhost:2080/v2/movie/${parameter}`,
-                data: { apikey:'0b2bdeda43b5688921839c8ecb20399b' },
-                header: {'content-type': 'json'},
-                success (res) { resolve(res) },
-                fail(err){ 
-                    reject(err);
-                }
-              }
-            wx.request(datajson)
+    SynthesisGetDatafun(address){//数据请求综合函数
+        let thslocal =address.replace(/\s+/g,"");
+        this.getData(`playing?city=${thslocal}`,'Playing').then(res=>{//正在上映
         })
-        
+        this.getData(`showing?city=${thslocal}`,'Showing').then(res=>{//即将上映
+        })
+        this.getData('top250?page=0','TopList').then(res=>{//Top250
+            // console.log(this.data.TopList[0])
+        })
+    },
+    getData(parameter,setdataName){
+        let that= this;
+        return new Promise((resolve,rej)=>{
+            getDoubanData(parameter,'movie').then(res=>{
+                let mydata=res.data.data.subject;
+                if (mydata.length%2!=0) {
+                    //（除单）为防止数据是单数，导致视图渲染不完整
+                    mydata.pop()
+                    // console.log(mydata);
+                }
+                if (res.data.code==200&&mydata) {
+                    resolve(mydata)
+                    that.setData({
+                        [setdataName]:mydata
+                    })
+                }else{
+                    rej(err)
+                    wx.showToast({
+                      title: '获取数据失败',
+                      icon:'error'
+                    })
+                }
+               
+            }).catch(err=>{
+               rej(err)
+            })
+        } )
     },
     onChange(event) {//标签页切换
-        // wx.showToast({
-        //   title: `切换到标签 ${event.detail.name}`,
-        //   icon: 'none',
-        // });
-
+        if (event.detail.name==2) {
+            wx.showToast({
+                title: `该接口数据错误`,
+                icon: 'none',
+              });
+        }
     },
     toSearchPage(){//进入搜索
         wx.navigateTo({
@@ -60,7 +70,8 @@ Page({
         wx.navigateTo({
           url: `/pages/Subpage/FilmSubPage/FilmDetails/FilmDetails?id=${id}`,
         })
-        // console.log(e.currentTarget.dataset.filmid)
+
+        console.log(id)
     },
 // 生命周期函数--监听页面初次渲染完成
     onReady: function () {

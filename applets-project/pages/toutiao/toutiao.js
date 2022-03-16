@@ -163,11 +163,14 @@ Page({
   onUnload: function () { },
 //页面相关事件处理函数--监听用户下拉动作
   onPullDownRefresh: function () {
-    // console('ss')
-    // wx.showNavigationBarLoading(); 
-    // wx.showLoading({
-    //   title: '刷新中...',
-    // })
+    wx.showLoading({
+      title: '刷新中...',
+    })
+    setTimeout(() => {
+      wx.hideLoading();
+      this.getdataList();//更新数据
+    }, 3000);
+    // console.log('ss');
   },
 //页面上拉触底事件的处理函数
   onReachBottom: function () {

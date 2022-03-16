@@ -1,3 +1,4 @@
+import pinyin from "wl-pinyin"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -79,6 +80,25 @@ let getSongDetails=(idData) => { //获取歌曲详情(不包含url实际播放�
       })
   })
 }
+let getDoubanData= (parameter,type)=>{//豆瓣数据请求
+  return new Promise((resolve,reject)=>{
+      let datajson={
+          url: `http://api.coderyj.com/${type}/${parameter}`,
+          data: {},
+          header: {'content-type': 'json'},
+          success (res) { 
+              resolve(res)
+              // console.log(res);
+          },
+          fail(err){ 
+              reject(err);
+          }
+        }
+      wx.request(datajson)
+  })
+  
+}
+
 
 module.exports={
   formatTime,
@@ -86,4 +106,6 @@ module.exports={
   netEaseAPI,  //网易云api
   setNavSty,  //标题栏自定义适配
   getSongDetails,//获取歌曲详情(不包含url)
+  getDoubanData,//获取豆瓣数据
+  pinyin,//拼音转换插件
 }

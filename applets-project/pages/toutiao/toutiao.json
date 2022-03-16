@@ -2,5 +2,7 @@
   "usingComponents": {
     "van-image": "/dist/image/index",
     "van-loading": "/dist/loading/index"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark" 
 }
