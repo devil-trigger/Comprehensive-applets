@@ -4,7 +4,6 @@
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
     "pages/netEasemusic/netEasemusic",
     "pages/weather/weather",
-    "pages/netEasemusic/netEasemusic",
     "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
     "pages/toutiao/toutiao",
     "pages/my/my",
@@ -21,9 +20,9 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath":"/image/tabbar/weather.png",
-        "selectedIconPath": "image/tabbar/weather-s.png",
-        "text": "天气"
+        "iconPath":"/image/tabbar/douban.png",
+        "selectedIconPath": "image/tabbar/douban-s.png",
+        "text": "豆瓣"
       },
       {
         "pagePath": "pages/toutiao/toutiao",
@@ -33,8 +32,8 @@
       },
       {
         "pagePath": "pages/weather/weather",
-        "iconPath":"/image/tabbar/toutiao.png",
-        "selectedIconPath": "image/tabbar/toutiao-s.png",
+        "iconPath":"/image/tabbar/weather.png",
+        "selectedIconPath": "image/tabbar/weather-s.png",
         "text": "天气"
       },
       {
