@@ -1,15 +1,15 @@
 {
   "pages":[
-    "pages/toutiao/toutiao",
+    "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
     "pages/index/index",
+    "pages/weather/weather",
+    "pages/my/my",
+    "pages/toutiao/toutiao",
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
     "pages/netEasemusic/netEasemusic",
-    "pages/weather/weather",
     "pages/Subpage/MusicSubPage/playlistsDetails/playlistsDetails",
-    "pages/my/my",
     "pages/Subpage/MusicSubPage/bannerDetails/bannerDetails",
     "pages/Subpage/ToutiaoDetails/ToutiaoDetails",
-    "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
     "pages/Subpage/FilmSubPage/SearchFilm/SearchFilm"
   ],
   "window":{

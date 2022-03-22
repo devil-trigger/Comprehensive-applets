@@ -1,2 +1,2 @@
 id是：{{filmID}}
-<web-view src="{{'https://movie.douban.com/subject/'+filmID}}"></web-view>
+<!-- <web-view src="{{'https://movie.douban.com/subject/'+filmID}}"></web-view> -->

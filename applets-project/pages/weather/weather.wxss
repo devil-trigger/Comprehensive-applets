@@ -3,9 +3,9 @@
     min-height:100vh;
     width: 100vw;
     padding: 2vh 3vw;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
     background: -webkit-linear-gradient(top, #5348a3, #3e738d);
     color: white;
 }

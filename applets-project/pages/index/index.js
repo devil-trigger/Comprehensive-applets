@@ -17,6 +17,7 @@ Page({
     SynthesisGetDatafun(address){//数据请求综合函数
         let thslocal =address.replace(/\s+/g,"");
         this.getData(`playing?city=${thslocal}`,'Playing').then(res=>{//正在上映
+            // console.log(this.data.Playing);
         })
         this.getData(`showing?city=${thslocal}`,'Showing').then(res=>{//即将上映
         })
@@ -27,7 +28,7 @@ Page({
     getData(parameter,setdataName){
         let that= this;
         return new Promise((resolve,rej)=>{
-            getDoubanData(parameter,'movie').then(res=>{
+            getDoubanData(`/${parameter}`,'movie').then(res=>{
                 let mydata=res.data.data.subject;
                 if (mydata.length%2!=0) {
                     //（除单）为防止数据是单数，导致视图渲染不完整

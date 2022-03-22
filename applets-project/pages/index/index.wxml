@@ -12,8 +12,13 @@
         <view class="filmTitle text-center">
           <view class="margin-xs text-cut"><text>{{item.title}}</text></view>
           <view>
-            <van-rate readonly allow-half value="{{item.score/2}}" /> <text
+            <view wx:if="{{item.score!=0||!item.score}}">
+              <van-rate readonly allow-half value="{{item.score/2}}" /> <text
               class="text-bold text-xl">{{item.score}}</text>
+            </view>
+            <view wx:else>
+              <text class="text-gray">暂无评分</text>
+            </view>
           </view>
         </view>
       </view>

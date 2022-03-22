@@ -1,4 +1,4 @@
-// pages/Subpage/FilmDetails/FilmDetails.js
+import {getDoubanData} from '../../../../utils/util';
 Page({
 
     /**
@@ -7,7 +7,6 @@ Page({
     data: {
         filmID:0
     },
-
     /**
      * 生命周期函数--监听页面加载
      */
@@ -15,8 +14,19 @@ Page({
        this.setData({
            filmID:options.id
        })
+       this.getDetail(6424756)
     },
-
+    getDetail(id){//获取详情信息data
+        return new Promise((resolve,rej)=>{
+            getDoubanData(`/detail?id=${id}`,'movie').then(res=>{
+                console.log(res);
+                resolve(res)
+               
+            }).catch(err=>{
+               rej(err)
+            })
+        } )
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

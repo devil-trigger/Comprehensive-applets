@@ -1,4 +1,4 @@
-import pinyin from "wl-pinyin"
+import pinyin from "wl-pinyin";
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -83,7 +83,7 @@ let getSongDetails=(idData) => { //获取歌曲详情(不包含url实际播放�
 let getDoubanData= (parameter,type)=>{//豆瓣数据请求
   return new Promise((resolve,reject)=>{
       let datajson={
-          url: `http://api.coderyj.com/${type}/${parameter}`,
+          url: `http://api.coderyj.com/${type}${parameter}`,
           data: {},
           header: {'content-type': 'json'},
           success (res) { 

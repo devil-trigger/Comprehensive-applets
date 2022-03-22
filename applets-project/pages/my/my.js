@@ -1,33 +1,13 @@
-// pages/my/my.js
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
-        urlformat:'https://picsum.photos',
-        url:''
+        theElement: []
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
-        this.setData({
-            url:this.data.urlformat+'/200/500'
-        })
-    },
-    squareType(){
-        if(this.data.url=='https://picsum.photos/200'){
-            this.setData({
-                url:''
-            })
-        }
-        this.setData({
-            url:this.data.urlformat+'/500'
-        })
-    },
 
+    },
+    toView(e){//点击进入
+        console.log(e.currentTarget.dataset.url);
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -39,14 +19,60 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.setData({
+            theElement: [{
+                    title: '快递查询',
+                    name: 'express',
+                    color: 'cyan',
+                    cuIcon: 'deliver_fill',
+                    url: ''
+                },
+                {
+                    title: '每日一图',
+                    name: 'background',
+                    color: 'blue',
+                    cuIcon: 'colorlens',
+                    url: ''
+                },
+                {
+                    title: '漫画',
+                    name: 'cartoon',
+                    color: 'purple',
+                    cuIcon: 'picfill',
+                    url: ''
+                },
+                {
+                    title: '图标 ',
+                    name: 'icon',
+                    color: 'mauve',
+                    cuIcon: 'pay',
+                    url: ''
+                },
+                {
+                    title: '按钮',
+                    name: 'button',
+                    color: 'pink',
+                    cuIcon: 'btn',
+                    url: ''
+                },
+                {
+                    title: '标签',
+                    name: 'tag',
+                    color: 'brown',
+                    cuIcon: 'tagfill',
+                    url: ''
+                },
+            ],
+        })
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+        this.setData({
+            theElement: []
+        })
     },
 
     /**

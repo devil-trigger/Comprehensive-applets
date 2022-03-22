@@ -149,6 +149,8 @@ Page({
                 success: res => {
                     if (res.data.code == 200) {
                         resolve(res);
+                    }else{
+                        reject(err)
                     }
                 },
                 fail: err => {
