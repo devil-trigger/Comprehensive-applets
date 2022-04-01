@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
-    "pages/index/index",
-    "pages/weather/weather",
+    "pages/Subpage/My/Covid/Covid",
     "pages/my/my",
+    "pages/index/index",
+    "pages/Subpage/FilmSubPage/FilmDetails/FilmDetails",
+    "pages/weather/weather",
     "pages/toutiao/toutiao",
     "pages/Subpage/MusicSubPage/SearchMusic/SearchMusic",
     "pages/netEasemusic/netEasemusic",

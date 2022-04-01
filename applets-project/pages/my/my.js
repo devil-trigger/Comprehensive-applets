@@ -6,7 +6,11 @@ Page({
 
     },
     toView(e){//点击进入
-        console.log(e.currentTarget.dataset.url);
+        // console.log(e.currentTarget.dataset.url);
+        let myUrl=e.currentTarget.dataset.url;
+        wx.navigateTo({
+          url: `/pages/Subpage/My/${myUrl}/${myUrl}`,
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -42,26 +46,26 @@ Page({
                     url: ''
                 },
                 {
-                    title: '图标 ',
-                    name: 'icon',
+                    title: '疫情 ',
+                    name: 'Covid',
                     color: 'mauve',
-                    cuIcon: 'pay',
-                    url: ''
+                    cuIcon: 'rank',
+                    url: 'Covid'
                 },
-                {
-                    title: '按钮',
-                    name: 'button',
-                    color: 'pink',
-                    cuIcon: 'btn',
-                    url: ''
-                },
-                {
-                    title: '标签',
-                    name: 'tag',
-                    color: 'brown',
-                    cuIcon: 'tagfill',
-                    url: ''
-                },
+                // {
+                //     title: '按钮',
+                //     name: 'button',
+                //     color: 'pink',
+                //     cuIcon: 'btn',
+                //     url: ''
+                // },
+                // {
+                //     title: '标签',
+                //     name: 'tag',
+                //     color: 'brown',
+                //     cuIcon: 'tagfill',
+                //     url: ''
+                // },
             ],
         })
     },

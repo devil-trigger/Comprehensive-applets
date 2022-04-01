@@ -1,0 +1,66 @@
+<view class="header"></view>
+<view class="sub">
+  <view class="title">
+    <view class="Subtitle">新型冠状病毒肺炎</view>
+    <view class="Headline">疫情实时大数据报告</view>
+  </view>
+  <View class="tab">
+    <van-tabs active="{{ active }}" bind:change="onChangeTab" sticky swipeable color="#10AEB5">
+      <van-tab title="国内疫情">
+        <view class="tabs-view">
+          <view class="tabTitle">
+            国内疫情
+          </view>
+          <view class="flex justify-between text-gray text-xs padding-xs">
+              <view>数据更新至 2022.04.01 09:52</view>
+              <view bindtap="toexplain">
+                <text class="cuIcon-creative"></text>
+                数据说明
+              </view>
+          </view>
+          <view class="flex covid-num">
+              <view class="text-center num-item">
+                <view class="numItem-title">新增确诊</view>
+                <view class='numItem-num'>{{desc.confirmedIncr}}</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">现存确诊</view>
+                <view class='numItem-num'>{{desc.currentConfirmedCount}}</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">累计确诊</view>
+                <view class='numItem-num'>100</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">累计死亡</view>
+                <view class='numItem-num'>100</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">新增境外</view>
+                <view class='numItem-num'>100</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">现存无症状</view>
+                <view class='numItem-num'>100</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">累计治愈</view>
+                <view class='numItem-num'>100</view>
+              </view>
+              <view class="text-center num-item">
+                <view class="numItem-title">累计境外</view>
+                <view class='numItem-num'>100</view>
+              </view>
+          </view>
+        </view>
+      </van-tab>
+      <van-tab title="国外疫情">国外疫情</van-tab>
+      <van-tab title="疫情新闻">疫情新闻</van-tab>
+    </van-tabs>
+  </View>
+</view>
+
+
+<!-- <view class="flex jusify-center align-center chartView">
+  <canvas canvas-id="canvas1" class="canvas"></canvas>
+</view> -->

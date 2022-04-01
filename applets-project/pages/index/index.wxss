@@ -1,12 +1,12 @@
-.FilmContent{}
-.film-item{
-    /* width:40%; */
-    /* background-color: #f3fef3; */
-    /* height: 300rpx; */
-}
-.film-item .filmImg{
-    /* width: 40vw; */
-}
+/* .FilmContent{} */
+/* .film-item{
+    width:40%;
+    background-color: #f3fef3;
+    height: 300rpx;
+} */
+/* .film-item .filmImg{
+    width: 40vw;
+} */
 .film-item .filmImg image{
     width: 100%;
 }

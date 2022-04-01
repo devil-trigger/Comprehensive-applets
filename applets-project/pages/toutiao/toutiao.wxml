@@ -27,7 +27,7 @@
       </view>
     </view>
     <!-- ——————左图右文—————— -->
-    <view class="margin flex align-center" wx:if="{{index%2!=0}}" bindtap="toToutiaoDetails" data-url="{{item.url}}">
+    <view class="margin flex align-center" wx:else bindtap="toToutiaoDetails" data-url="{{item.url}}">
       <view class="basis-sm margin-xs toutiaoImgItem">
         <van-image width="95%" height="200rpx" src="{{item.picUrl}}" />
       </view>

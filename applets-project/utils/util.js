@@ -98,7 +98,27 @@ let getDoubanData= (parameter,type)=>{//豆瓣数据请求
   })
   
 }
-
+let tianxingAPI=(type,data)=>{
+  let mykey='869941cd56fe09e14b255d12467651bd';
+  let mydata=data?data:{};mydata.key=mykey;
+  return new Promise((resolve,rej)=>{
+      wx.request({
+        url: `http://api.tianapi.com/${type}/index`,
+        data: mydata,
+        method: 'GET',
+        success:res => {
+          if (res.statusCode==200&&res.data) {
+            resolve(res.data)
+          }else{
+            rej(res)
+          }
+        },
+        fail: err=> {
+          rej(err)
+        },
+      })
+  })
+}
 
 module.exports={
   formatTime,
@@ -107,5 +127,6 @@ module.exports={
   setNavSty,  //标题栏自定义适配
   getSongDetails,//获取歌曲详情(不包含url)
   getDoubanData,//获取豆瓣数据
+  tianxingAPI:tianxingAPI,//天行api接口
   pinyin,//拼音转换插件
 }
